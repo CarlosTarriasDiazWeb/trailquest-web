@@ -1,18 +1,14 @@
 <template>
-<RouterView></RouterView>
+  <RouterView></RouterView>
 </template>
 
 <script>
-
-
 export default {
-  name: 'App',
-  components: {
-    
-  }
-}
+  name: "App",
+  components: {},
+};
 </script>
 
 <style>
-
+@import "../public/custom.css";
 </style>
