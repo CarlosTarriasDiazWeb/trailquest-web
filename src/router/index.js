@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
-
+import Anadir from "../views/Anadir.vue";
+import Jugador from "../views/Jugador.vue";
+import Perfil from "../views/Perfil.vue";
 
 const routes = [
   {
@@ -14,7 +16,21 @@ const routes = [
     name: "login",
     component: Login,
   },
-  
+  {
+    path: "/anadir",
+    name: "anadir",
+    component: Anadir,
+  },
+  {
+    path: "/jugador",
+    name: "jugador",
+    component: Jugador,
+  },
+  {
+    path: "/perfil",
+    name: "perfil",
+    component: Perfil,
+  },
 ];
 
 const router = createRouter({

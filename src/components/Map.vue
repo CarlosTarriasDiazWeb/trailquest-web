@@ -1,34 +1,48 @@
 <template>
-    <div style="height:600px; width:800px">
-        <!-- TODO salir que esté por defecto en bcn con el zoom adecuado -->
-        <l-map ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
-            <l-tile-layer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    layer-type="base"
-                    name="OpenStreetMap"
-            ></l-tile-layer>
-        </l-map>
-    </div>
+  <div style="height: 50vh; width: 100%">
+    <l-map :options="{ scrollWheelZoom: false }" ref="map" v-model:zoom="zoom" :center="center">
+      <l-tile-layer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        layer-type="base"
+        name="OpenStreetMap"
+      ></l-tile-layer>
+      <l-marker
+        v-for="localizacion in localizaciones"
+        :key="localizacion.nombre"
+        :lat-lng="getMarker(localizacion.position)"
+      ></l-marker>
+    </l-map>
+  </div>
 </template>
 
 <script>
+import { latLng } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 
 export default {
-    name: 'map-component',
-    components: {
-        LMap,
-        LTileLayer,
+  name: "map-component",
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker,
+  },
+  props: {
+    mapWidthPerc: Number,
+    localizaciones: Array,
+    center: Array,
+  },
+  data() {
+    return {
+      zoom: 15,
+    };
+  },
+  methods: {
+    getMarker(array) {
+      return latLng(array[0], array[1]);
     },
-    data() {
-        return {
-            zoom: 12,
-        };
-    },
+  },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
