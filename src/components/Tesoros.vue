@@ -1,13 +1,14 @@
 <template>
-  <h1>Tesoros</h1>
-  <TesoroItem
-    v-for="(tesoro, index) in localizaciones"
-    :key="index"
-    :nombre="tesoro.nombre"
-    :descripcion="tesoro.descripcion"
-    :id="`tesoro${index}`"
-  >
-  </TesoroItem>
+  <section class="d-flex flex-column flex-grow-1">
+    <TesoroItem
+      v-for="(tesoro, index) in localizaciones"
+      :key="index"
+      :nombre="tesoro.nombre"
+      :descripcion="tesoro.descripcion"
+      :id="`tesoro${index}`"
+    >
+    </TesoroItem>
+  </section>
 </template>
 
 <script>

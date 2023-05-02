@@ -1,5 +1,5 @@
 <template>
-  <div class="border-tesoro accordion-item">
+  <div class="py-4 px-5 border-tesoro accordion-item">
     <h2 class="accordion-header" id="headingTwo">
       <button
         class="accordion-button collapsed"
@@ -9,7 +9,7 @@
         aria-expanded="false"
         aria-controls="collapseTwo"
       >
-        <p>{{ nombre }}</p>
+        <h3>{{ nombre }}</h3>
       </button>
     </h2>
     <div
