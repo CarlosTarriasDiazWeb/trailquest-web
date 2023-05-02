@@ -1,5 +1,20 @@
 <template>
   <NavBar></NavBar>
+  <div class="bg-accent p-3 d-flex flex-row justify-content-center">
+    <div class="form-row w-50">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          v-model="palabraFiltro"
+          placeholder="Buscar Tesoro..."
+        />
+      </div>
+    </div>
+    <div class="form-row w-50 ms-5">
+      <button @click.prevent="filtrarTesoros">Buscar</button>
+    </div>
+  </div>
   <span @click="filterAll" class="button badge bg-success">Todos</span>
   <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span>
   <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
@@ -44,11 +59,20 @@ export default {
     posicionarCentro(object) {
       this.center = object.position;
     },
+    filtrarTesoros() {
+      this.localizacionesMostrar = [...this.todas];
+      this.localizacionesMostrar = [
+        ...this.localizacionesMostrar.filter((localizacion) =>
+          localizacion.nombre.toLowerCase().includes(this.palabraFiltro.toLowerCase())
+        ),
+      ];
+    },
   },
   data() {
     return {
       mapWidthPerc: 100,
       center: [41.386415, 2.169987],
+      palabraFiltro: "",
       todas: [
         {
           nombre: "Tesoro 1",
@@ -148,6 +172,8 @@ export default {
       ],
     };
   },
+  computed: {},
+
   mounted() {
     this.localizacionesMostrar = [...this.todas];
   },
