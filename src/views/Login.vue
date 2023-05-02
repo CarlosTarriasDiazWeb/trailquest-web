@@ -1,19 +1,17 @@
 <template>
   <header>
-    <button>Volver al mapa</button>
+    
   </header>
 
-  <h1>Añadir tesoro</h1>
+  <h1>Inicia sesión</h1>
   <form v-on:submit.prevent="enviarFormulario">
-    <label for="" required>Nombre monumento:</label><br>
-    <input type="text" name="" id="nom_tesoro"><br><br>
-    <label for="" required>Descripción:</label><br>
-    <input type="text" name="" id="inf_tesoro"><br><br>
-    <label for="">Selecciona una ubicación:</label><br><br>
-    <div id="map">
-      <Map></Map>
-    </div>
-    <input type="submit" value="Hecho" class="submit">
+    <label for="" required>Nombre usuario:</label><br>
+    <input type="text" name="" id="nom_usuario"><br><br>
+    <label for="" required>Contraseña:</label><br>
+    <input type="text" name="" id="con_usuario"><br><br>
+
+    <input type="submit" value="Iniciar" class="submit"><br><br>
+    <a href="./web/src/views/Home.vue">¿Eres nuevo? Regístrate</a>
   </form>
 
 </template>
@@ -21,23 +19,25 @@
 <script>
 export default {
   
-
   name: 'LoginView',
-  
-  props: {
 
-  },
+  components: {
+
+    },
   methods:{
     enviarFormulario(){
       console.log('Enviado!');
     },
     
+    comprobarUsuario(){
+      
+    }
   }
 }
 </script>
    
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#map { height: 180px; }
+
 </style>
    
