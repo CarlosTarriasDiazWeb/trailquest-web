@@ -27,20 +27,21 @@ export default {
     Tesoros,
     NavBar,
   },
+  methods: {
+    filterFavoritos() {
+      this.localizacionesMostrar = [...this.localizacionesFavoritas];
+    },
+    filterAll() {
+      this.localizacionesMostrar = [...this.todas];
+    },
+    filterEncontrados() {
+      this.localizacionesMostrar = [...this.localizacionesEncontradas];
+    },
+  },
   data() {
     return {
       mapWidthPerc: 100,
-      methods: {
-        filterFavoritos() {
-          this.localizacionesMostrar = [...this.localizacionesFavoritas];
-        },
-        filterAll() {
-          this.localizacionesMostrar = [...this.todas];
-        },
-        filterencontrados() {
-          this.localizacionesMostrar = [...this.localizacionesEncontradas];
-        },
-      },
+
       todas: [
         {
           nombre: "Tesoro 1",
