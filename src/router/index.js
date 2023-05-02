@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
+import Anadir from "../views/Anadir.vue";
 
 
 const routes = [
@@ -14,7 +15,11 @@ const routes = [
     name: "login",
     component: Login,
   },
-  
+  {
+    path: "/anadir",
+    name: "anadir",
+    component: Anadir,
+  },
 ];
 
 const router = createRouter({
