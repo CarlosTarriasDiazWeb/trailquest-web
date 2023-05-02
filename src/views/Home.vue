@@ -81,10 +81,6 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
-<style scoped></style>
-=======
 <style scoped>
 
 </style>
->>>>>>> 8bb29c3 (home update)
