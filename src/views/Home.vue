@@ -1,7 +1,20 @@
 <template>
-    <div style="height:600px; width:800px">
-        <Map></Map>
-    </div>
+    <header>
+        <nav>
+            <ul>
+                <li></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>TRAILQUEST</h1>
+        <div style="height:600px; width:800px">
+            <Map></Map>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
 </template>
 
 <script>
@@ -19,4 +32,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>
