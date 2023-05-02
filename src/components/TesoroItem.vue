@@ -1,5 +1,5 @@
 <template>
-  <div class="py-4 px-5 border-tesoro accordion-item">
+  <div @click="posicionarCentro" class="py-4 px-5 border-tesoro accordion-item">
     <h2 class="accordion-header" id="headingTwo">
       <button
         class="accordion-button collapsed"
@@ -37,6 +37,12 @@ export default {
     nombre: String,
     descripcion: String,
     id: Number,
+    localizacion: Array,
+  },
+  methods: {
+    posicionarCentro() {
+      this.$emit("posicionarCentro", { position: this.localizacion });
+    },
   },
 };
 </script>

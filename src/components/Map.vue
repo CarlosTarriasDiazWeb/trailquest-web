@@ -1,11 +1,6 @@
 <template>
   <div style="height: 50vh; width: 100%">
-    <l-map
-      :options="{ scrollWheelZoom: false }"
-      ref="map"
-      v-model:zoom="zoom"
-      :center="[41.386415, 2.169987]"
-    >
+    <l-map :options="{ scrollWheelZoom: false }" ref="map" v-model:zoom="zoom" :center="center">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
@@ -35,6 +30,7 @@ export default {
   props: {
     mapWidthPerc: Number,
     localizaciones: Array,
+    center: Array,
   },
   data() {
     return {

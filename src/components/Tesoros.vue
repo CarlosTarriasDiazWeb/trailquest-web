@@ -5,7 +5,9 @@
       :key="index"
       :nombre="tesoro.nombre"
       :descripcion="tesoro.descripcion"
+      :localizacion="tesoro.position"
       :id="`tesoro${index}`"
+      @posicionarCentro="posicionarCentro"
     >
     </TesoroItem>
   </section>
@@ -23,6 +25,11 @@ export default {
   },
   props: {
     localizaciones: Array,
+  },
+  methods: {
+    posicionarCentro(position) {
+      this.$emit("posicionarCentro", position);
+    },
   },
 };
 </script>

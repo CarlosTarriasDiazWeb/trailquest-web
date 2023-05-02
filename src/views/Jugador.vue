@@ -5,8 +5,12 @@
   <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
 
   <main>
-    <Map :mapWidthPerc="mapWidthPerc" :localizaciones="localizacionesMostrar"></Map>
-    <Tesoros :localizaciones="localizacionesMostrar"></Tesoros>
+    <Map
+      :mapWidthPerc="mapWidthPerc"
+      :localizaciones="localizacionesMostrar"
+      :center="center"
+    ></Map>
+    <Tesoros :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
   </main>
   <footer>
     <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -37,11 +41,14 @@ export default {
     filterEncontrados() {
       this.localizacionesMostrar = [...this.localizacionesEncontradas];
     },
+    posicionarCentro(object) {
+      this.center = object.position;
+    },
   },
   data() {
     return {
       mapWidthPerc: 100,
-
+      center: [41.386415, 2.169987],
       todas: [
         {
           nombre: "Tesoro 1",
