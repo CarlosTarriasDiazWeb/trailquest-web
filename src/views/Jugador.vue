@@ -1,20 +1,6 @@
 <template>
   <NavBar></NavBar>
-  <div class="bg-accent p-3 d-flex flex-row justify-content-center">
-    <div class="form-row w-50">
-      <div class="col">
-        <input
-          type="text"
-          class="form-control"
-          v-model="palabraFiltro"
-          placeholder="Buscar Tesoro..."
-        />
-      </div>
-    </div>
-    <div class="form-row w-50 ms-5">
-      <button @click.prevent="filtrarTesoros">Buscar</button>
-    </div>
-  </div>
+
   <span @click="filterAll" class="button badge bg-success">Todos</span>
   <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span>
   <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
@@ -25,6 +11,21 @@
       :localizaciones="localizacionesMostrar"
       :center="center"
     ></Map>
+    <div class="bg-accent p-3 d-flex flex-row justify-content-end">
+      <div class="form-row w-40">
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            v-model="palabraFiltro"
+            placeholder="Escribe nombre del tesoro..."
+          />
+        </div>
+      </div>
+      <div class="form-row w-40 ms-5">
+        <button @click.prevent="filtrarTesoros">Buscar</button>
+      </div>
+    </div>
     <Tesoros :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
   </main>
   <footer>
@@ -149,12 +150,14 @@ export default {
           nombre: "Tesoro 9",
           descripcion: "Descr 9",
           descubierto: true,
+          favorito: true,
           position: [41.286415, 2.209987],
         },
         {
           nombre: "Tesoro 10",
           descripcion: "Descr 10",
           descubierto: true,
+          favorito: true,
           position: [41.286415, 2.222987],
         },
       ],
@@ -162,11 +165,15 @@ export default {
         {
           nombre: "Tesoro 5",
           descripcion: "Descr 5",
+          descubierto: true,
+          favorito: false,
           position: [41.286415, 2.209987],
         },
         {
           nombre: "Tesoro 6",
           descripcion: "Descr 6",
+          descubierto: true,
+          favorito: false,
           position: [41.386415, 2.209987],
         },
       ],

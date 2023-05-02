@@ -6,6 +6,8 @@
       :nombre="tesoro.nombre"
       :descripcion="tesoro.descripcion"
       :localizacion="tesoro.position"
+      :favorito="tesoro.favorito"
+      :descubierto="tesoro.descubierto"
       :id="`tesoro${index}`"
       @posicionarCentro="posicionarCentro"
     >

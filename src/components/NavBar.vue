@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink class="sesion-btn nav-link" to="/login">Cerrar Sesión</RouterLink>
+            <RouterLink class="sesion-btn nav-link" to="/">Cerrar Sesión</RouterLink>
           </li>
         </ul>
       </div>

@@ -18,8 +18,14 @@
       aria-labelledby="headingTwo"
       data-bs-parent="#accordionExample"
     >
-      <div class="accordion-body">
+      <div v-if="descubierto" class="accordion-body">
         <p>{{ descripcion }}</p>
+      </div>
+      <div v-else class="accordion-body blur">
+        <p>{{ descripcion }}</p>
+      </div>
+      <div v-if="favorito" class="accordion-body">
+        <p>Favorito</p>
       </div>
     </div>
   </div>
@@ -37,6 +43,8 @@ export default {
     nombre: String,
     descripcion: String,
     id: Number,
+    favorito: Boolean,
+    descubierto: Boolean,
     localizacion: Array,
   },
   methods: {
@@ -50,5 +58,10 @@ export default {
 <style scoped>
 .border-tesoro {
   border-bottom: 2px solid var(--dark-gray);
+}
+
+.blur {
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
 }
 </style>
