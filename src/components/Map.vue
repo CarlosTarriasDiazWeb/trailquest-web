@@ -59,7 +59,7 @@ export default {
       return latLng(array[0], array[1]);
     },
     modifyCenter(event) {
-      this.zoom = 17;
+      this.zoom = 14;
       console.log(event);
       this.$emit("modifyCenter", event.latlng);
     },
