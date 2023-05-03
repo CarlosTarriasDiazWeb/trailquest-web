@@ -5,6 +5,7 @@ import Anadir from "../views/Anadir.vue";
 import Jugador from "../views/Jugador.vue";
 import Perfil from "../views/Perfil.vue";
 import Registro from "../views/Registro.vue";
+import Admin from "../views/Admin.vue";
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     name: "registro",
     component: Registro,
   },
+  {
+    path: "/admin",
+    name: "admin",
+    component: Admin,
+  }
 ];
 
 const router = createRouter({
