@@ -4,6 +4,7 @@ import Login from "../views/Login.vue";
 import Anadir from "../views/Anadir.vue";
 import Jugador from "../views/Jugador.vue";
 import Perfil from "../views/Perfil.vue";
+import Registro from "../views/Registro.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: "/perfil",
     name: "perfil",
     component: Perfil,
+  },
+  {
+    path: "/registro",
+    name: "registro",
+    component: Registro,
   },
 ];
 

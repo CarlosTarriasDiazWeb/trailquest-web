@@ -10,10 +10,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item text-center">
-                            <router-link class="nav-link" to="/login">Iniciar sesión</router-link>
+                            <router-link class="nav-link btn btn-light mx-1 my-1" to="/login">Iniciar sesión</router-link>
                         </li>
                         <li class="nav-item text-center">
-                            <router-link class="nav-link" to="/register">Registrarse</router-link>
+                            <router-link class="nav-link btn btn-light mx-1 my-1" to="/registro">Registrarse</router-link>
+                        </li>
+                        <li class="nav-item text-center">
+                            <router-link class="nav-link btn btn-light mx-1 my-1" to="/perfil">Mi perfil</router-link>
                         </li>
                     </ul>
                 </div>
