@@ -42,6 +42,11 @@
             data-bs-parent="#accordionExample">
             <div class="accordion-body">
               <!-- TODO Iterar con un for para mostrar las localizaciones del usuario -->
+              <ul>
+                <li v-for="tesoro,index in todas" v-bind:key="index">
+                  {{ tesoro.nombre }} 
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -71,8 +76,115 @@
 export default {
   name: "home-page",
   components: {},
+  methods:{
+
+  },
   data() {
-    return {};
+    return {
+      todas: [
+        {
+          nombre: "Tesoro 1",
+          descripcion: "Descr 1 Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          favorito: false,
+          descubierto: false,
+          position: [41.386415, 2.269987],
+        },
+        {
+          nombre: "Tesoro 2",
+          descripcion: "Descr 2 Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          favorito: true,
+          descubierto: true,
+          position: [41.386415, 2.309987],
+        },
+        {
+          nombre: "Tesoro 3",
+          descripcion: "Descr 3 Descr 1Descr 1Descr 1Descr 1Descr 1",
+          favorito: false,
+          descubierto: true,
+          position: [41.286415, 2.309987],
+        },
+        {
+          nombre: "Tesoro 4",
+          descripcion: "Descr 4Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          favorito: true,
+          descubierto: false,
+          position: [41.286415, 2.309987],
+        },
+        {
+          nombre: "Tesoro 5",
+          descripcion: "Descr 5Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          favorito: false,
+          descubierto: true,
+          position: [41.286415, 2.209987],
+        },
+        {
+          nombre: "Tesoro 6",
+          descripcion: "Descr 6Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          favorito: false,
+          descubierto: true,
+          position: [41.386415, 2.209987],
+        },
+        {
+          nombre: "Tesoro 7",
+          descripcion: "Descr 7Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          favorito: false,
+          descubierto: true,
+          position: [41.286415, 2.259987],
+        },
+        {
+          nombre: "Tesoro 8",
+          descripcion: "Descr 8Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          favorito: false,
+          descubierto: true,
+          position: [41.286415, 2.239987],
+        },
+        {
+          nombre: "Tesoro 9",
+          descripcion: "Descr 9Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          descubierto: true,
+          position: [41.286415, 2.209987],
+        },
+        {
+          nombre: "Tesoro 10",
+          descripcion: "Descr 10Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          descubierto: true,
+          position: [41.286415, 2.222987],
+        },
+      ],
+      localizacionesMostrar: [],
+      localizacionesFavoritas: [
+        {
+          nombre: "Tesoro 9",
+          descripcion: "Descr 9Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          descubierto: true,
+          favorito: true,
+          position: [41.286415, 2.209987],
+        },
+        {
+          nombre: "Tesoro 10",
+          descripcion: "Descr 10Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          descubierto: true,
+          favorito: true,
+          position: [41.286415, 2.222987],
+        },
+      ],
+      localizacionesEncontradas: [
+        {
+          nombre: "Tesoro 5",
+          descripcion: "Descr 5Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          descubierto: true,
+          favorito: false,
+          position: [41.286415, 2.209987],
+        },
+        {
+          nombre: "Tesoro 6",
+          descripcion: "Descr 6Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
+          descubierto: true,
+          favorito: false,
+          position: [41.386415, 2.209987],
+        },
+      ],
+    };
   },
 };
 </script>
