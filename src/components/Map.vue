@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       zoom: 15,
+      addedMarker: []
     };
   },
   methods: {
@@ -39,6 +40,9 @@ export default {
       this.zoom = 17;
       console.log(event);
       this.$emit("modifyCenter", event.latlng);
+    },
+    addMarker(event) {
+      console.log(event);
     }
   },
 };

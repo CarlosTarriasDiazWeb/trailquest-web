@@ -18,7 +18,7 @@
     </main>
     <footer>
         <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
-            <router-link class="perfil-btn w-40 btn" to="#">Añadir +</router-link>
+            <router-link class="perfil-btn w-40 btn" to="/anadir">Añadir +</router-link>
         </div>
     </footer>
 </template>
