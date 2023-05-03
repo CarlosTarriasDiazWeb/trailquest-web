@@ -41,7 +41,7 @@ export default {
 <style scoped>
 @import "../../public/custom.css";
 .bg-nav {
-  background-color: var(--primary);
+  background-color: var(--primary-color);
 }
 
 img {
