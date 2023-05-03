@@ -1,3 +1,7 @@
 @import "./resources/colors.css";
 @import "./resources/fonts.css";
 @import "./resources/scrollbar.css";
+
+.bg-green{
+    background-color: var(--primary-color);
+}

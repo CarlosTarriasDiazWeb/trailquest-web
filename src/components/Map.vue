@@ -10,7 +10,6 @@
         v-for="localizacion in localizaciones"
         :key="localizacion.nombre"
         :lat-lng="getMarker(localizacion.position)"
-        :name = "localizacion.nombre"
       ></l-marker>
     </l-map>
   </div>

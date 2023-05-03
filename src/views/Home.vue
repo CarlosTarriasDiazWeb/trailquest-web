@@ -1,8 +1,8 @@
 <template>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-success">
+        <nav class="navbar navbar-expand-sm navbar-light bg-green">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">LOGO</a>
+                <a class="navbar-brand" href="/"><img src="../../public/assets/imgs/logo1.png" alt="" height="60"> </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -64,19 +64,20 @@
         </section>
 
     </main>
-    <footer class="bg-success p-2">
+    <footer class="bg-green p-2">
         <div class="container">
             <div class="row">
-                <section class="col-lg" id="socials">
+                <section class="col" id="socials">
                     <h5>Contactanos!</h5>
-                    <nav class="row">
-                        <a href="" class=" col me-4 text-reset">
+                    <nav class="nav flex-column">
+                        <a href="" class="nav-link">
+                            <font-awesome-icon icon="fa-solid fa-user-secret" />
                             facebook
                         </a>
-                        <a href="" class="col me-4 text-reset">
+                        <a href="" class="nav-link">
                             twitter
                         </a>
-                        <a href="" class="col me-4 text-reset">
+                        <a href="" class="nav-link">
                             instagram
                         </a>
                     </nav>
