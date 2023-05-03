@@ -189,6 +189,13 @@ export default {
   background-color: var(--accent);
 }
 
+button{
+  background-color: #d9d9d9;
+    border: none;
+    border-radius: 2em;
+    padding: 4px;
+}
+
 .perfil-btn {
   background-color: var(--primary);
   color: var(--white);

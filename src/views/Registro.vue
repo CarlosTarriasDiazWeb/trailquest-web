@@ -6,11 +6,11 @@
     <h1>Registrate</h1>
     <form v-on:submit.prevent="enviarFormulario">
         <label for="" required>Nombre usuario:</label><br>
-        <input type="text" name="" id="nom_usuario"><br><br>
+        <input type="text" v-model="name" name="name" id="nom_usuario"><br><br>
         <label for="" required>Contraseña:</label><br>
-        <input type="text" name="" id="con_usuario"><br><br>
+        <input type="password" v-model="password1" name="password1" id="con_usuario"><br><br>
         <label for="" required>Repita su contraseña:</label><br>
-        <input type="text" name="" id="rep_contra"><br><br>
+        <input type="password" v-model="password2"  name="password2" id="rep_contra"><br><br>
 
         <input type="submit" value="Iniciar" class="submit"><br><br>
         <a href="/login">¿Eres miembro? Inicia sesión</a>
@@ -22,14 +22,24 @@ export default {
 
     name: 'RegistroView',
 
-    components: {
+    // data: {
 
-    },
+    // },
     methods: {
         enviarFormulario() {
-            console.log('Enviado!');
+            if(!this.name){
+              alert("El nombre de usuario es obligatorio")
+            }
+            if(!this.password1 || !this.password2){
+              alert("Debes repetir la contraseña")
+            }
+             if(this.password1 != this.password2){
+               alert("Las contraseñas son diferentes!")
+             }
+            else{
+              console.log('Enviado!');
+            }
         },
-
         comprobarUsuario() {
 
         }
@@ -48,7 +58,7 @@ export default {
       color: #a7a8a8;
     }
   
-    .input{
+    input{
       background-color: #d9d9d9;
       border: none;
       border-radius: 2em;

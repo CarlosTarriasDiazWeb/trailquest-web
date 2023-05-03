@@ -68,4 +68,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+header{
+    background-color: #78d3ae;
+}
+
+</style>

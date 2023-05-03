@@ -2,7 +2,7 @@
   <header class="bg-green">
     <div class="container">
       <nav class="nav d-flex justify-content-end p-4">
-        <a href="/" class=" nav-link btn btn-light">Volver al mapa</a>
+        <a href="/jugador" class=" nav-link btn btn-light">Volver al mapa</a>
       </nav>
     </div>
   </header>
@@ -195,4 +195,6 @@ export default {
   padding: 20px;
   border: 3px solid black;
   border-radius: 50%;
-}</style>
+}
+
+</style>
