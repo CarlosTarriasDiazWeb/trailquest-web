@@ -13,13 +13,13 @@
         <h1>El teu perfil</h1>
       </div>
       <!-- User -->
-      <div class="row d-flex align-items-center">
-        <img class="col-2 img-fluid" src="../../public/assets/imgs/logo1.png" alt="">
+      <div class="row d-flex align-items-center py-4">
+        <img class="col-1 img-fluid circle-icon" src="../../public/assets/imgs/logo1.png" alt="">
         <h3 class="col">David Marin</h3>
       </div>
       <!-- Stats -->
       <div class="row">
-        <p>Número de tesoros: 50</p>
+        <p class="p-0">Número de tesoros: 50</p>
       </div>
       <div class="row">
         Nivel: Experto
@@ -35,7 +35,7 @@
           <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
               aria-expanded="true" aria-controls="collapseOne">
-              Accordion Item #1
+              Mis localizaciones
             </button>
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
@@ -49,7 +49,7 @@
           <h2 class="accordion-header" id="headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
               data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Accordion Item #2
+              Mis reseñas
             </button>
           </h2>
           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -77,8 +77,10 @@ export default {
 };
 </script>
 
-<style scoped>.circle-icon {
-  background: var(--primary-color);
+<style scoped>
+.circle-icon {
+  background: #78d3af38;  
   padding: 20px;
+  border: 3px solid black;
   border-radius: 50%;
 }</style>
