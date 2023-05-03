@@ -1,31 +1,6 @@
 <template>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-green">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/"><img src="../../public/assets/imgs/logo.png" alt="" height="60"> TRAIL
-                    QUEST </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item text-center">
-                            <router-link class="nav-link btn btn-light mx-1 my-1" to="/login">Iniciar sesión</router-link>
-                        </li>
-                        <li class="nav-item text-center">
-                            <router-link class="nav-link btn btn-light mx-1 my-1" to="/registro">Registrarse</router-link>
-                        </li>
-                        <li class="nav-item text-center">
-                            <router-link class="nav-link btn btn-light mx-1 my-1" to="/jugador">Mis tesoros</router-link>
-                        </li>
-                        <li class="nav-item text-center">
-                            <router-link class="nav-link btn btn-light mx-1 my-1" to="/perfil">Mi perfil</router-link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        
     </header>
     <main class="container my-3">
         <h2>¿Como participar?</h2>
