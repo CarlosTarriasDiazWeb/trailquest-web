@@ -1,10 +1,17 @@
 <template>
-  <div @click="posicionarCentro" class="py-4 px-5 border-tesoro accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="referenceId"
-        aria-expanded="false" aria-controls="collapseTwo">
+  <div @click="posicionarCentro" class="py-4 px-5  border-tesoro accordion-item">
+    <h2 class="accordion-header d-flex flex-row justify-content-between " id="headingTwo">
+      <button class=" w-50 accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        :data-bs-target="referenceId" aria-expanded="false" aria-controls="collapseTwo">
         <h3>{{ nombre }}</h3>
+
+
       </button>
+      <div v-if="isAdmin" class="z-1">
+        <RouterLink to="/"><span><font-awesome-icon icon="fa-solid fa-trash fa-lg" /></span></RouterLink>
+        <router-link to="/"><span><font-awesome-icon class="ms-4"
+              icon="fa-solid fa-square-pen fa-lg" /></span></router-link>
+      </div>
     </h2>
     <div :id="id" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="d-flex flex-column">
@@ -96,5 +103,13 @@ img {
 .blur {
   filter: blur(10px);
   -webkit-filter: blur(10px);
+}
+
+.icons-pos {
+  position: absolute;
+}
+
+.z-1 {
+  z-index: 1;
 }
 </style>
