@@ -13,7 +13,7 @@
                             <router-link class="nav-link" to="/login">Iniciar sesión</router-link>
                         </li>
                         <li class="nav-item text-center">
-                            <a class="nav-link" href="#">Registrarse</a>
+                            <router-link class="nav-link" to="/register">Registrarse</router-link>
                         </li>
                     </ul>
                 </div>
@@ -67,22 +67,21 @@
     <footer class="bg-green p-2">
         <div class="container">
             <div class="row">
-                <section class="col" id="socials">
+                <section class="col-md" id="socials">
                     <h5>Contactanos!</h5>
                     <nav class="nav flex-column">
                         <a href="" class="nav-link">
-                            <font-awesome-icon icon="fa-solid fa-user-secret" />
-                            facebook
+                            <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook
                         </a>
                         <a href="" class="nav-link">
-                            twitter
+                            <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter
                         </a>
                         <a href="" class="nav-link">
-                            instagram
+                            <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram
                         </a>
                     </nav>
                 </section>
-                <section class="col-lg d-flex align-items-center" id="copyright">
+                <section class="col-md d-flex align-items-center" id="copyright">
                     @arsenicoITB 3st4_pAg1na_-3s-nU35tra
                 </section>
 

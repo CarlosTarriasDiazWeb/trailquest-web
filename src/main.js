@@ -8,9 +8,9 @@ import router from "./router";
 /*Font awesome*/
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faUserSecret)
+library.add(fab)
 
 createApp(App)
 .use(router)
