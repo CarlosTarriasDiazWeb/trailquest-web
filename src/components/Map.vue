@@ -1,6 +1,6 @@
 <template>
   <div style="height: 50vh; width: 100%">
-    <l-map :options="{ scrollWheelZoom: false }" ref="map" v-model:zoom="zoom" :center="center">
+    <l-map :options="{ scrollWheelZoom: true }" ref="map" v-model:zoom="zoom" :center="center">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
@@ -10,6 +10,8 @@
         v-for="localizacion in localizaciones"
         :key="localizacion.nombre"
         :lat-lng="getMarker(localizacion.position)"
+        :name = "localizacion.nombre"
+        @click = "modifyCenter($event)"
       ></l-marker>
     </l-map>
   </div>
@@ -41,6 +43,11 @@ export default {
     getMarker(array) {
       return latLng(array[0], array[1]);
     },
+    modifyCenter(event) {
+      this.zoom = 17;
+      console.log(event);
+      this.$emit("modifyCenter", event.latlng);
+    }
   },
 };
 </script>

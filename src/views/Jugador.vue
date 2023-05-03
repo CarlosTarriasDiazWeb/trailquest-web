@@ -10,6 +10,7 @@
       :mapWidthPerc="mapWidthPerc"
       :localizaciones="localizacionesMostrar"
       :center="center"
+      @modifyCenter = "modifyCenter"
     ></Map>
     <div class="bg-accent p-3 d-flex flex-row justify-content-end">
       <div class="form-row w-40">
@@ -68,6 +69,9 @@ export default {
         ),
       ];
     },
+    modifyCenter(position) {
+      this.center = [position.lat, position.lng]
+    }
   },
   data() {
     return {
