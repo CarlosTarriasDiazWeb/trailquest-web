@@ -1,11 +1,12 @@
 <template>
   <NavBar></NavBar>
 
-  <span @click="filterAll" class="button badge bg-success">Todos</span>
-  <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span>
-  <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
-
   <main>
+
+    <span @click="filterAll" class="button badge bg-success">Todos</span>
+    <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span>
+    <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
+
     <Map :mapWidthPerc="mapWidthPerc" :localizaciones="localizacionesMostrar" :center="center"
       @modifyCenter="modifyCenter"></Map>
     <div class="bg-accent p-3 d-flex flex-row justify-content-end">

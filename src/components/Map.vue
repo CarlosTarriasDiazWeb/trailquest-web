@@ -1,18 +1,10 @@
 <template>
-  <div style="height: 50vh; width: 100%">
+  <div style="height: 50vh; width: 100%" class="sticky-top">
     <l-map :options="{ scrollWheelZoom: true }" ref="map" v-model:zoom="zoom" :center="center">
-      <l-tile-layer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        layer-type="base"
-        name="OpenStreetMap"
-      ></l-tile-layer>
-      <l-marker
-        v-for="localizacion in localizaciones"
-        :key="localizacion.nombre"
-        :lat-lng="getMarker(localizacion.position)"
-        :name = "localizacion.nombre"
-        @click = "modifyCenter($event)"
-      ></l-marker>
+      <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base"
+        name="OpenStreetMap"></l-tile-layer>
+      <l-marker v-for="localizacion in localizaciones" :key="localizacion.nombre"
+        :lat-lng="getMarker(localizacion.position)" :name="localizacion.nombre" @click="modifyCenter($event)"></l-marker>
     </l-map>
   </div>
 </template>

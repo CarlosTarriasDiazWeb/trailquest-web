@@ -1,16 +1,8 @@
 <template>
   <section class="d-flex flex-column flex-grow-1">
-    <TesoroItem
-      v-for="(tesoro, index) in localizaciones"
-      :key="index"
-      :nombre="tesoro.nombre"
-      :descripcion="tesoro.descripcion"
-      :localizacion="tesoro.position"
-      :favorito="tesoro.favorito"
-      :descubierto="tesoro.descubierto"
-      :id="`tesoro${index}`"
-      @posicionarCentro="posicionarCentro"
-    >
+    <TesoroItem v-for="(tesoro, index) in localizaciones" :key="index" :nombre="tesoro.nombre"
+      :descripcion="tesoro.descripcion" :localizacion="tesoro.position" :favorito="tesoro.favorito"
+      :descubierto="tesoro.descubierto" :id="`tesoro${index}`" @posicionarCentro="posicionarCentro">
     </TesoroItem>
   </section>
 </template>
@@ -36,5 +28,5 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped></style>
