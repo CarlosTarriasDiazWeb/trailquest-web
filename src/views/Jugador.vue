@@ -19,7 +19,7 @@
         <button @click.prevent="filtrarTesoros">Buscar</button>
       </div>
     </div>
-    <Tesoros :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
+    <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
   </main>
   <footer>
     <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -70,6 +70,7 @@ export default {
       mapWidthPerc: 100,
       center: [41.386415, 2.169987],
       palabraFiltro: "",
+      isAdmin: false,
       todas: [
         {
           nombre: "Tesoro 1",

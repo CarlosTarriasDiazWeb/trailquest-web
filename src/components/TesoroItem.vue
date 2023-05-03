@@ -8,7 +8,7 @@
     </h2>
     <div :id="id" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="d-flex flex-column">
-        <div v-if="descubierto" class="accordion-body">
+        <div v-if="descubierto || isAdmin" class="accordion-body">
           <p>{{ descripcion }}</p>
         </div>
         <div v-else class="accordion-body blur">
@@ -17,7 +17,7 @@
         <div>
           <img src="../../public/assets/imgs/dummy_photo.jpg" class="rounded float-start" alt="dummy-phot">
         </div>
-        <div v-if="favorito" class="accordion-body">
+        <div v-if="favorito && !isAdmin" class="accordion-body">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill"
             viewBox="0 0 16 16">
             <path
@@ -32,7 +32,7 @@
         <div>
 
         </div>
-        <button @click="mostrarTextArea" class="w-40" v-if="descubierto">
+        <button @click="mostrarTextArea" class="w-40" v-if="descubierto && !isAdmin">
           {{ resenaButtonText }}
         </button>
         <form class="m-3" v-show="textArea" method="post">
@@ -69,6 +69,7 @@ export default {
     favorito: Boolean,
     descubierto: Boolean,
     localizacion: Array,
+    isAdmin: Boolean
   },
   methods: {
     posicionarCentro() {

@@ -2,7 +2,7 @@
   <section class="d-flex flex-column flex-grow-1">
     <TesoroItem v-for="(tesoro, index) in localizaciones" :key="index" :nombre="tesoro.nombre"
       :descripcion="tesoro.descripcion" :localizacion="tesoro.position" :favorito="tesoro.favorito"
-      :descubierto="tesoro.descubierto" :id="`tesoro${index}`" @posicionarCentro="posicionarCentro">
+      :descubierto="tesoro.descubierto" :id="`tesoro${index}`" @posicionarCentro="posicionarCentro" :isAdmin="isAdmin">
     </TesoroItem>
   </section>
 </template>
@@ -19,6 +19,7 @@ export default {
   },
   props: {
     localizaciones: Array,
+    isAdmin: Boolean
   },
   methods: {
     posicionarCentro(position) {

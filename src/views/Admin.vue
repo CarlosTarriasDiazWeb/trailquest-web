@@ -14,7 +14,7 @@
                 <button @click.prevent="filtrarTesoros">Buscar</button>
             </div>
         </div>
-        <Tesoros :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
+        <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
     </main>
     <footer>
         <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -36,14 +36,8 @@ export default {
         NavBar,
     },
     methods: {
-        filterFavoritos() {
-            this.localizacionesMostrar = [...this.localizacionesFavoritas];
-        },
         filterAll() {
             this.localizacionesMostrar = [...this.todas];
-        },
-        filterEncontrados() {
-            this.localizacionesMostrar = [...this.localizacionesEncontradas];
         },
         posicionarCentro(object) {
             this.center = object.position;
@@ -65,6 +59,7 @@ export default {
             mapWidthPerc: 100,
             center: [41.386415, 2.169987],
             palabraFiltro: "",
+            isAdmin: true,
             todas: [
                 {
                     nombre: "Tesoro 1",
