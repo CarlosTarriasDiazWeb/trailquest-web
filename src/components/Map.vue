@@ -8,8 +8,8 @@
         <!-- Solo funciona cogiendo los iconos desde páginas webs externas no desde imágenes del proyecto -->
         <l-icon :icon-size="[40, 37]" v-if="localizacion.descubierto && !isAdmin"
           icon-url="https://www.svgrepo.com/show/320147/open-treasure-chest.svg" />
-        <l-icon :icon-size="[40, 37]" v-else-if="localizacion.favorito && !isAdmin"
-          icon-url="https://www.svgrepo.com/show/13695/star.svg" />
+        <!-- <l-icon :icon-size="[40, 37]" v-else-if="localizacion.favorito && !isAdmin"
+          icon-url="https://www.svgrepo.com/show/13695/star.svg" /> -->
       </l-marker>
     </l-map>
   </div>
