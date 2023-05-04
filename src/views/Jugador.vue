@@ -178,7 +178,7 @@ export default {
   computed: {},
 
   mounted() {
-    this.localizacionesMostrar = [...this.todas];
+    //this.localizacionesMostrar = [...this.todas];
 
     //Hacer fetch aquí 
     // let get = {
@@ -188,10 +188,17 @@ export default {
     //   }
     // }
 
-    fetch("/jugador")
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(error => console.log(error))
+    const axios = require('axios')
+    axios({
+      method: 'get',
+      url: 'http://localhost:8082/tesoros',
+    })
+    .then( response => {
+      this.localizacionesMostrar = Array.from(response.data);
+      console.log(this.localizacionesMostrar)
+      this.localizacionesMostrar.map(loc => loc.position = [loc.latitud, loc.longitud])
+     
+    });
   },
 };
 </script>

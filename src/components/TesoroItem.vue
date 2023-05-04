@@ -3,7 +3,7 @@
     <h2 class="accordion-header d-flex flex-row justify-content-between">
       <button class="w-50 accordion-button collapsed" type="button" data-bs-toggle="collapse"
         :data-bs-target="getRef(referenceId)" aria-expanded="false" aria-controls="collapseTwo">
-        <h3>{{ nombre }}</h3>
+        <h3>{{ titulo }}</h3>
       </button>
       <div v-if="isAdmin" class="z-1">
 
@@ -74,7 +74,7 @@ export default {
   },
   props: {
     referenceId: String,
-    nombre: String,
+    titulo: String,
     descripcion: String,
     favorito: Boolean,
     descubierto: Boolean,

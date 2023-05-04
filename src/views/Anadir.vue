@@ -4,11 +4,12 @@
 
     </header>
     <h1>Añadir tesoro</h1>
-    <form v-on:submit.prevent="enviarFormulario">
+    <form v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
         <label for="" required>Nombre monumento:</label><br>
-        <input type="text" class="input" id="nom_tesoro"><br><br>
+        <input type="text" v-model="nombre" class="input" id="nom_tesoro"><br><br>
+        <input type="file"  name="foto_tesoro" id="foto_tesoro">
         <label for="" required>Descripción:</label><br>
-        <textarea name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br><br>
+        <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br><br>
 
         <label for="latitud" required>Latitud:</label><br>
         <input v-model="latitud" type="number" class="input" id="latitud"><br><br>
@@ -18,12 +19,15 @@
 
         <label for="">Selecciona una ubicación:</label><br><br>
         <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map><br>
-    </form>
-
-    <footer>
+    
+        
         <input type="submit" value="Hecho" class="submit">
 
-    </footer>
+   
+    
+    </form>
+
+    
 </template>
      
 <script>
@@ -42,12 +46,36 @@ export default {
             modify: true,
             latitud: "",
             longitud: "",
+            nombre: "",
+            descripcion: "",
             localizacion: []
         };
     },
     methods: {
         enviarFormulario() {
-            console.log('Enviado!');
+            const axios = require('axios')
+            // Create a new FormData object
+            const formData = new FormData();
+
+            // Append data to the form data object
+            //const fileInput = document.getElementById("foto_tesoro")
+            
+            formData.append('titulo', this.nombre);
+            formData.append('descripcion', this.descripcion );
+            formData.append('latitud', this.latitud );
+            formData.append('longitud', this.longitud );
+            formData.append('foto_tesoro', this.$refs.foto_tesoro.files[0]);
+
+            // Send the form data as a POST request
+            axios.post('http://localhost:8082/tesoros', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.error(error);
+            });
         },
         addMarker() {
             if (this.localizacion.length > 0) this.localizacion.pop()
@@ -92,7 +120,7 @@ header {
     border-radius: 2em;
     padding: 3px 20px;
     background-color: #59a888;
-    color: white ;
+    color: white;
     transition: all 0.3s ease-in-out;
 }
 
@@ -111,7 +139,7 @@ header {
     transition: all 0.3s ease-in-out;
 }
 
-.marcador:hover{
+.marcador:hover {
     background-color: #78d3ae;
     color: #000;
     cursor: pointer;

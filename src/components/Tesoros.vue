@@ -3,7 +3,7 @@
     <TesoroItem
       v-for="(tesoro, index) in localizaciones"
       :key="index"
-      :nombre="tesoro.nombre"
+      :titulo="tesoro.titulo"
       :descripcion="tesoro.descripcion"
       :localizacion="tesoro.position"
       :favorito="tesoro.favorito"
