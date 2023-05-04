@@ -1,26 +1,19 @@
 <template>
   <header class="bg-nav d-flex align-items-center flex-row">
-    <nav
-      class="p-4 w-100 d-flex flex-row align-items-center navbar navbar-expand-lg bg-body-tertiary"
-    >
-      <div class="logo">
-        <img class="navbar-brand" src="../../public/assets/imgs/logo1.png" />
+    <nav class="p-4 w-100 d-flex flex-row align-items-center navbar navbar-expand-lg bg-body-tertiary">
+      <div class="d-flex align-items-center logo">
+        <img class="navbar-brand" src="../../public/assets/imgs/logo.png" />
+        <h1>TRAIL QUEST</h1>
+        
       </div>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink class="sesion-btn nav-link" to="/">Cerrar Sesión</RouterLink>
+            <RouterLink class="my-2 text-center sesion-btn nav-link" to="/">Cerrar Sesión</RouterLink>
           </li>
         </ul>
       </div>
@@ -40,6 +33,7 @@ export default {
 
 <style scoped>
 @import "../../public/custom.css";
+
 .bg-nav {
   background-color: var(--primary-color);
 }
