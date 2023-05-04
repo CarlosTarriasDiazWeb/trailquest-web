@@ -1,7 +1,5 @@
 <template>
-    <header>
-        
-    </header>
+    <nav-bar></nav-bar>
     <main class="container my-3">
         <h2>¿Como participar?</h2>
         <section id="paso1" class="row my-4 d-flex align-items-center">
@@ -55,10 +53,11 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
 export default {
     name: 'home-page',
     components: {
-
+        NavBar
     },
     data() {
         return {
