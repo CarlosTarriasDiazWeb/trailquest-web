@@ -1,6 +1,6 @@
 <template>
     <header>
-
+        <NavBar></NavBar>
     </header>
 
     <h1>Registrate</h1>
@@ -18,13 +18,13 @@
 </template>
      
 <script>
+import NavBar from "@/components/NavBar.vue";
 export default {
 
     name: 'RegistroView',
-
-    // data: {
-
-    // },
+  components: {
+    NavBar
+  },
     methods: {
         enviarFormulario() {
             if(!this.name){
@@ -49,10 +49,6 @@ export default {
      
     <!-- Add "scoped" attribute to limit CSS to this component only -->
     <style scoped>
-    header{
-      background-color: #78d3ae;
-      padding: 100px;
-    }
   
     label{
       color: #a7a8a8;

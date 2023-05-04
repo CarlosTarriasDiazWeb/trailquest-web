@@ -1,6 +1,6 @@
 <template>
   <header>
-
+    <NavBar></NavBar>
   </header>
 
   <body>
@@ -21,10 +21,12 @@
 </template>
    
 <script>
+import NavBar from "@/components/NavBar.vue";
 export default {
-
   name: 'LoginView',
-  
+  components:{
+    NavBar,
+  },
 
   methods: {
     enviarFormulario() {
@@ -57,11 +59,6 @@ h1 {
   display: flex;
   justify-content: center;
   margin: 30px;
-}
-
-header {
-  background-color: #78d3ae;
-  padding: 80px;
 }
 
 label {
