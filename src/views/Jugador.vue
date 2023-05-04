@@ -6,33 +6,19 @@
     <!-- <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span> -->
     <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
 
-    <Map
-      :mapWidthPerc="mapWidthPerc"
-      :localizaciones="localizacionesMostrar"
-      :center="center"
-      @modifyCenter="modifyCenter"
-      :isAdmin="isAdmin"
-    ></Map>
+    <Map :mapWidthPerc="mapWidthPerc" :localizaciones="localizacionesMostrar" :center="center"
+      @modifyCenter="modifyCenter" :isAdmin="isAdmin"></Map>
     <div class="bg-accent p-3 d-flex flex-row justify-content-end">
       <div class="form-row w-40">
         <div class="col">
-          <input
-            type="text"
-            class="form-control"
-            v-model="palabraFiltro"
-            placeholder="Escribe nombre del tesoro..."
-          />
+          <input type="text" class="form-control" v-model="palabraFiltro" placeholder="Escribe nombre del tesoro..." />
         </div>
       </div>
       <div class="form-row w-40 ms-5">
         <button @click.prevent="filtrarTesoros">Buscar</button>
       </div>
     </div>
-    <Tesoros
-      :isAdmin="isAdmin"
-      :localizaciones="localizacionesMostrar"
-      @posicionarCentro="posicionarCentro"
-    ></Tesoros>
+    <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
   </main>
   <footer>
     <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -195,6 +181,17 @@ export default {
     this.localizacionesMostrar = [...this.todas];
 
     //Hacer fetch aquí 
+    // let get = {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // }
+
+    fetch("/jugador")
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(error => console.log(error))
   },
 };
 </script>
