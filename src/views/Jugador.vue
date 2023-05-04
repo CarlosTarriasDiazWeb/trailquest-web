@@ -3,7 +3,7 @@
 
   <main>
     <span @click="filterAll" class="button badge bg-success">Todos</span>
-    <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span>
+    <!-- <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span> -->
     <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
 
     <Map
@@ -54,9 +54,9 @@ export default {
     NavBar,
   },
   methods: {
-    filterFavoritos() {
-      this.localizacionesMostrar = [...this.localizacionesFavoritas];
-    },
+    // filterFavoritos() {
+    //   this.localizacionesMostrar = [...this.localizacionesFavoritas];
+    // },
     filterAll() {
       this.localizacionesMostrar = [...this.todas];
     },

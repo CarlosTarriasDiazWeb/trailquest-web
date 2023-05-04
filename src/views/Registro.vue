@@ -40,9 +40,6 @@ export default {
               console.log('Enviado!');
             }
         },
-        comprobarUsuario() {
-
-        }
     }
 }
 </script>
