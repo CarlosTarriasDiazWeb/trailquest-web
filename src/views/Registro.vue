@@ -8,12 +8,12 @@
 
         <h1>Registrate</h1>
         <form v-on:submit.prevent="enviarFormulario">
-            <label for="" required>Nombre usuario:</label><br>
-            <input type="text" v-model="name" name="name" id="nom_usuario"><br><br>
-            <label for="" required>Contraseña:</label><br>
-            <input type="password" v-model="password1" name="password1" id="con_usuario"><br><br>
-            <label for="" required>Repita su contraseña:</label><br>
-            <input type="password" v-model="password2"  name="password2" id="rep_contra"><br><br>
+            <label for="" required>Nombre usuario:</label>
+            <input class="input" type="text" v-model="name" name="name" id="nom_usuario"><br>
+            <label for="" required>Contraseña:</label>
+            <input class="input" type="password" v-model="password1" name="password1" id="con_usuario"><br>
+            <label for="" required>Repita su contraseña:</label>
+            <input class="input" type="password" v-model="password2"  name="password2" id="rep_contra"><br><br>
     
             <input type="submit" value="Iniciar" class="submit"><br><br>
             <a href="/login">¿Eres miembro? Inicia sesión</a>

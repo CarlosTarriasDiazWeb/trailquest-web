@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="form-row w-40 ms-5">
-        <button @click.prevent="filtrarTesoros">Buscar</button>
+        <button class="buscar" @click.prevent="filtrarTesoros">Buscar</button>
       </div>
     </div>
     <Tesoros
@@ -164,6 +164,22 @@ export default {
   color: var(--white);
   border-radius: 3rem;
   transition: all 0.3s ease-in-out;
+}
+
+.buscar{
+  background-color: #d9d9d9;
+  color: black;
+  border: none;
+  border-radius: 2em;
+  transition: all 0.3s ease-in-out;
+  padding:3px 10px ;
+  
+}
+
+.buscar:hover{
+  background-color: #a7a8a8;
+  color: white;
+  cursor: pointer;
 }
 
 .perfil-btn:hover {

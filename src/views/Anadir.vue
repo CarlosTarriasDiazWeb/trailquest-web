@@ -91,12 +91,14 @@ header {
     border: none;
     border-radius: 2em;
     padding: 3px 20px;
+    background-color: #59a888;
+    color: white ;
     transition: all 0.3s ease-in-out;
 }
 
 .submit:hover {
-    background-color: var(--black);
-    color: white !important;
+    background-color: white;
+    color: black;
     cursor: pointer;
 }
 
@@ -129,7 +131,8 @@ header {
 footer {
     background-color: #59a888;
     padding: 20px;
-
+    display: flex;
+    justify-content: center;
 }
 </style>
      
