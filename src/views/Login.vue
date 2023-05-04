@@ -13,7 +13,7 @@
         <label for="" required>Contraseña:</label>
         <input type="password" class="input" v-model="password" id="con_usuario" required><br><br>
 
-        <input type="submit" value="Iniciar" class="submit">
+        <router-link class="submit" to="/jugador">Iniciar</router-link><br>
         <a href="/registro">¿Eres nuevo? Regístrate</a>
       </form>
     </div>
@@ -24,6 +24,7 @@
 export default {
 
   name: 'LoginView',
+  
 
   methods: {
     enviarFormulario() {
@@ -35,6 +36,7 @@ export default {
       }
       else {
         console.log('Enviado!');
+        
       }
     },
   }
@@ -64,7 +66,8 @@ header {
 
 label {
   color: #a7a8a8;
-
+  display: flex;
+  
 }
 
 form {
@@ -79,6 +82,7 @@ form {
   border-radius: 3em 0em;
   background-color: #fff;
   margin: 0px 100px;
+  padding: 20px;
 }
 
 .input {
@@ -95,6 +99,7 @@ form {
   color: white;
   padding-left: 20px;
   padding-right: 20px;
+  
 }
 
 a {
