@@ -193,6 +193,8 @@ export default {
 
   mounted() {
     this.localizacionesMostrar = [...this.todas];
+
+    //Hacer fetch aquí 
   },
 };
 </script>
