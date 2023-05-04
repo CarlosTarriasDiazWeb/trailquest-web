@@ -9,18 +9,21 @@
         <input type="text" class="input" id="nom_tesoro"><br><br>
         <label for="" required>Descripción:</label><br>
         <textarea name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br><br>
-        
-        
+
         <label for="latitud" required>Latitud:</label><br>
         <input v-model="latitud" type="number" class="input" id="latitud"><br><br>
-        <label for="longitud">Longitud:</label><br><br>
+        <label for="longitud">Longitud:</label><br>
         <input v-model="longitud" type="number" class="input" id="longitud"><br><br>
-        
+        <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador"> <br><br>
+
         <label for="">Selecciona una ubicación:</label><br><br>
         <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map><br>
-        <input type="button" @click="addMarker" class="submit" value="Añadir Marcador"> 
-        <input type="submit" value="Hecho" class="submit">
     </form>
+
+    <footer>
+        <input type="submit" value="Hecho" class="submit">
+
+    </footer>
 </template>
      
 <script>
@@ -87,7 +90,29 @@ header {
 .submit {
     border: none;
     border-radius: 2em;
-    padding: 3px;
+    padding: 3px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.submit:hover {
+    background-color: var(--black);
+    color: white !important;
+    cursor: pointer;
+}
+
+.marcador {
+    border: none;
+    border-radius: 2em;
+    padding: 3px 12px;
+    background-color: #59a888;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.marcador:hover{
+    background-color: #78d3ae;
+    color: #000;
+    cursor: pointer;
 }
 
 .volver {
@@ -98,8 +123,13 @@ header {
 }
 
 #map {
-
     height: 180px;
+}
+
+footer {
+    background-color: #59a888;
+    padding: 20px;
+
 }
 </style>
      

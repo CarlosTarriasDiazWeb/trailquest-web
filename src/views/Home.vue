@@ -1,5 +1,27 @@
 <template>
-    <nav-bar></nav-bar>
+
+    <header>
+        <nav class="p-4 w-100 d-flex flex-row align-items-center navbar navbar-expand-lg bg-body-tertiary">
+      <div class="d-flex align-items-center logo">
+        <img class="navbar-brand" src="../../public/assets/imgs/logo.png" />
+        <h1>TRAIL QUEST</h1>
+        
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <RouterLink class="my-2 text-center sesion-btn nav-link" to="/login">Iniciar Sesión</RouterLink>
+            <RouterLink class="my-2 text-center registro-btn nav-link" to="/registro">Registrarse</RouterLink>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    </header>
+    <!-- <nav-bar></nav-bar> -->
     <main class="container my-3">
         <h2>¿Como participar?</h2>
         <section id="paso1" class="row my-4 d-flex align-items-center">
@@ -53,11 +75,11 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
+///import NavBar from '@/components/NavBar.vue';
 export default {
     name: 'home-page',
     components: {
-        NavBar
+        //NavBar
     },
     data() {
         return {
@@ -72,5 +94,33 @@ export default {
 header{
     background-color: #78d3ae;
 }
+.navbar-brand{
+    width: 6vw;
+}
 
+.registro-btn{
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 3rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.registro-btn:hover{
+    background-color: #a7a8a8;
+    color: var(--black);
+    cursor: pointer;
+}
+
+.sesion-btn {
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 3rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.sesion-btn:hover {
+  background-color: #59a888;
+  color: white !important;
+  cursor: pointer;
+}
 </style>

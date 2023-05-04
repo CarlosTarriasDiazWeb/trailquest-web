@@ -3,18 +3,23 @@
         <NavBar></NavBar>
     </header>
 
-    <h1>Registrate</h1>
-    <form v-on:submit.prevent="enviarFormulario">
-        <label for="" required>Nombre usuario:</label><br>
-        <input type="text" v-model="name" name="name" id="nom_usuario"><br><br>
-        <label for="" required>Contraseña:</label><br>
-        <input type="password" v-model="password1" name="password1" id="con_usuario"><br><br>
-        <label for="" required>Repita su contraseña:</label><br>
-        <input type="password" v-model="password2"  name="password2" id="rep_contra"><br><br>
+    <body>
+      <div class="contenedor">
 
-        <input type="submit" value="Iniciar" class="submit"><br><br>
-        <a href="/login">¿Eres miembro? Inicia sesión</a>
-    </form>
+        <h1>Registrate</h1>
+        <form v-on:submit.prevent="enviarFormulario">
+            <label for="" required>Nombre usuario:</label><br>
+            <input type="text" v-model="name" name="name" id="nom_usuario"><br><br>
+            <label for="" required>Contraseña:</label><br>
+            <input type="password" v-model="password1" name="password1" id="con_usuario"><br><br>
+            <label for="" required>Repita su contraseña:</label><br>
+            <input type="password" v-model="password2"  name="password2" id="rep_contra"><br><br>
+    
+            <input type="submit" value="Iniciar" class="submit"><br><br>
+            <a href="/login">¿Eres miembro? Inicia sesión</a>
+        </form>
+      </div>
+    </body>
 </template>
      
 <script>
@@ -47,29 +52,61 @@ export default {
     <!-- Add "scoped" attribute to limit CSS to this component only -->
     <style scoped>
   
-    label{
-      color: #a7a8a8;
-    }
+  body {
+  background-color: #a7a8a8;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+label {
+  color: #a7a8a8;
+  display: flex;
   
-    input{
-      background-color: #d9d9d9;
-      border: none;
-      border-radius: 2em;
-      padding: 4px;
-    }
-    
-    .submit{
-      border-radius: 2em;
-      border: none;
-      background-color: #78d3ae;
-      color: white;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
+}
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.contenedor {
+  border: #78d3ae 2px;
+  border-radius: 3em 0em;
+  background-color: #fff;
+  margin: 0px 100px;
+  padding: 20px;
+}
+
+.input {
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 2em;
+  padding: 4px;
+}
+
+.submit {
+  border-radius: 2em;
+  border: none;
+  background-color: #78d3ae;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
   
-    a{
-      color: #a7a8a8;
-    }
+}
+
+a {
+  color: #a7a8a8;
+}
   
   </style>
      

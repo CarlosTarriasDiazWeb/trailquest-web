@@ -13,6 +13,7 @@
         <label for="" required>Contraseña:</label>
         <input type="password" class="input" v-model="password" id="con_usuario" required><br><br>
 
+        <!-- TODO comprobar validación -->
         <router-link class="submit" to="/jugador">Iniciar</router-link><br>
         <a href="/registro">¿Eres nuevo? Regístrate</a>
       </form>
