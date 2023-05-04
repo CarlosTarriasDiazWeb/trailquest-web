@@ -11,11 +11,11 @@
             icon="fa-solid fa-trash fa-lg" /></button>
         <dialog id="dialogo1">
           <p>¿Estás seguro de que quieres eliminar este tesoro?</p>
-          <button type="button" @click="cerrarDialogo('dialogo1')">Volver</button>
-          <button type="button" @click="cerrarSesion"> Cerrar Sesión</button>
+          <button class="btn-delete" type="button" @click="cerrarDialogo('dialogo1')">Volver</button> <br>
+          <button class="btn-delete" type="button" @click="eliminarTesoro('dialogo1')">Eliminar tesoro</button>
         </dialog>
 
-        <router-link to="/"><span><font-awesome-icon class="ms-4"
+        <router-link to="/anadir"><span><font-awesome-icon class="ms-4"
               icon="fa-solid fa-square-pen fa-lg" /></span></router-link>
       </div>
     </h2>
@@ -51,7 +51,7 @@
         <form class="m-3" v-show="textArea" method="post">
           <textarea name="escribirResena" id="escribirResena" cols="30" rows="10"
             placeholder="Escribe tu reseña..."></textarea><br />
-          <button type="submit">Enviar Resena</button>
+          <button type="submit">Enviar Reseña</button>
         </form>
       </div>
     </div>
@@ -96,13 +96,16 @@ export default {
     abrirDialogo(id) {
       const dialogo = document.getElementById(id);
       dialogo.show();
+      
     },
     cerrarDialogo(id) {
       const dialogo = document.getElementById(id);
       dialogo.close();
     },
-    cerrarSesion() {
-      this.$router.push("/")
+    eliminarTesoro(id) {
+      const dialogo = document.getElementById(id);
+      dialogo.close();
+      alert("Tesoro eliminado");
     }
   },
 };
@@ -116,6 +119,21 @@ export default {
 img {
   min-height: 200px;
   max-height: 500px;
+}
+
+#dialogo1{
+  position: absolute;
+  border-radius: 1em;
+  border: none;
+  background-color: #d9d9d9;
+}
+
+.btn-delete{
+  background-color: #59a888;
+  border: none;
+  border-radius: 1em;
+  display: flex;
+  justify-content: space-between;
 }
 
 .blur {

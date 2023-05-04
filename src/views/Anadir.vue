@@ -1,6 +1,6 @@
 <template>
     <header>
-        <router-link class="volver" to="/jugador">Volver al mapa</router-link><br>
+        <router-link class="volver" to="/admin">Volver al mapa</router-link><br>
 
     </header>
     <h1>Añadir tesoro</h1>
