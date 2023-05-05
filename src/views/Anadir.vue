@@ -86,7 +86,11 @@ export default {
                 descubierto: false,
                 position: [this.latitud, this.longitud]
             })
+            this.modifyCenter()
             console.log('Marcador añadido!');
+        },
+        modifyCenter() {
+            this.center = [this.latitud, this.longitud];
         }
 
     }
