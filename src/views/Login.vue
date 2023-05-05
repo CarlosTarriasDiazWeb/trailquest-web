@@ -48,6 +48,12 @@ export default {
     NavBar,
   },
 
+  data() {
+        return {
+            zoom: 8,
+        };
+    },
+
   methods: {
     enviarFormulario() {
       if (this.name != "Ana") {
@@ -73,7 +79,6 @@ body{
   
 }
 main {
-  
   height: 100%;
 }
 
@@ -88,7 +93,6 @@ main {
   
 }
 
-
 h1 {
   display: flex;
   justify-content: center;
@@ -97,7 +101,6 @@ h1 {
 
 label {
   color: #a7a8a8;
-  display: flex;
 
 }
 

@@ -1,63 +1,84 @@
 <template>
-    <header>
-        <NavBar></NavBar>
-    </header>
+  <header>
+    <NavBar></NavBar>
+  </header>
 
-    <body>
-      <div class="contenedor">
+  <body>
 
-        <h1>Registrate</h1>
-        <form v-on:submit.prevent="enviarFormulario">
+    <div class="imagen-fondo">
+
+      <div class="ajustar">
+
+        <div class="contenedor">
+    
+          <h1>Registrate</h1>
+          <form v-on:submit.prevent="enviarFormulario">
             <label for="" required>Nombre usuario:</label>
             <input class="input" type="text" v-model="name" name="name" id="nom_usuario"><br>
             <label for="" required>Contraseña:</label>
             <input class="input" type="password" v-model="password1" name="password1" id="con_usuario"><br>
             <label for="" required>Repita su contraseña:</label>
-            <input class="input" type="password" v-model="password2"  name="password2" id="rep_contra"><br><br>
+            <input class="input" type="password" v-model="password2" name="password2" id="rep_contra"><br><br>
     
             <input type="submit" value="Iniciar" class="submit"><br><br>
             <a href="/login">¿Eres miembro? Inicia sesión</a>
-        </form>
+          </form>
+        </div>
       </div>
-    </body>
+
+    </div>
+    <footer>
+      <a href="" class="nav-link">
+        <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook
+      </a>
+      <a href="" class="nav-link">
+        <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter
+      </a>
+      <a href="" class="nav-link">
+        <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram
+      </a>
+    </footer>
+  </body>
 </template>
      
 <script>
 import NavBar from "@/components/NavBar.vue";
 export default {
 
-    name: 'RegistroView',
+  name: 'RegistroView',
   components: {
     NavBar
   },
-    methods: {
-        enviarFormulario() {
-            if(!this.name){
-              alert("El nombre de usuario es obligatorio")
-            }
-            if(!this.password1 || !this.password2){
-              alert("Debes repetir la contraseña")
-            }
-             if(this.password1 != this.password2){
-               alert("Las contraseñas son diferentes!")
-             }
-            else{
-              console.log('Enviado!');
-            }
-        },
-    }
+  methods: {
+    enviarFormulario() {
+      if (!this.name) {
+        alert("El nombre de usuario es obligatorio")
+      }
+      if (!this.password1 || !this.password2) {
+        alert("Debes repetir la contraseña")
+      }
+      if (this.password1 != this.password2) {
+        alert("Las contraseñas son diferentes!")
+      }
+      else {
+        console.log('Enviado!');
+      }
+    },
+  }
 }
 </script>
      
     <!-- Add "scoped" attribute to limit CSS to this component only -->
-    <style scoped>
-  
-  body {
-  background-color: #a7a8a8;
+<style scoped>
+.imagen-fondo {
+  background-image: url(/public/assets/imgs/fotoFondo.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
-
+  min-height: 83vh;
+  
 }
 
 h1 {
@@ -68,8 +89,7 @@ h1 {
 
 label {
   color: #a7a8a8;
-  display: flex;
-  
+
 }
 
 form {
@@ -101,12 +121,22 @@ form {
   color: white;
   padding-left: 20px;
   padding-right: 20px;
-  
+
 }
 
 a {
   color: #a7a8a8;
 }
-  
-  </style>
+
+footer {
+  background-color: #59a888;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+</style>
      
