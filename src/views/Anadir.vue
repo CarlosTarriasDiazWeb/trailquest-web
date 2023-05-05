@@ -58,16 +58,28 @@ export default {
             const formData = new FormData();
 
             // Append data to the form data object
-            //const fileInput = document.getElementById("foto_tesoro")
+            const fileInput = document.getElementById("foto_tesoro")
             
             formData.append('titulo', this.nombre);
             formData.append('descripcion', this.descripcion );
             formData.append('latitud', this.latitud );
             formData.append('longitud', this.longitud );
-            formData.append('foto_tesoro', this.$refs.foto_tesoro.files[0]);
+            formData.append('foto_tesoro', fileInput.files[0]);
+
+            //console.log(formData);
+
+            // const tesoro = {
+            //     tesoro_data : {
+            //         'titulo': this.nombre,
+            //         'descripcion': this.descripcion,
+            //         'latitud': this.latitud,
+            //         'longitud':this.longitud,
+            //         'foto_tesoro': fileInput.files[0]
+            //     }
+            // }
 
             // Send the form data as a POST request
-            axios.post('http://localhost:8082/tesoros', formData, {
+            axios.post('http://localhost:8081/tesoros', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
