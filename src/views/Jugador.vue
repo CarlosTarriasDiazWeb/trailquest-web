@@ -63,6 +63,11 @@ export default {
     modifyCenter(position) {
       this.center = [position.lat, position.lng];
     },
+
+    show(event) {
+      console.log(event)
+    }
+  
   },
   data() {
     return {

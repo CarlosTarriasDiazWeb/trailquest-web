@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 50vh; width: 100%">
+  <div @ready="ready" style="height: 50vh; width: 100%">
     <l-map :options="{ scrollWheelZoom: true }" ref="map" v-model:zoom="zoom" :center="center">
       <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base"
         name="OpenStreetMap"></l-tile-layer>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { latLng } from "leaflet";
+import { latLng} from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker, LIcon } from "@vue-leaflet/vue-leaflet";
 
@@ -49,9 +49,13 @@ export default {
       console.log(event);
       this.$emit("modifyCenter", event.latlng);
     },
-    addMarker(event) {
-      console.log(event);
+    ready(map) {
+      console.log(map);
+      map.on('click', (e)=>console.log(e));
     },
+    addMarker(e) {
+      console.log(e);
+    }
   },
 };
 </script>
