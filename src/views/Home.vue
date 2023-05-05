@@ -123,4 +123,8 @@ header{
   color: white !important;
   cursor: pointer;
 }
+
+footer{
+    background-color: #59a888;
+}
 </style>
