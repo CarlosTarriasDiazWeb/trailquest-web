@@ -25,10 +25,10 @@ export default {
 
 footer {
   background-color: #59a888;
-  bottom: 0;
-  left: 0;
+  /* bottom: 0;
+  left: 0; */
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
