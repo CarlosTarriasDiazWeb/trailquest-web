@@ -1,6 +1,6 @@
 <template>
   <header>
-    <NavBar></NavBar>
+    <NavBar login="false"></NavBar>
   </header>
 
   <body>
@@ -104,8 +104,11 @@ export default {
         })
         .then((response) => {
           //Si el usuario se autentica correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
+          //Cambiar la condición..
           if (response !== "") {
-            //setCookie("login", "true", 2);
+            //Guardamos el booleano, el user_id?, el username?
+            this.setCookie("login", "true", 2);
+
             //Tenemos que decidir si es admin o jugador de alguna manera... TODO
             this.$router.push("jugador");
           }
@@ -117,6 +120,12 @@ export default {
             "Hemos tenido un problema con el servidor. Por favor, inténtelo más tarde. "
           );
         });
+    },
+    setCookie(key, value, exdays) {
+      const d = new Date();
+      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+      let expires = d.toUTCString();
+      document.cookie = `${key}=${value}; Path=/; Expires=${expires}; Secure`;
     },
   },
   computed: {

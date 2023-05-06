@@ -1,5 +1,5 @@
 <template>
-  <NavBar></NavBar>
+  <NavBar login="true"></NavBar>
 
   <main>
     <span @click="filterAll" class="button badge bg-success">Todos</span>
@@ -64,6 +64,7 @@ export default {
       this.localizacionesMostrar = [...this.localizacionesEncontradas];
     },
     posicionarCentro(object) {
+      //Asignamos el centro del mapa a la posición del tesoro seleccionado
       this.center = object.position;
     },
     filtrarTesoros() {
@@ -77,10 +78,6 @@ export default {
     },
     modifyCenter(position) {
       this.center = [position.lat, position.lng];
-    },
-
-    show(event) {
-      console.log(event);
     },
   },
   data() {
@@ -197,15 +194,12 @@ export default {
   computed: {},
 
   mounted() {
+    //Mostramos por defecto todos los tesoros (descubierto-no descubierto)
+
     //this.localizacionesMostrar = [...this.todas];
 
-    //Hacer fetch aquí
-    // let get = {
-    //   method: 'GET',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // }
+    //Escoger el endpoint de la API que permite coger los tesoros /de un usuario específico/
+    // el id o nombre deberíamos tenerlo en la cookie.
 
     const axios = require("axios");
     axios({

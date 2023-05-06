@@ -42,7 +42,7 @@ const routes = [
     path: "/admin",
     name: "admin",
     component: Admin,
-  }
+  },
 ];
 
 const router = createRouter({
@@ -50,18 +50,46 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach(async (to) => {
+//FUNCIONES DE GESTIÓN DE COOKIE
+
+// function getValue(key) {
+//   // let name = key + "=";
+//   // let decodedCookie = decodeURIComponent(document.cookie);
+//   // let ca = decodedCookie.split(";");
+//   // for (let i = 0; i < ca.length; i++) {
+//   //   let c = ca[i];
+//   //   while (c.charAt(0) == " ") {
+//   //     c = c.substring(1);
+//   //   }
+//   //   if (c.indexOf(name) == 0) {
+//   //     return c.substring(name.length, c.length);
+//   //   }
+//   // }
+//   // return "";
+//   return document.cookie
+//     .split("; ")
+//     .find((row) => row.startsWith(`${key}=`))
+//     ?.split("=")[1];
+// }
+
+//ROUTES GUARD
+
+// router.beforeEach(async (to, from) => {
+//   //Si el usuario no tiene sesión no puede ir a la página del jugador o la del admin
 //   if (
-//     // make sure the user is authenticated
-//     document.cookie === "" &&
-//     // ❗️ Avoid an infinite redirect
-//     to.name === "users"
+//     getValue("login") !== "true" &&
+//     (to.name === "jugador" || to.name === "admin" || to.name === "perfil" || to.name === "anadir")
 //   ) {
-//     // redirect the user to the login page
 //     return { name: "login" };
 //   }
-//   if (document.cookie !== "" && to.name === "login") {
-//     return { name: "users" };
+
+//   //Si el usuario tiene sesión iniciada, no tiene sentido permitirle ir a los formularios o a la portada
+//   if (
+//     getValue("login") === "true" &&
+//     (to.name === "login" || to.name === "registro" || to.name === "home") &&
+//     (from.name === "jugador" || from.name === "admin")
+//   ) {
+//     return { name: from };
 //   }
 // });
 

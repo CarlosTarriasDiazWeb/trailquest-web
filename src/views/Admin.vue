@@ -1,5 +1,5 @@
 <template>
-  <NavBar></NavBar>
+  <NavBar login="true"></NavBar>
   <main>
     <Map
       :mapWidthPerc="mapWidthPerc"
@@ -166,17 +166,16 @@ export default {
   transition: all 0.3s ease-in-out;
 }
 
-.buscar{
+.buscar {
   background-color: #d9d9d9;
   color: black;
   border: none;
   border-radius: 2em;
   transition: all 0.3s ease-in-out;
-  padding:3px 10px ;
-  
+  padding: 3px 10px;
 }
 
-.buscar:hover{
+.buscar:hover {
   background-color: #a7a8a8;
   color: white;
   cursor: pointer;
