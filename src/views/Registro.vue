@@ -2,73 +2,150 @@
   <header>
     <NavBar></NavBar>
   </header>
-
   <body>
-
     <div class="imagen-fondo">
-
       <div class="ajustar">
-
         <div class="contenedor">
-    
           <h1>Registrate</h1>
           <form v-on:submit.prevent="enviarFormulario">
             <label for="" required>Nombre usuario:</label>
-            <input class="input" type="text" v-model="name" name="name" id="nom_usuario"><br>
+            <input
+              class="input px-3"
+              type="text"
+              v-model="name"
+              name="name"
+              id="nom_usuario"
+            /><br />
             <label for="" required>Contraseña:</label>
-            <input class="input" type="password" v-model="password1" name="password1" id="con_usuario"><br>
+            <input
+              class="input px-3"
+              type="password"
+              v-model="password1"
+              name="password1"
+              id="con_usuario"
+            /><br />
             <label for="" required>Repita su contraseña:</label>
-            <input class="input" type="password" v-model="password2" name="password2" id="rep_contra"><br><br>
-    
-            <input type="submit" value="Iniciar" class="submit"><br><br>
+            <input
+              class="input px-3"
+              type="password"
+              v-model="password2"
+              name="password2"
+              id="rep_contra"
+            /><br /><br />
+
+            <input type="submit" value="Iniciar" class="submit" /><br /><br />
             <a href="/login">¿Eres miembro? Inicia sesión</a>
           </form>
+          <!-- CAJA PARA MOSTRAR ERRORES -->
+          <div v-if="error" class="error px-3">
+            <p v-for="(mensaje, index) in mensajesError" :key="index">
+              {{ mensaje }}
+            </p>
+          </div>
         </div>
       </div>
-
     </div>
     <footer>
-      <a href="" class="nav-link">
-        <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook
-      </a>
-      <a href="" class="nav-link">
-        <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter
-      </a>
+      <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook </a>
+      <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter </a>
       <a href="" class="nav-link">
         <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram
       </a>
     </footer>
   </body>
 </template>
-     
+
 <script>
 import NavBar from "@/components/NavBar.vue";
 export default {
-
-  name: 'RegistroView',
+  name: "RegistroView",
   components: {
-    NavBar
+    NavBar,
+  },
+  data() {
+    return {
+      mensajesError: [],
+      error: false,
+      name: "",
+      password1: "",
+      password2: "",
+    };
   },
   methods: {
     enviarFormulario() {
+      this.error = false;
+      this.mensajesError = [];
+
       if (!this.name) {
-        alert("El nombre de usuario es obligatorio")
+        this.error = true;
+        this.mensajesError.push("El nombre de usuario es obligatorio");
+        return;
       }
       if (!this.password1 || !this.password2) {
-        alert("Debes repetir la contraseña")
+        this.error = true;
+        this.mensajesError.push("Debes repetir la contraseña");
+        return;
       }
       if (this.password1 != this.password2) {
-        alert("Las contraseñas son diferentes!")
+        this.error = true;
+        this.mensajesError.push("Las contraseñas no pueden ser diferentes!");
+        return;
       }
-      else {
-        console.log('Enviado!');
+
+      if (this.nombreInvalidLength) {
+        this.error = true;
+        this.mensajesError.push("El nombre de usuario debe contener entre 1 y 50 carácteres");
+        return;
       }
+
+      if (this.passwordInvalidLength) {
+        this.error = true;
+        this.mensajesError.push("La contraseña debe contener entre 5 y 50 carácteres");
+        return;
+      }
+
+      //Si llegamos a este punto el formulario está validado y se lo podemos enviar a la API
+      const formData = new FormData();
+      const axios = require("axios");
+
+      formData.append("name", this.name);
+      formData.append("password", this.password1);
+
+      axios
+        .post("http://localhost:8081/usuario", formData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          //Si el usuario se registra correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
+          if (response !== "") {
+            //setCookie("login", "true", 2);
+            //Tenemos que decidir si es admin o jugador de alguna manera... TODO
+            this.$router.push("jugador");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = true;
+          this.mensajesError.push(
+            "Hemos tenido un problema con el servidor. Por favor, inténtelo más tarde. "
+          );
+        });
     },
-  }
-}
+  },
+  computed: {
+    nombreInvalidLength() {
+      return this.name.length === 0 || this.name.length > 50;
+    },
+    passwordInvalidLength() {
+      return this.password1.length === 0 || this.password1.length > 50;
+    },
+  },
+};
 </script>
-     
-    <!-- Add "scoped" attribute to limit CSS to this component only -->
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .imagen-fondo {
   background-image: url(/public/assets/imgs/fotoFondo.jpg);
@@ -78,7 +155,6 @@ export default {
   align-items: center;
   justify-content: center;
   min-height: 83vh;
-  
 }
 
 h1 {
@@ -89,7 +165,6 @@ h1 {
 
 label {
   color: #a7a8a8;
-
 }
 
 form {
@@ -121,7 +196,15 @@ form {
   color: white;
   padding-left: 20px;
   padding-right: 20px;
+}
 
+.error {
+  background-color: rgb(208, 98, 98);
+  border-radius: 2em;
+}
+
+.error p {
+  font-size: smaller;
 }
 
 a {
@@ -139,4 +222,3 @@ footer {
   padding: 20px;
 }
 </style>
-     
