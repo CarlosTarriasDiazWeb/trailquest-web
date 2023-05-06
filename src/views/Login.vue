@@ -39,7 +39,8 @@
           </div>
         </div>
       </div>
-      <footer>
+      <Footer></Footer>
+      <!-- <footer>
         <a href="" class="nav-link">
           <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook
         </a>
@@ -47,17 +48,19 @@
         <a href="" class="nav-link">
           <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram
         </a>
-      </footer>
+      </footer> -->
     </main>
   </body>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   name: "LoginView",
   components: {
     NavBar,
+    Footer,
   },
 
   data() {

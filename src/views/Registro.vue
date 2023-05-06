@@ -45,22 +45,25 @@
         </div>
       </div>
     </div>
-    <footer>
+    <!-- <footer>
       <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook </a>
       <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter </a>
       <a href="" class="nav-link">
         <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram
       </a>
-    </footer>
+    </footer> -->
+    <Footer></Footer>
   </body>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   name: "RegistroView",
   components: {
     NavBar,
+    Footer,
   },
   data() {
     return {

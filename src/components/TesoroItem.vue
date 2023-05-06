@@ -1,26 +1,42 @@
 <template>
   <div @click="posicionarCentro" class="py-4 px-5 border-tesoro accordion-item">
     <h2 class="accordion-header d-flex flex-row justify-content-between">
-      <button class="w-50 accordion-button collapsed" type="button" data-bs-toggle="collapse"
-        :data-bs-target="getRef(referenceId)" aria-expanded="false" aria-controls="collapseTwo">
+      <button
+        class="w-50 accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        :data-bs-target="getRef(referenceId)"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
         <h3>{{ titulo }}</h3>
       </button>
-      <div v-if="isAdmin" class="z-1">
-
-        <button @click="abrirDialogo('dialogo1')" class="trash-btn"><font-awesome-icon
-            icon="fa-solid fa-trash fa-lg" /></button>
-        <dialog id="dialogo1">
+      <div v-if="isAdmin">
+        <button @click="abrirDialogo('dialogo1')" class="trash-btn">
+          <font-awesome-icon icon="fa-solid fa-trash fa-lg" />
+        </button>
+        <dialog id="dialogo1" class="w-50 z-1">
           <p>¿Estás seguro de que quieres eliminar este tesoro?</p>
-          <button class="btn-delete" type="button" @click="cerrarDialogo('dialogo1')">Volver</button> <br>
-          <button class="btn-delete" type="button" @click="eliminarTesoro('dialogo1')">Eliminar tesoro</button>
+          <button class="btn-delete w-50" type="button" @click="cerrarDialogo('dialogo1')">
+            Volver
+          </button>
+          <br />
+          <button class="btn-delete w-50" type="button" @click="eliminarTesoro('dialogo1')">
+            Eliminar tesoro
+          </button>
         </dialog>
 
-        <router-link to="/anadir"><span><font-awesome-icon class="ms-4"
-              icon="fa-solid fa-square-pen fa-lg" /></span></router-link>
+        <router-link to="/anadir"
+          ><span><font-awesome-icon class="ms-4" icon="fa-solid fa-square-pen fa-lg" /></span
+        ></router-link>
       </div>
     </h2>
-    <div :id="referenceId" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-      data-bs-parent="#accordionExample">
+    <div
+      :id="referenceId"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingTwo"
+      data-bs-parent="#accordionExample"
+    >
       <div class="d-flex flex-column">
         <div v-if="descubierto || isAdmin" class="accordion-body">
           <p>{{ descripcion }}</p>
@@ -29,7 +45,11 @@
           <p>{{ descripcion }}</p>
         </div>
         <div>
-          <img src="../../public/assets/imgs/dummy_photo.jpg" class="rounded float-start" alt="dummy-phot" />
+          <img
+            src="../../public/assets/imgs/dummy_photo.jpg"
+            class="rounded float-start"
+            alt="dummy-phot"
+          />
         </div>
         <!-- <div v-if="favorito && !isAdmin" class="accordion-body">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill"
@@ -41,16 +61,21 @@
 
         <div class="d-flex flex-column g-3 justify-content-center">
           <!-- HACER UN FOR CON TODAS LAS RESENAS  -->
-          <Resena>
-          </Resena>
+          <Resena> </Resena>
         </div>
         <div></div>
         <button @click="mostrarTextArea" class="w-40" v-if="descubierto && !isAdmin">
           {{ resenaButtonText }}
         </button>
         <form class="m-3" v-show="textArea" method="post">
-          <textarea name="escribirResena" id="escribirResena" cols="30" rows="10"
-            placeholder="Escribe tu reseña..."></textarea><br />
+          <textarea
+            name="escribirResena"
+            id="escribirResena"
+            cols="30"
+            rows="10"
+            placeholder="Escribe tu reseña..."
+          ></textarea
+          ><br />
           <button type="submit">Enviar Reseña</button>
         </form>
       </div>
@@ -83,6 +108,7 @@ export default {
   },
   methods: {
     posicionarCentro() {
+      //Para reposicionar el centro del mapa a la localización de este tesoro.
       this.$emit("posicionarCentro", { position: this.localizacion });
     },
     mostrarTextArea() {
@@ -91,12 +117,12 @@ export default {
         this.resenaButtonText === "Añadir Reseña" ? "Ocultar" : "Añadir Reseña";
     },
     getRef(ref) {
+      //Para poder asociar cada tesoro con su desplegable.
       return "#" + ref;
     },
     abrirDialogo(id) {
       const dialogo = document.getElementById(id);
       dialogo.show();
-      
     },
     cerrarDialogo(id) {
       const dialogo = document.getElementById(id);
@@ -106,7 +132,9 @@ export default {
       const dialogo = document.getElementById(id);
       dialogo.close();
       alert("Tesoro eliminado");
-    }
+
+      //Hacer petición asíncrona para eliminar este tesoro - TODO
+    },
   },
 };
 </script>
@@ -121,14 +149,14 @@ img {
   max-height: 500px;
 }
 
-#dialogo1{
+#dialogo1 {
   position: absolute;
   border-radius: 1em;
   border: none;
   background-color: #d9d9d9;
 }
 
-.btn-delete{
+.btn-delete {
   background-color: #59a888;
   border: none;
   border-radius: 1em;
