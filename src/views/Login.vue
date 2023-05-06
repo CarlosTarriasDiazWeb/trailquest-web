@@ -4,34 +4,46 @@
   </header>
 
   <body>
-
     <main>
       <div class="imagen-fondo">
         <div class="ajustar">
-
           <div class="contenedor">
             <h1>Inicia sesión</h1>
-            <form v-on:submit.prevent="enviarFormulario">
+            <form novalidate v-on:submit.prevent="enviarFormulario">
               <label for="" required>Nombre usuario:</label>
-              <input type="text" class="input" v-model="name" id="nom_usuario" required><br><br>
+              <input
+                type="text"
+                class="input px-3"
+                v-model="name"
+                id="nom_usuario"
+                required
+              /><br /><br />
               <label for="" required>Contraseña:</label>
-              <input type="password" class="input" v-model="password" id="con_usuario" required><br><br>
+              <input
+                type="password"
+                class="input px-3"
+                v-model="password"
+                id="con_usuario"
+                required
+              /><br /><br />
 
-
-              <router-link class="submit" to="/jugador">Iniciar</router-link><br>
+              <button type="submit" class="submit">Iniciar</button><br />
               <a class="registro" href="/registro">¿Eres nuevo? Regístrate</a>
             </form>
+            <!-- CAJA PARA MOSTRAR ERRORES -->
+            <div v-if="error" class="error px-2">
+              <p v-for="(mensaje, index) in mensajesError" :key="index">
+                {{ mensaje }}
+              </p>
+            </div>
           </div>
         </div>
-
       </div>
       <footer>
         <a href="" class="nav-link">
           <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook
         </a>
-        <a href="" class="nav-link">
-          <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter
-        </a>
+        <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter </a>
         <a href="" class="nav-link">
           <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram
         </a>
@@ -39,44 +51,86 @@
     </main>
   </body>
 </template>
-   
+
 <script>
 import NavBar from "@/components/NavBar.vue";
 export default {
-  name: 'LoginView',
+  name: "LoginView",
   components: {
     NavBar,
   },
 
   data() {
-        return {
-            zoom: 8,
-        };
-    },
+    return {
+      zoom: 8,
+      mensajesError: [],
+      error: false,
+      name: "",
+      password: "",
+    };
+  },
 
   methods: {
     enviarFormulario() {
-      if (this.name != "Ana") {
-        alert("El nombre de usuario es incorrecto")
+      this.error = false;
+      this.mensajesError = [];
+      if (this.nombreInvalidLength) {
+        this.error = true;
+        this.mensajesError.push("El nombre de usuario debe contener entre 1 y 50 carácteres");
+        return;
       }
-      if (this.password != "123") {
-        alert("La contraseña es incorrecta")
-      }
-      else {
-        console.log('Enviado!');
 
+      if (this.passwordInvalidLength) {
+        this.error = true;
+        this.mensajesError.push("La contraseña debe contener entre 5 y 50 carácteres");
+        return;
       }
+
+      //Si llegamos a este punto el formulario está validado y se lo podemos enviar a la API
+      const formData = new FormData();
+      const axios = require("axios");
+
+      formData.append("name", this.name);
+      formData.append("password", this.password);
+
+      axios
+        .post("http://localhost:8081/usuario", formData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          //Si el usuario se autentica correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
+          if (response !== "") {
+            //setCookie("login", "true", 2);
+            //Tenemos que decidir si es admin o jugador de alguna manera... TODO
+            this.$router.push("jugador");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = true;
+          this.mensajesError.push(
+            "Hemos tenido un problema con el servidor. Por favor, inténtelo más tarde. "
+          );
+        });
     },
-  }
-}
+  },
+  computed: {
+    nombreInvalidLength() {
+      return this.name.length === 0 || this.name.length > 50;
+    },
+    passwordInvalidLength() {
+      return this.password.length === 0 || this.password.length > 50;
+    },
+  },
+};
 </script>
-   
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
 
-body{
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+body {
   background-color: #59a888;
-  
 }
 main {
   height: 100%;
@@ -90,7 +144,6 @@ main {
   align-items: center;
   justify-content: center;
   min-height: 83vh;
-  
 }
 
 h1 {
@@ -101,7 +154,6 @@ h1 {
 
 label {
   color: #a7a8a8;
-
 }
 
 form {
@@ -145,29 +197,38 @@ form {
   transition: all 0.3s ease-in-out;
 }
 
-.submit:hover{
+.submit:hover {
   background-color: #000;
   color: #fff;
   cursor: pointer;
 }
 
-.nav-link{
+.nav-link {
   color: #fff;
   transition: all 0.3s ease-in-out;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: #78d3ae;
   cursor: pointer;
 }
 
-.registro{
+.registro {
   transition: all 0.3s ease-in-out;
 }
 
-.registro:hover{
+.registro:hover {
   color: #59a888;
   cursor: pointer;
+}
+
+.error {
+  background-color: rgb(208, 98, 98);
+  border-radius: 2em;
+}
+
+.error p {
+  font-size: smaller;
 }
 
 a {
@@ -185,4 +246,3 @@ footer {
   padding: 20px;
 }
 </style>
-   

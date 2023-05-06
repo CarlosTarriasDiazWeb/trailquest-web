@@ -6,19 +6,33 @@
     <!-- <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span> -->
     <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
 
-    <Map :mapWidthPerc="mapWidthPerc" :localizaciones="localizacionesMostrar" :center="center"
-      @modifyCenter="modifyCenter" :isAdmin="isAdmin"></Map>
+    <Map
+      :mapWidthPerc="mapWidthPerc"
+      :localizaciones="localizacionesMostrar"
+      :center="center"
+      @modifyCenter="modifyCenter"
+      :isAdmin="isAdmin"
+    ></Map>
     <div class="bg-accent p-3 d-flex flex-row justify-content-end">
       <div class="form-row w-40">
         <div class="col">
-          <input type="text" class="form-control" v-model="palabraFiltro" placeholder="Escribe nombre del tesoro..." />
+          <input
+            type="text"
+            class="form-control"
+            v-model="palabraFiltro"
+            placeholder="Escribe nombre del tesoro..."
+          />
         </div>
       </div>
       <div class="form-row w-40 ms-5">
         <button @click.prevent="filtrarTesoros">Buscar</button>
       </div>
     </div>
-    <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
+    <Tesoros
+      :isAdmin="isAdmin"
+      :localizaciones="localizacionesMostrar"
+      @posicionarCentro="posicionarCentro"
+    ></Tesoros>
   </main>
   <footer>
     <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -53,6 +67,7 @@ export default {
       this.center = object.position;
     },
     filtrarTesoros() {
+      //Mostrar tesoros que coinciden con la cadena de búsqueda.
       this.localizacionesMostrar = [...this.todas];
       this.localizacionesMostrar = [
         ...this.localizacionesMostrar.filter((localizacion) =>
@@ -65,9 +80,8 @@ export default {
     },
 
     show(event) {
-      console.log(event)
-    }
-  
+      console.log(event);
+    },
   },
   data() {
     return {
@@ -185,7 +199,7 @@ export default {
   mounted() {
     //this.localizacionesMostrar = [...this.todas];
 
-    //Hacer fetch aquí 
+    //Hacer fetch aquí
     // let get = {
     //   method: 'GET',
     //   headers: {
@@ -193,16 +207,14 @@ export default {
     //   }
     // }
 
-    const axios = require('axios')
+    const axios = require("axios");
     axios({
-      method: 'get',
-      url: 'http://localhost:8081/tesoros',
-    })
-    .then( response => {
+      method: "get",
+      url: "http://localhost:8081/tesoros",
+    }).then((response) => {
       this.localizacionesMostrar = Array.from(response.data);
-      console.log(this.localizacionesMostrar)
-      this.localizacionesMostrar.map(loc => loc.position = [loc.latitud, loc.longitud])
-     
+      console.log(this.localizacionesMostrar);
+      this.localizacionesMostrar.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
     });
   },
 };
