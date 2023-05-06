@@ -149,12 +149,27 @@ export default {
   computed: {},
 
   mounted() {
-    this.localizacionesMostrar = [...this.todas];
+    /*Show dummy data*/
+    //this.localizacionesMostrar = [...this.todas];
+
+    /*Show API data */
+    const axios = require("axios");
+    axios({
+      method: "get",
+      url: "http://localhost:8081/tesoros",
+    }).then((response) => {
+      this.localizacionesMostrar = Array.from(response.data);
+      console.log(this.localizacionesMostrar);
+      this.localizacionesMostrar.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
+    });
   },
 };
 </script>
 
 <style scoped>
+footer{
+  margin-top: 40px;
+}
 .bg-accent {
   background-color: var(--accent);
 }
