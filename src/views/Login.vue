@@ -4,7 +4,7 @@
   </header>
 
   <body>
-    <main>
+    <main class="flex-grow-1">
       <div class="imagen-fondo">
         <div class="ajustar">
           <div class="contenedor">
@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <Footer></Footer>
+
       <!-- <footer>
         <a href="" class="nav-link">
           <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook
@@ -50,6 +50,7 @@
         </a>
       </footer> -->
     </main>
+    <Footer></Footer>
   </body>
 </template>
 
@@ -249,10 +250,10 @@ a {
 
 footer {
   background-color: #59a888;
-  bottom: 0;
-  left: 0;
+  /* bottom: 0;
+  left: 0; */
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
