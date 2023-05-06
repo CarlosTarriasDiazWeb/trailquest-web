@@ -18,7 +18,9 @@ export default {
         return {};
     },
     props: {
-
+        comentario: String,
+        foto :String,
+        puntuacion:String
     },
     methods: {
 
