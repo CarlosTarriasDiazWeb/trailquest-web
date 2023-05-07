@@ -34,7 +34,7 @@
             /><br /><br />
 
             <input type="submit" value="Iniciar" class="submit" /><br /><br />
-            <a href="/login">¿Eres miembro? Inicia sesión</a>
+            <a href="/login" class="registro">¿Eres miembro? Inicia sesión</a>
           </form>
           <!-- CAJA PARA MOSTRAR ERRORES -->
           <div v-if="error" class="error px-3">
@@ -158,7 +158,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .imagen-fondo {
-  background-image: url(/public/assets/imgs/fotoFondo.jpg);
+  background-image: url(/public/assets/imgs/fondo4.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -207,6 +207,11 @@ form {
   padding-left: 20px;
   padding-right: 20px;
 }
+.submit:hover {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
 
 .error {
   background-color: rgb(208, 98, 98);
@@ -215,6 +220,15 @@ form {
 
 .error p {
   font-size: smaller;
+}
+
+.registro {
+  transition: all 0.3s ease-in-out;
+}
+
+.registro:hover {
+  color: #59a888;
+  cursor: pointer;
 }
 
 a {
