@@ -29,8 +29,7 @@
         <ul v-else class="navbar-nav ms-auto">
           <li class="nav-item">
             <RouterLink class="my-2 text-center sesion-btn nav-link" to="/login"
-              >Iniciar Sesión</RouterLink
-            >
+              >Iniciar Sesión</RouterLink>
             <RouterLink class="my-2 text-center registro-btn nav-link" to="/registro"
               >Registrarse</RouterLink
             >

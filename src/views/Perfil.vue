@@ -2,7 +2,7 @@
   <header class="bg-green">
     <div class="container">
       <nav class="nav d-flex justify-content-end p-4">
-        <a href="/jugador" class=" nav-link btn btn-light">Volver al mapa</a>
+        <RouterLink class="my-2 text-center mapa nav-link" to="/jugador">Volver al mapa</RouterLink>
       </nav>
     </div>
   </header>
@@ -33,8 +33,8 @@
       <div class="accordion p-4" id="tesorosEncontrados">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-              aria-expanded="true" aria-controls="collapseOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               Mis localizaciones
             </button>
           </h2>
@@ -43,8 +43,8 @@
             <div class="accordion-body">
               <!-- TODO Iterar con un for para mostrar las localizaciones del usuario -->
               <ul>
-                <li v-for="tesoro,index in localizacionesEncontradas" v-bind:key="index">
-                  {{ tesoro.nombre }} 
+                <li v-for="tesoro, index in localizacionesEncontradas" v-bind:key="index">
+                  {{ tesoro.nombre }}
                 </li>
               </ul>
             </div>
@@ -69,14 +69,19 @@
     </div>
 
   </main>
-  <footer></footer>
+  <div class="final">
+    <!-- <Footer></Footer> -->
+  </div>
 </template>
 
 <script>
+// import Footer from '@/components/Footer.vue';
 export default {
   name: "home-page",
-  components: {},
-  methods:{
+  components: {
+    // Footer
+  },
+  methods: {
 
   },
   data() {
@@ -191,11 +196,32 @@ export default {
 
 <style scoped>
 .circle-icon {
-  background: #78d3af38;  
+  background: #78d3af38;
   padding: 20px;
   border: 3px solid black;
   border-radius: 50%;
 }
 
+.mapa{
+  border: none;
+  background-color: #a7a8a8;
+  color: var(--black);
+  border-radius: 3rem;
+  transition: all 0.3s ease-in-out;
+  padding: 5px 8px;
+}
 
+.mapa:hover {
+  background-color: var(--black);
+  color: white !important;
+  cursor: pointer;
+}
+
+main {
+  margin: 0px 100px;
+}
+
+.final {
+  bottom: 0;
+}
 </style>
