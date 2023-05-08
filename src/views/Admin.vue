@@ -97,6 +97,10 @@ footer {
   margin-top: 40px;
 }
 
+main{
+  z-index: 50;
+}
+
 .bg-accent {
   background-color: var(--accent);
 }

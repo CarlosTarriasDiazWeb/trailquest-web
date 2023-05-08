@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 50vh; width: 100%">
+  <div class="map" style="height: 50vh; width: 100%">
     <l-map :options="{ scrollWheelZoom: true }" ref="map" v-model:zoom="zoom" :center="center">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -64,4 +64,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+.map{
+  z-index: 50;
+}
+</style>

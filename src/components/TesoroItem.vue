@@ -156,6 +156,7 @@ img {
   border-radius: 1em;
   border: none;
   background-color: #d9d9d9;
+  z-index: 100;
 }
 
 .btn-delete {

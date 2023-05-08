@@ -19,7 +19,11 @@
 
         <label for="">Selecciona una ubicación:</label><br /><br />
         <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
-        <input type="submit" value="Hecho" class="submit" />
+
+        <footer>
+          <input type="submit" value="Hecho" class="submit" />
+        </footer>
+          
 
       </form>
 
