@@ -89,7 +89,8 @@ export default {
     descubierto: Boolean,
     localizacion: Array,
     isAdmin: Boolean,
-    fotoTesoro: String
+    fotoTesoro: String,
+    itemID: Number
   },
   methods: {
     posicionarCentro() {
@@ -117,6 +118,8 @@ export default {
       const dialogo = document.getElementById(id);
       dialogo.close();
       alert("Tesoro eliminado");
+
+
 
       //Hacer petición asíncrona para eliminar este tesoro - TODO
     },

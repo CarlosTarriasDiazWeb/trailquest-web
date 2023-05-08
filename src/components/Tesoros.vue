@@ -1,18 +1,9 @@
 <template>
   <section class="d-flex flex-column flex-grow-1">
-    <TesoroItem
-      v-for="(tesoro, index) in localizaciones"
-      :key="index"
-      :titulo="tesoro.titulo"
-      :descripcion="tesoro.descripcion"
-      :localizacion="tesoro.position"
-      :favorito="tesoro.favorito"
-      :descubierto="tesoro.descubierto"
-      :referenceId="`tesoro${index}`"
-      :fotoTesoro="tesoro.foto_tesoro"
-      @posicionarCentro="posicionarCentro"
-      :isAdmin="isAdmin"
-    >
+    <TesoroItem v-for="(tesoro, index) in localizaciones" :key="index" :titulo="tesoro.titulo"
+      :descripcion="tesoro.descripcion" :localizacion="tesoro.position" :favorito="tesoro.favorito"
+      :descubierto="tesoro.descubierto" :referenceId="`tesoro${index}`" :fotoTesoro="tesoro.foto_tesoro"
+      :itemID="tesoro.itemID" @posicionarCentro="posicionarCentro" :isAdmin="isAdmin">
     </TesoroItem>
   </section>
 </template>

@@ -6,32 +6,18 @@
     <!-- <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span> -->
     <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
 
-    <Map
-      :localizaciones="localizacionesMostrar"
-      :center="center"
-      @modifyCenter="modifyCenter"
-      :isAdmin="isAdmin"
-    ></Map>
+    <Map :localizaciones="localizacionesMostrar" :center="center" @modifyCenter="modifyCenter" :isAdmin="isAdmin"></Map>
     <div class="bg-accent p-3 d-flex flex-row justify-content-end">
       <div class="form-row w-40">
         <div class="col">
-          <input
-            type="text"
-            class="form-control"
-            v-model="palabraFiltro"
-            placeholder="Escribe nombre del tesoro..."
-          />
+          <input type="text" class="form-control" v-model="palabraFiltro" placeholder="Escribe nombre del tesoro..." />
         </div>
       </div>
       <div class="form-row w-40 ms-5">
         <button @click.prevent="filtrarTesoros">Buscar</button>
       </div>
     </div>
-    <Tesoros
-      :isAdmin="isAdmin"
-      :localizaciones="localizacionesMostrar"
-      @posicionarCentro="posicionarCentro"
-    ></Tesoros>
+    <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
   </main>
   <footer>
     <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -207,7 +193,10 @@ export default {
     }).then((response) => {
       this.localizacionesMostrar = Array.from(response.data);
       console.log(this.localizacionesMostrar);
+      //Añadimos array de posición en el mapa
       this.localizacionesMostrar.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
+      //Añadimos id de BD a la localiacion
+      this.localizacionesMostrar.map((loc) => loc.itemId = loc.id)
     });
   },
 };
