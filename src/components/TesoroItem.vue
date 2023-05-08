@@ -125,7 +125,7 @@ export default {
       const axios = require("axios");
       axios.delete(`http://172.23.7.116:8081/tesoros/${this.itemID}`)
         .then(
-          this.$forceUpdate()
+          this.$router.push("/jugador")
         )
         .catch(
           error => console.log(error)
@@ -137,7 +137,8 @@ export default {
   },
   mounted() {
 
-  }
+  },
+
 };
 </script>
 
