@@ -4,23 +4,37 @@
   <div class="fondoColor">
     <main class="container">
       <h1>Añadir tesoro</h1>
-      <form v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
-        <label for="" required>Nombre monumento:</label><br />
-        <input type="text" v-model="nombre" class="input" id="nom_tesoro" /><br /><br />
-        <input type="file" name="foto_tesoro" id="foto_tesoro" /><br><br>
-        <label for="" required>Descripción:</label><br />
-        <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br /><br />
+      <form novalidate v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
+        <label for="">Nombre monumento:</label><br />
+        <input type="text" v-model="nombre" class="input" id="nom_tesoro" required /><br /><br />
+        <input type="file" name="foto_tesoro" id="foto_tesoro" /><br /><br />
+        <label for="">Descripción:</label><br />
+        <textarea
+          v-model="descripcion"
+          name=""
+          id="inf_tesoro"
+          class="input"
+          cols="30"
+          rows="10"
+          required
+        ></textarea
+        ><br /><br />
 
-        <label for="latitud" required>Latitud:</label><br />
-        <input v-model="latitud" type="number" class="input" id="latitud" /><br /><br />
+        <label for="latitud">Latitud:</label><br />
+        <input v-model="latitud" type="number" class="input" id="latitud" required /><br /><br />
         <label for="longitud">Longitud:</label><br />
-        <input v-model="longitud" type="number" class="input" id="longitud" /><br /><br />
-        <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" /> <br /><br />
+        <input v-model="longitud" type="number" class="input" id="longitud" required /><br /><br />
+        <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" />
+        <br /><br />
 
         <label for="">Selecciona una ubicación:</label><br /><br />
         <input type="submit" value="Hecho" class="submit" />
       </form>
-      
+      <div v-if="error" class="error d-flex flex-column py-3 g-2 align-content-center px-2">
+        <p v-for="(mensaje, index) in mensajesError" :key="index">
+          {{ mensaje }}
+        </p>
+      </div>
       <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
     </main>
   </div>
@@ -36,6 +50,8 @@ export default {
   },
   data() {
     return {
+      mensajesError: [],
+      error: false,
       zoom: 8,
       center: [41.386415, 2.169987],
       modify: true,
@@ -48,6 +64,35 @@ export default {
   },
   methods: {
     enviarFormulario() {
+      this.error = false;
+      this.mensajesError = [];
+
+      //Validamos formulario
+      if (this.nombreInvalidLength) {
+        this.error = true;
+        this.mensajesError.push("El nombre del tesoro debe tener entre 1 y 100 carácteres");
+      }
+
+      if (this.descripcionInvalidLength) {
+        this.error = true;
+        this.mensajesError.push("La descripcion del tesoro debe tener 10 y 100 carácteres");
+      }
+
+      if (this.latitudInvalida) {
+        this.error = true;
+        this.mensajesError.push("La latitud es un valor entre -90 grados y 90 grados");
+      }
+
+      if (this.longitudInvalida) {
+        this.error = true;
+        this.mensajesError.push("La longitud es un valor entre -180 grados y 180 grados");
+      }
+
+      if (this.error) return;
+
+      this.mensajesError = [];
+
+      //Si llegamos a este punto el formulario está validado y se lo podemos enviar a la API
       const axios = require("axios");
       // Create a new FormData object
       const formData = new FormData();
@@ -56,7 +101,7 @@ export default {
       const fileInput = document.getElementById("foto_tesoro");
 
       formData.append("titulo", this.escapeString(this.nombre.trim()));
-      formData.append("descripcion", this.escapeString(this.descripcion.trim()))
+      formData.append("descripcion", this.escapeString(this.descripcion.trim()));
       formData.append("latitud", this.latitud);
       formData.append("longitud", this.longitud);
       formData.append("foto_tesoro", fileInput.files[0]);
@@ -104,7 +149,23 @@ export default {
     },
     escapeString(string) {
       return `'${string}'`;
-    }
+    },
+  },
+  computed: {
+    nombreInvalidLength() {
+      return this.nombre.length === 0 || this.nombre.length > 100;
+    },
+    descripcionInvalidLength() {
+      return this.descripcion.trim().length < 10 || this.descripcion.trim().length > 5000;
+    },
+    latitudInvalida() {
+      return parseInt(this.latitud) < -90 || parseInt(this.latitud) > 90 || this.latitud === "";
+    },
+    longitudInvalida() {
+      return (
+        parseInt(this.longitud) < -180 || parseInt(this.longitud) > 180 || this.longitud === ""
+      );
+    },
   },
 };
 </script>
@@ -192,6 +253,16 @@ header {
   background-color: #d9d9d9;
   border-radius: 1em;
   padding: 6px;
+}
+
+.error {
+  background-color: rgb(208, 98, 98);
+  border-radius: 1.5em;
+}
+
+.error p {
+  font-size: smaller;
+  font-weight: 500;
 }
 
 #map {
