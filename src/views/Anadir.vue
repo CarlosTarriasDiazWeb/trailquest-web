@@ -57,8 +57,8 @@ export default {
       // Append data to the form data object
       const fileInput = document.getElementById("foto_tesoro");
 
-      formData.append("titulo", this.nombre);
-      formData.append("descripcion", this.descripcion);
+      formData.append("titulo", this.escapeString(this.nombre.trim()));
+      formData.append("descripcion", this.escapeString(this.descripcion.trim()))
       formData.append("latitud", this.latitud);
       formData.append("longitud", this.longitud);
       formData.append("foto_tesoro", fileInput.files[0]);
@@ -77,7 +77,7 @@ export default {
 
       // Send the form data as a POST request
       axios
-        .post("http://localhost:8081/tesoros", formData, {
+        .post("http://172.23.7.110:8081/tesoros", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -104,6 +104,9 @@ export default {
     modifyCenter() {
       this.center = [this.latitud, this.longitud];
     },
+    escapeString(string) {
+      return `'${string}'`;
+    }
   },
 };
 </script>
