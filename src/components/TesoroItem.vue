@@ -122,6 +122,10 @@ export default {
 
 
       //Hacer petición asíncrona para eliminar este tesoro - TODO
+      const axios = require("axios");
+      axios.delete({'http://172.23.7.110:8081/tesoros/{$}'}).then(
+        
+      )
     },
     goToUpdate() {
       this.$router.push({ path: "actualizar", query: { titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1] } });
