@@ -88,10 +88,15 @@ export default {
       formData.append("name", this.name);
       formData.append("password", this.password);
 
+      //TOKEN?
+      const token = `${this.name}:${this.password}`;
+
       axios
         .post("http://localhost:8081/usuario", formData, {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Basic ${token}`, //???
+            // Authorization : `Bearer ${localStorage.getItem("access_token")}`
           },
         })
         .then((response) => {
