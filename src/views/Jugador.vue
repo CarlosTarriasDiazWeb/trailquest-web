@@ -2,6 +2,7 @@
   <NavBar login="true"></NavBar>
 
   <main>
+
     <span @click="filterAll" class="button badge bg-success">Todos</span>
     <!-- <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span> -->
     <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
@@ -220,6 +221,7 @@ button:hover {
   color: #fff;
   cursor: pointer;
 }
+
 
 .perfil-btn {
   background-color: var(--primary);

@@ -19,7 +19,7 @@
       </div>
       <!-- Stats -->
       <div class="row">
-        <p class="p-0">Número de tesoros: 50</p>
+        <p class="p-0">Número de tesoros: </p>
       </div>
       <div class="row">
         Nivel: Experto
