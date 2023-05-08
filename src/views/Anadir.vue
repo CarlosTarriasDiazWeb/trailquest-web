@@ -18,16 +18,14 @@
         <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" /> <br /><br />
 
         <label for="">Selecciona una ubicación:</label><br /><br />
-        <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
-
-        <footer>
-          <input type="submit" value="Hecho" class="submit" />
-        </footer>
-          
-
+        
       </form>
-
+      
+      <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
     </main>
+    <footer>
+      <input type="submit" value="Hecho" class="submit" />
+    </footer>
   </div>
 </template>
 
@@ -146,7 +144,7 @@ header {
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
-  padding-top: 20px;
+  padding: 20px 0px 0px 0px;
   background-color: #fff;
 }
 

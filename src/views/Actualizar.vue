@@ -18,15 +18,17 @@
                 <input v-model="longitud" type="number" class="input" id="longitud" /><br /><br />
                 <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" /> <br /><br />
 
-                <label for="">Selecciona una ubicación:</label><br /><br />
-                <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
-
-                <footer>
-                    <input type="submit" value="Hecho" class="submit" />
-                </footer>
+                <div class="selección">
+                    <label for="">Selecciona una ubicación:</label><br />
+                </div>
+                
             </form>
-
+            <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
+            
         </main>
+        <footer>
+            <input type="submit" value="Hecho" class="submit" />
+        </footer>
     </div>
 </template>
   
@@ -145,7 +147,7 @@ header {
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
-    padding-top: 20px;
+    padding: 20px 0px 0px 0px;
     background-color: #fff;
 }
 
@@ -198,9 +200,11 @@ header {
     padding: 6px;
 }
 
+
 #map {
     height: 180px;
     padding: 0%;
+    
 }
 
 footer {
