@@ -9,6 +9,7 @@
       :favorito="tesoro.favorito"
       :descubierto="tesoro.descubierto"
       :referenceId="`tesoro${index}`"
+      :fotoTesoro="tesoro.foto_tesoro"
       @posicionarCentro="posicionarCentro"
       :isAdmin="isAdmin"
     >

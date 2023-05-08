@@ -45,10 +45,11 @@
           <p>{{ descripcion }}</p>
         </div>
         <div>
+          <!-- //RECOGEMOS FOTO DEL SERVIDOR  -->
           <img
-            src="../../public/assets/imgs/dummy_photo.jpg"
+            :src="src"
             class="rounded float-start"
-            alt="dummy-phot"
+            alt="foto_tesoro"
           />
         </div>
         <!-- <div v-if="favorito && !isAdmin" class="accordion-body">
@@ -95,6 +96,7 @@ export default {
     return {
       textArea: false,
       resenaButtonText: "Añadir Reseña",
+      src : `http://172.23.7.110:8081/imagenesTesoro/${this.fotoTesoro}`
     };
   },
   props: {
@@ -105,6 +107,7 @@ export default {
     descubierto: Boolean,
     localizacion: Array,
     isAdmin: Boolean,
+    fotoTesoro: String
   },
   methods: {
     posicionarCentro() {
@@ -134,8 +137,11 @@ export default {
       alert("Tesoro eliminado");
 
       //Hacer petición asíncrona para eliminar este tesoro - TODO
-    },
+    }
   },
+  mounted() {
+  
+  }
 };
 </script>
 

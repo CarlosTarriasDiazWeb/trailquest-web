@@ -203,7 +203,7 @@ export default {
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://localhost:8081/tesoros",
+      url: "http://172.23.7.110:8081/tesoros",
     }).then((response) => {
       this.localizacionesMostrar = Array.from(response.data);
       console.log(this.localizacionesMostrar);

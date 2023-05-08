@@ -3,7 +3,7 @@
     <NavBar login="false"></NavBar>
   </header>
 
-  <body>
+  <div>
     <main class="flex-grow-1">
       <div class="imagen-fondo">
         <div class="ajustar">
@@ -51,7 +51,7 @@
       </footer> -->
     </main>
     <Footer></Footer>
-  </body>
+  </div>
 </template>
 
 <script>
@@ -66,7 +66,6 @@ export default {
 
   data() {
     return {
-      zoom: 8,
       mensajesError: [],
       error: false,
       name: "",
@@ -78,6 +77,8 @@ export default {
     enviarFormulario() {
       this.error = false;
       this.mensajesError = [];
+
+      //Validamos formulario
       if (this.nombreInvalidLength) {
         this.error = true;
         this.mensajesError.push("El nombre de usuario debe contener entre 1 y 50 carácteres");
@@ -131,16 +132,15 @@ export default {
   },
   computed: {
     nombreInvalidLength() {
-      return this.name.length === 0 || this.name.length > 50;
+      return this.name.trim().length === 0 || this.name.trim().length > 50;
     },
     passwordInvalidLength() {
-      return this.password.length === 0 || this.password.length > 50;
+      return this.password.trim().length === 0 || this.password.trim().length > 50;
     },
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 body {
   background-color: #59a888;
