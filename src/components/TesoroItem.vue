@@ -1,14 +1,8 @@
 <template>
   <div @click="posicionarCentro" class="py-4 px-5 border-tesoro accordion-item">
     <h2 class="accordion-header d-flex flex-row justify-content-between">
-      <button
-        class="w-50 accordion-button collapsed"
-        type="button"
-        data-bs-toggle="collapse"
-        :data-bs-target="getRef(referenceId)"
-        aria-expanded="false"
-        aria-controls="collapseTwo"
-      >
+      <button class="w-50 accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        :data-bs-target="getRef(referenceId)" aria-expanded="false" aria-controls="collapseTwo">
         <h3>{{ titulo }}</h3>
       </button>
       <div v-if="isAdmin">
@@ -26,17 +20,15 @@
           </button>
         </dialog>
 
-        <router-link to="/anadir"
-          ><span><font-awesome-icon class="ms-4" icon="fa-solid fa-square-pen fa-lg" /></span
-        ></router-link>
+        <!-- <router-link
+          to="{path: 'actualizar', query: {titulo: `${this.titulo}`, descripcion: `${this.descripcion}`}}"><span><font-awesome-icon
+              class="ms-4" icon="fa-solid fa-square-pen fa-lg" /></span></router-link> -->
+        <button @click="goToUpdate"><span><font-awesome-icon class="ms-4"
+              icon="fa-solid fa-square-pen fa-lg" /></span></button>
       </div>
     </h2>
-    <div
-      :id="referenceId"
-      class="accordion-collapse collapse"
-      aria-labelledby="headingTwo"
-      data-bs-parent="#accordionExample"
-    >
+    <div :id="referenceId" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+      data-bs-parent="#accordionExample">
       <div class="d-flex flex-column">
         <div v-if="descubierto || isAdmin" class="accordion-body">
           <p>{{ descripcion }}</p>
@@ -46,11 +38,7 @@
         </div>
         <div>
           <!-- //RECOGEMOS FOTO DEL SERVIDOR  -->
-          <img
-            :src="src"
-            class="rounded float-start"
-            alt="foto_tesoro"
-          />
+          <img :src="src" class="rounded float-start" alt="foto_tesoro" />
         </div>
         <!-- <div v-if="favorito && !isAdmin" class="accordion-body">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill"
@@ -69,14 +57,8 @@
           {{ resenaButtonText }}
         </button>
         <form class="m-3" v-show="textArea" method="post">
-          <textarea
-            name="escribirResena"
-            id="escribirResena"
-            cols="30"
-            rows="10"
-            placeholder="Escribe tu reseña..."
-          ></textarea
-          ><br />
+          <textarea name="escribirResena" id="escribirResena" cols="30" rows="10"
+            placeholder="Escribe tu reseña..."></textarea><br />
           <button type="submit">Enviar Reseña</button>
         </form>
       </div>
@@ -96,7 +78,7 @@ export default {
     return {
       textArea: false,
       resenaButtonText: "Añadir Reseña",
-      src : `http://172.23.7.110:8081/imagenesTesoro/${this.fotoTesoro}`
+      src: `http://172.23.7.110:8081/imagenesTesoro/${this.fotoTesoro}`
     };
   },
   props: {
@@ -137,10 +119,13 @@ export default {
       alert("Tesoro eliminado");
 
       //Hacer petición asíncrona para eliminar este tesoro - TODO
+    },
+    goToUpdate() {
+      this.$router.push({ path: "actualizar", query: { titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1] } });
     }
   },
   mounted() {
-  
+
   }
 };
 </script>

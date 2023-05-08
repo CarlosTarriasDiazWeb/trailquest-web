@@ -6,6 +6,8 @@ import Jugador from "../views/Jugador.vue";
 import Perfil from "../views/Perfil.vue";
 import Registro from "../views/Registro.vue";
 import Admin from "../views/Admin.vue";
+import Actualizar from "../views/Actualizar.vue";
+
 
 const routes = [
   {
@@ -42,6 +44,11 @@ const routes = [
     path: "/admin",
     name: "admin",
     component: Admin,
+  },
+  {
+    path: "/actualizar",
+    name: "actualizar",
+    component: Actualizar,
   },
 ];
 
