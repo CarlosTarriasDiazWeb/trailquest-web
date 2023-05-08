@@ -123,8 +123,12 @@ export default {
 
       //Hacer petición asíncrona para eliminar este tesoro - TODO
       const axios = require("axios");
-      axios.delete({'http://172.23.7.110:8081/tesoros/{$}'}).then(
-        
+      axios.delete(`http://172.23.7.110:8081/tesoros/${this.itemID}`)
+      .then(
+        this.$forceUpdate()
+      )
+      .catch(
+        error => console.log(error)
       )
     },
     goToUpdate() {

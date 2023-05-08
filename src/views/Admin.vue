@@ -86,7 +86,7 @@ export default {
       console.log(this.localizacionesMostrar);
       this.localizacionesMostrar.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
       //Añadimos id de BD a la localiacion
-      this.localizacionesMostrar.map((loc) => loc.itemId = loc.id)
+      this.localizacionesMostrar.map((loc) => loc.itemID = loc.id)
     });
   },
 };
