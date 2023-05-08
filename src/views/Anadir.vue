@@ -18,14 +18,11 @@
         <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" /> <br /><br />
 
         <label for="">Selecciona una ubicación:</label><br /><br />
-        
+        <input type="submit" value="Hecho" class="submit" />
       </form>
       
       <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
     </main>
-    <footer>
-      <input type="submit" value="Hecho" class="submit" />
-    </footer>
   </div>
 </template>
 
