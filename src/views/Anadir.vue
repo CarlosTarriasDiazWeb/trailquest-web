@@ -130,6 +130,10 @@ export default {
         })
         .catch((error) => {
           console.error(error);
+          this.error = true;
+          this.mensajesError.push(
+            "Hemos tenido un problema con el servidor. Por favor, inténtelo más tarde. "
+          );
         });
     },
     addMarker() {

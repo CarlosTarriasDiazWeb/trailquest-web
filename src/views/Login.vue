@@ -31,7 +31,7 @@
               <a class="registro" href="/registro">¿Eres nuevo? Regístrate</a>
             </form>
             <!-- CAJA PARA MOSTRAR ERRORES -->
-            <div v-if="error" class="error px-2">
+            <div v-if="error" class="error d-flex flex-column py-3 g-2 align-content-center px-2">
               <p v-for="(mensaje, index) in mensajesError" :key="index">
                 {{ mensaje }}
               </p>
@@ -39,16 +39,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <footer>
-        <a href="" class="nav-link">
-          <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook
-        </a>
-        <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter </a>
-        <a href="" class="nav-link">
-          <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram
-        </a>
-      </footer> -->
     </main>
     <Footer></Footer>
   </div>
@@ -82,14 +72,14 @@ export default {
       if (this.nombreInvalidLength) {
         this.error = true;
         this.mensajesError.push("El nombre de usuario debe contener entre 1 y 50 carácteres");
-        return;
       }
 
       if (this.passwordInvalidLength) {
         this.error = true;
         this.mensajesError.push("La contraseña debe contener entre 5 y 50 carácteres");
-        return;
       }
+
+      if (this.error) return;
 
       //Si llegamos a este punto el formulario está validado y se lo podemos enviar a la API
       const formData = new FormData();
@@ -182,7 +172,6 @@ form {
   background-color: #fff;
   margin: 0px 100px;
   padding: 20px;
- 
 }
 
 .ajustar {
@@ -242,6 +231,7 @@ form {
 
 .error p {
   font-size: smaller;
+  font-weight: 500;
 }
 
 a {

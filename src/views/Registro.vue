@@ -31,13 +31,13 @@
               v-model="password2"
               name="password2"
               id="rep_contra"
-            /><br /><br>
+            /><br /><br />
 
             <input type="submit" value="Iniciar" class="submit" /><br />
             <a href="/login" class="registro">¿Eres miembro? Inicia sesión</a>
           </form>
           <!-- CAJA PARA MOSTRAR ERRORES -->
-          <div v-if="error" class="error px-3">
+          <div v-if="error" class="error d-flex flex-column py-3 g-2 align-content-center px-2">
             <p v-for="(mensaje, index) in mensajesError" :key="index">
               {{ mensaje }}
             </p>
@@ -45,13 +45,7 @@
         </div>
       </div>
     </div>
-    <!-- <footer>
-      <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook </a>
-      <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter </a>
-      <a href="" class="nav-link">
-        <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram
-      </a>
-    </footer> -->
+
     <Footer></Footer>
   </body>
 </template>
@@ -82,30 +76,27 @@ export default {
       if (!this.name) {
         this.error = true;
         this.mensajesError.push("El nombre de usuario es obligatorio");
-        return;
       }
       if (!this.password1 || !this.password2) {
         this.error = true;
         this.mensajesError.push("Debes repetir la contraseña");
-        return;
       }
       if (this.password1 != this.password2) {
         this.error = true;
         this.mensajesError.push("Las contraseñas no pueden ser diferentes!");
-        return;
       }
 
       if (this.nombreInvalidLength) {
         this.error = true;
         this.mensajesError.push("El nombre de usuario debe contener entre 1 y 50 carácteres");
-        return;
       }
 
       if (this.passwordInvalidLength) {
         this.error = true;
         this.mensajesError.push("La contraseña debe contener entre 5 y 50 carácteres");
-        return;
       }
+
+      if (this.error) return;
 
       //Si llegamos a este punto el formulario está validado y se lo podemos enviar a la API
       const formData = new FormData();
@@ -221,6 +212,7 @@ form {
 
 .error p {
   font-size: smaller;
+  font-weight: 500;
 }
 
 .registro {
