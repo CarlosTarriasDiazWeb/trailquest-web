@@ -78,7 +78,7 @@ export default {
     return {
       textArea: false,
       resenaButtonText: "Añadir Reseña",
-      src: `http://172.23.7.110:8081/imagenesTesoro/${this.fotoTesoro}`
+      src: `http://172.23.7.116:8081/imagenes/${this.fotoTesoro}`
     };
   },
   props: {
@@ -124,12 +124,12 @@ export default {
       //Hacer petición asíncrona para eliminar este tesoro - TODO
       const axios = require("axios");
       axios.delete(`http://172.23.7.110:8081/tesoros/${this.itemID}`)
-      .then(
-        this.$forceUpdate()
-      )
-      .catch(
-        error => console.log(error)
-      )
+        .then(
+          this.$forceUpdate()
+        )
+        .catch(
+          error => console.log(error)
+        )
     },
     goToUpdate() {
       this.$router.push({ path: "actualizar", query: { titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1] } });
