@@ -67,6 +67,7 @@ export default {
 <style scoped>
 
 .map{
+  position: relative;
   z-index: 50;
 }
 </style>
