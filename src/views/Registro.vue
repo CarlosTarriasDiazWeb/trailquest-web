@@ -185,7 +185,7 @@ form {
 }
 
 .contenedor {
-  border: #78d3ae 2px;
+  border: none;
   border-radius: 3em 0em;
   background-color: #fff;
   margin: 0px 100px;
@@ -197,6 +197,7 @@ form {
   border: none;
   border-radius: 2em;
   padding: 4px;
+  margin: 4px;
 }
 
 .submit {

@@ -1,32 +1,28 @@
 <template>
   <header><router-link class="volver" to="/admin">Volver al mapa</router-link><br /></header>
-  <h1>Añadir tesoro</h1>
-  <form v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
-    <label for="" required>Nombre monumento:</label><br />
-    <input type="text" v-model="nombre" class="input" id="nom_tesoro" /><br /><br />
-    <input type="file" name="foto_tesoro" id="foto_tesoro" />
-    <label for="" required>Descripción:</label><br />
-    <textarea
-      v-model="descripcion"
-      name=""
-      id="inf_tesoro"
-      class="input"
-      cols="30"
-      rows="10"
-    ></textarea
-    ><br /><br />
 
-    <label for="latitud" required>Latitud:</label><br />
-    <input v-model="latitud" type="number" class="input" id="latitud" /><br /><br />
-    <label for="longitud">Longitud:</label><br />
-    <input v-model="longitud" type="number" class="input" id="longitud" /><br /><br />
-    <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" /> <br /><br />
+  <div class="container">
 
-    <label for="">Selecciona una ubicación:</label><br /><br />
-    <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map><br />
+    <h1>Añadir tesoro</h1>
+    <form v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
+      <label for="" required>Nombre monumento:</label><br />
+      <input type="text" v-model="nombre" class="input" id="nom_tesoro" /><br /><br />
+      <input type="file" name="foto_tesoro" id="foto_tesoro" /><br><br>
+      <label for="" required>Descripción:</label><br />
+      <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br /><br />
 
-    <input type="submit" value="Hecho" class="submit" />
-  </form>
+      <label for="latitud" required>Latitud:</label><br />
+      <input v-model="latitud" type="number" class="input" id="latitud" /><br /><br />
+      <label for="longitud">Longitud:</label><br />
+      <input v-model="longitud" type="number" class="input" id="longitud" /><br /><br />
+      <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" /> <br /><br />
+
+      <label for="">Selecciona una ubicación:</label><br /><br />
+    </form>
+  </div>
+  <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map><br />
+
+  <input type="submit" value="Hecho" class="submit" />
 </template>
 
 <script>

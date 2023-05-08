@@ -182,7 +182,7 @@ form {
   background-color: #fff;
   margin: 0px 100px;
   padding: 20px;
-  width: 100%;
+ 
 }
 
 .ajustar {

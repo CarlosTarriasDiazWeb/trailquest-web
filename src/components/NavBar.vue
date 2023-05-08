@@ -78,10 +78,12 @@ img {
 }
 
 .sesion-btn {
-  background-color: var(--dark-gray);
+  border: none;
+  background-color: #a7a8a8;
   color: var(--black);
   border-radius: 3rem;
   transition: all 0.3s ease-in-out;
+  padding: 5px 8px;
 }
 
 .sesion-btn:hover {
