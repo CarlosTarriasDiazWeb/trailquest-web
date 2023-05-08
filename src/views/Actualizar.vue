@@ -180,7 +180,7 @@ header {
     padding: 3px 12px;
     background-color: #59a888;
     color: #fff;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-glpat-ygys_qpEpu1yyZqPdPh1in-out;
 }
 
 .marcador:hover {

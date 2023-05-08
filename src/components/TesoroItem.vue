@@ -23,7 +23,7 @@
         <!-- <router-link
           to="{path: 'actualizar', query: {titulo: `${this.titulo}`, descripcion: `${this.descripcion}`}}"><span><font-awesome-icon
               class="ms-4" icon="fa-solid fa-square-pen fa-lg" /></span></router-link> -->
-        <button @click="goToUpdate"><span><font-awesome-icon class="ms-4"
+        <button class="update-btn" @click="goToUpdate"><span><font-awesome-icon class="ms-4"
               icon="fa-solid fa-square-pen fa-lg" /></span></button>
       </div>
     </h2>
@@ -198,5 +198,10 @@ dialog[open] {
   top: 10px;
   z-index: 99;
   font-size: 15px;
+}
+
+.update-btn {
+  background: none;
+  border: none;
 }
 </style>
