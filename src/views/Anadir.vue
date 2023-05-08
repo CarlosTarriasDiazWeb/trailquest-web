@@ -10,22 +10,21 @@
         <input type="file" name="foto_tesoro" id="foto_tesoro" /><br><br>
         <label for="" required>Descripción:</label><br />
         <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br /><br />
-  
+
         <label for="latitud" required>Latitud:</label><br />
         <input v-model="latitud" type="number" class="input" id="latitud" /><br /><br />
         <label for="longitud">Longitud:</label><br />
         <input v-model="longitud" type="number" class="input" id="longitud" /><br /><br />
         <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" /> <br /><br />
-  
+
         <label for="">Selecciona una ubicación:</label><br /><br />
+        <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
+        <input type="submit" value="Hecho" class="submit" />
+
       </form>
-      <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
+
     </main>
   </div>
-
-  <footer>
-    <input type="submit" value="Hecho" class="submit" />
-  </footer>
 </template>
 
 <script>
@@ -125,18 +124,18 @@ header {
   justify-content: end;
 }
 
-.volver{
+.volver {
   background-color: #a7a8a8;
   color: #fff;
-  transition: all 0.3s ease-in-out ;
+  transition: all 0.3s ease-in-out;
 }
 
-.volver:hover{
+.volver:hover {
   background-color: #59a888;
   cursor: pointer;
 }
 
-.container{
+.container {
   display: flex;
   align-items: center;
   border-radius: 2em 2em 0em 0em;
@@ -147,7 +146,7 @@ header {
   background-color: #fff;
 }
 
-.fondoColor{
+.fondoColor {
   background-color: #a7a8a8;
 }
 
