@@ -223,10 +223,12 @@ li{
 }
 
 main {
-  margin: 0px 100px;
+  margin: 0;
 }
 
 .final {
   bottom: 0;
+  width: 100%;
+  position: fixed;
 }
 </style>

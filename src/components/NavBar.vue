@@ -59,7 +59,7 @@ export default {
       //Hay que eliminar más atributos ? TODO
       this.deleteCookie("login");
 
-      this.$router.push("login");
+      this.$router.push("/");
     },
   },
 };

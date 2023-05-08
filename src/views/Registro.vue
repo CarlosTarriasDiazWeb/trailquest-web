@@ -31,9 +31,9 @@
               v-model="password2"
               name="password2"
               id="rep_contra"
-            /><br /><br />
+            /><br /><br>
 
-            <input type="submit" value="Iniciar" class="submit" /><br /><br />
+            <input type="submit" value="Iniciar" class="submit" /><br />
             <a href="/login" class="registro">¿Eres miembro? Inicia sesión</a>
           </form>
           <!-- CAJA PARA MOSTRAR ERRORES -->
