@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="form-row w-40 ms-5">
-        <button @click.prevent="filtrarTesoros">Buscar</button>
+        <button @click.prevent="filtrarTesoros" class="buscar">Buscar</button>
       </div>
     </div>
     <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
@@ -212,6 +212,13 @@ button {
   border: none;
   border-radius: 2em;
   padding: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #78d3ae;
+  color: #fff;
+  cursor: pointer;
 }
 
 .perfil-btn {

@@ -70,16 +70,16 @@
 
   </main>
   <div class="final">
-    <!-- <Footer></Footer> -->
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-// import Footer from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 export default {
   name: "home-page",
   components: {
-    // Footer
+    Footer
   },
   methods: {
 
@@ -211,10 +211,15 @@ export default {
   padding: 5px 8px;
 }
 
+
 .mapa:hover {
   background-color: var(--black);
   color: white !important;
   cursor: pointer;
+}
+
+li{
+  color: #59a888;
 }
 
 main {

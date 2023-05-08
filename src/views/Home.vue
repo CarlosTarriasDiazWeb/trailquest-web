@@ -34,7 +34,7 @@
   </header>
   <!-- <nav-bar></nav-bar> -->
   <main class="container flex-grow-1 my-3">
-    <h2>¿Como participar?</h2>
+    <h2>¿Cómo participar?</h2>
     <section id="paso1" class="row my-4 d-flex align-items-center">
       <img src="https://dummyimage.com/600x400/000/fff" alt="" class="col-lg-5" />
       <p class="col">
