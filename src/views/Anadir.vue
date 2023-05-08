@@ -1,28 +1,31 @@
 <template>
   <header><router-link class="volver" to="/admin">Volver al mapa</router-link><br /></header>
 
-  <div class="container">
-
-    <h1>Añadir tesoro</h1>
-    <form v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
-      <label for="" required>Nombre monumento:</label><br />
-      <input type="text" v-model="nombre" class="input" id="nom_tesoro" /><br /><br />
-      <input type="file" name="foto_tesoro" id="foto_tesoro" /><br><br>
-      <label for="" required>Descripción:</label><br />
-      <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br /><br />
-
-      <label for="latitud" required>Latitud:</label><br />
-      <input v-model="latitud" type="number" class="input" id="latitud" /><br /><br />
-      <label for="longitud">Longitud:</label><br />
-      <input v-model="longitud" type="number" class="input" id="longitud" /><br /><br />
-      <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" /> <br /><br />
-
-      <label for="">Selecciona una ubicación:</label><br /><br />
-    </form>
+  <div class="fondoColor">
+    <main class="container">
+      <h1>Añadir tesoro</h1>
+      <form v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
+        <label for="" required>Nombre monumento:</label><br />
+        <input type="text" v-model="nombre" class="input" id="nom_tesoro" /><br /><br />
+        <input type="file" name="foto_tesoro" id="foto_tesoro" /><br><br>
+        <label for="" required>Descripción:</label><br />
+        <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br /><br />
+  
+        <label for="latitud" required>Latitud:</label><br />
+        <input v-model="latitud" type="number" class="input" id="latitud" /><br /><br />
+        <label for="longitud">Longitud:</label><br />
+        <input v-model="longitud" type="number" class="input" id="longitud" /><br /><br />
+        <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" /> <br /><br />
+  
+        <label for="">Selecciona una ubicación:</label><br /><br />
+      </form>
+      <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
+    </main>
   </div>
-  <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map><br />
 
-  <input type="submit" value="Hecho" class="submit" />
+  <footer>
+    <input type="submit" value="Hecho" class="submit" />
+  </footer>
 </template>
 
 <script>
@@ -115,6 +118,34 @@ header {
   padding: 40px;
   margin: auto;
   background-color: #78d3ae;
+  display: flex;
+  justify-content: end;
+}
+
+.volver{
+  background-color: #a7a8a8;
+  color: #fff;
+  transition: all 0.3s ease-in-out ;
+}
+
+.volver:hover{
+  background-color: #59a888;
+  cursor: pointer;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  border-radius: 2em 2em 0em 0em;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding-top: 20px;
+  background-color: #fff;
+}
+
+.fondoColor{
+  background-color: #a7a8a8;
 }
 
 .input {
@@ -122,7 +153,6 @@ header {
   border: none;
   border-radius: 1em;
   padding-left: 10px;
-  margin-left: 4px;
   width: 700px;
 }
 
@@ -165,6 +195,7 @@ header {
 
 #map {
   height: 180px;
+  padding: 0%;
 }
 
 footer {
