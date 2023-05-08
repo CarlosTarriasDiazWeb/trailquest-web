@@ -40,7 +40,6 @@ export default {
     LIcon,
   },
   props: {
-    mapWidthPerc: Number,
     localizaciones: Array,
     center: Array,
     isAdmin: Boolean,

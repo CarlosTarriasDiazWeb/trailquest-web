@@ -2,7 +2,6 @@
   <NavBar login="true"></NavBar>
   <main>
     <Map
-      :mapWidthPerc="mapWidthPerc"
       :localizaciones="localizacionesMostrar"
       :center="center"
       @modifyCenter="modifyCenter"

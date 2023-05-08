@@ -7,7 +7,6 @@
     <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
 
     <Map
-      :mapWidthPerc="mapWidthPerc"
       :localizaciones="localizacionesMostrar"
       :center="center"
       @modifyCenter="modifyCenter"
