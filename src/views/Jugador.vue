@@ -3,11 +3,14 @@
 
   <main>
 
-    <span @click="filterAll" class="button badge bg-success">Todos</span>
-    <!-- <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span> -->
-    <span @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
 
-    <Map :localizaciones="localizacionesMostrar" :center="center" @modifyCenter="modifyCenter" :isAdmin="isAdmin"></Map>
+    <div id="mapContainer">
+      <span id="todos" @click="filterAll" class="button badge bg-success">Todos</span>
+      <!-- <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span> -->
+      <span id="encontrados" @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
+      <Map :localizaciones="localizacionesMostrar" :center="center" @modifyCenter="modifyCenter" :isAdmin="isAdmin"></Map>
+    </div>
+    
     <div class="bg-accent p-3 d-flex flex-row justify-content-end">
       <div class="form-row w-40">
         <div class="col">
@@ -237,5 +240,22 @@ button:hover {
 
 span:hover {
   cursor: pointer;
+}
+
+span {
+  position: absolute;
+  z-index: 999;
+  top: 0.4rem;
+}
+
+#mapContainer{
+  position: relative;
+}
+#encontrados {
+  left: 4rem;
+}
+
+#todos {
+  left: 10rem;
 }
 </style>
