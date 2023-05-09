@@ -94,12 +94,12 @@ export default {
 
       // Append data to the form data object
       const fileInput = document.getElementById("foto_tesoro");
-
+      let fotoAEnviar = fileInput.files[0] || this.fotoTesoro;
       formData.append("titulo", this.escapeString(this.nombre.trim()));
       formData.append("descripcion", this.escapeString(this.descripcion.trim()));
       formData.append("latitud", this.latitud);
       formData.append("longitud", this.longitud);
-      formData.append("foto_tesoro", fileInput.files[0]);
+      formData.append("foto", fotoAEnviar);
 
       //console.log(formData);
 
