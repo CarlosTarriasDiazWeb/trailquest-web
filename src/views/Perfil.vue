@@ -212,7 +212,7 @@ export default {
 <style scoped>
 .circle-icon {
   background: #78d3af38;
-  padding: 20px;
+  padding: 0px;
   border: 3px solid black;
   border-radius: 50%;
 }
