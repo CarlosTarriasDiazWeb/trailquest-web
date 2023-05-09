@@ -28,7 +28,10 @@
         <br /><br />
 
         <label for="">Selecciona una ubicación:</label><br /><br />
-        <input type="submit" value="Hecho" class="submit" />
+        <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
+          <input type="submit" value="Hecho" class="submit perfil-btn w-40 btn" />
+        </div>
+        
       </form>
       <div v-if="error" class="error d-flex flex-column py-3 g-2 align-content-center px-2">
         <p v-for="(mensaje, index) in mensajesError" :key="index">
@@ -274,10 +277,7 @@ header {
   padding: 0%;
 }
 
-footer {
-  background-color: #59a888;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
+.bg-accent {
+  background-color: var(--accent);
 }
 </style>
