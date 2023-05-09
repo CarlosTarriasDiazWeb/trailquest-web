@@ -10,19 +10,19 @@
     <div class="container py-4">
       <!-- Perfil -->
       <div class="row">
-        <h1>El teu perfil</h1>
+        <h1>Perfil</h1>
       </div>
       <!-- User -->
       <div class="row d-flex align-items-center py-4">
-        <img class="col-1 img-fluid circle-icon" src="../../public/assets/imgs/logo2.png" alt="">
-        <h3 class="col">David Marin</h3>
+        <img class="col-1 img-fluid circle-icon" src="../../public/assets/imgs/logo1.png" alt="">
+        <h3 class="col">{{ nombreUsuario }}</h3>
       </div>
       <!-- Stats -->
       <div class="row">
-        <p class="p-0">Número de tesoros: </p>
+        <p class="p-0">Número de tesoros: {{ numeroTesoros }}</p>
       </div>
       <div class="row">
-        Nivel: Experto
+        Nivel: {{ nivelUsuario }}
         <div class="progress p-0">
           <div class="progress-bar bg-green" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
             aria-valuemax="100">
@@ -86,6 +86,10 @@ export default {
   },
   data() {
     return {
+      numeroTesoros: 0,
+      nombreUsuario: "David Marin",
+      nivelUsuario: "Experto",
+      progressBarPerc: 0,
       todas: [
         {
           nombre: "Tesoro 1",
@@ -191,6 +195,17 @@ export default {
       ],
     };
   },
+  mounted() {
+    //Recogemos las estadísticas del jugador que ha iniciado sesión, tenemos que hacer la llamada a la APi con el id_usuario actual
+
+    const axios = require("axios");
+    axios({
+      method: "get",
+      url: "",
+    }).then((response) => {
+      console.log(response);
+    });
+  }
 };
 </script>
 
@@ -202,7 +217,7 @@ export default {
   border-radius: 50%;
 }
 
-.mapa{
+.mapa {
   border: none;
   background-color: #a7a8a8;
   color: var(--black);
@@ -218,8 +233,12 @@ export default {
   cursor: pointer;
 }
 
-li{
-  color: #a7a8a8;
+li {
+  color: #59a888;
+}
+
+main {
+  margin: 0;
 }
 
 .final {
