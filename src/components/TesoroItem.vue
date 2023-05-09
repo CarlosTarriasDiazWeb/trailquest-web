@@ -71,7 +71,8 @@
           {{ resenaButtonText }}
         </button>
         <div class="rate" v-if="descubierto && !isAdmin">
-          <Star v-for="i in [5,4,3,2,1]" :starID="getStarID(i)" :key="i" :value="i"></Star> 
+          <vue3starRatings class="my-2" v-model="rating" :showControl="false"/>
+          <!-- <Star :starID="itemID" :key="i" :value="i"></Star>  -->
           <!-- <input type="radio" id="star5" name="rate" value="5" />
           <label for="star5" title="text">5 stars</label>
           <input type="radio" id="star4" name="rate" value="4" />
@@ -94,14 +95,20 @@
 </template>
 
 <script>
+import { defineComponent } from "vue";
 import Resena from "./Resena.vue";
-import Star from "./Star.vue"
+//import Star from "./Star.vue"
+import vue3starRatings from "vue3-star-ratings";
 
-export default {
+
+export default defineComponent({
   name: "tes10pxoro-item",
+  
   components: {
     Resena,
-    Star
+    //Star,
+    vue3starRatings
+    
   },
   data() {
     return {
@@ -121,6 +128,7 @@ export default {
     isAdmin: Boolean,
     fotoTesoro: String,
     itemID: Number,
+    valoracion : String,
   },
   methods: {
     posicionarCentro() {
@@ -168,17 +176,6 @@ export default {
       return "star" + number + this.itemID
     }
   },
-  getResenas() {
-    //Obtenemos las reseñas del tesoro seleccionado
-    const axios = require("axios");
-    axios.get(`http://172.23.7.110:8081/tesoros/${this.itemID}/resena`)
-      .then(response =>
-        this.resenas = Array.from(response.data)
-      )
-      .catch(
-        error => console.log(error)
-      )
-  },
   mounted() {
     const axios = require("axios");
     axios.get(`http://172.23.7.110:8081/tesoros/${this.itemID}/resena`)
@@ -190,10 +187,11 @@ export default {
       )
   },
 
-};
+});
 </script>
 
 <style scoped>
+
 .border-tesoro {
   border-bottom: 2px solid var(--dark-gray);
 }

@@ -3,7 +3,7 @@
     <TesoroItem v-for="(tesoro, index) in localizaciones" :key="index" :titulo="tesoro.titulo"
       :descripcion="tesoro.descripcion" :localizacion="tesoro.position" :favorito="tesoro.favorito"
       :descubierto="tesoro.descubierto" :referenceId="`tesoro${index}`" :fotoTesoro="tesoro.foto_tesoro"
-      :itemID="tesoro.itemID" @posicionarCentro="posicionarCentro" :isAdmin="isAdmin">
+      :itemID="tesoro.itemID" @posicionarCentro="posicionarCentro" :isAdmin="isAdmin" :valoracion="tesoro.valoracion">
     </TesoroItem>
   </section>
 </template>
