@@ -9,15 +9,7 @@
         <input type="text" v-model="nombre" class="input" id="nom_tesoro" /><br /><br />
         <input type="file" name="foto_tesoro" id="foto_tesoro" /><br /><br />
         <label for="" required>Descripción:</label><br />
-        <textarea
-          v-model="descripcion"
-          name=""
-          id="inf_tesoro"
-          class="input"
-          cols="30"
-          rows="10"
-        ></textarea
-        ><br /><br />
+        <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br /><br />
 
         <label for="latitud" required>Latitud:</label><br />
         <input v-model="latitud" type="number" class="input" id="latitud" /><br /><br />
@@ -58,6 +50,8 @@ export default {
       longitud: this.$route.query.longitud || 1,
       nombre: this.$route.query.titulo || "",
       descripcion: this.$route.query.descripcion || "",
+      itemID: this.$route.query.itemID,
+      fotoTesoro: this.$route.query.fotoTesoro,
       localizacion: [],
     };
   },
@@ -119,7 +113,7 @@ export default {
 
       // Send the form data as a POST request
       axios
-        .post("http://172.23.7.116:8081/tesoros", formData, {
+        .put(`http://172.23.7.116:8081/tesoros/${this.itemID}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

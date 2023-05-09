@@ -132,7 +132,7 @@ export default {
         )
     },
     goToUpdate() {
-      this.$router.push({ path: "actualizar", query: { titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1] } });
+      this.$router.push({ path: "actualizar", query: { itemID: this.itemID, titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1], fotoTesoro: this.fotoTesoro } });
     }
   },
   mounted() {
