@@ -106,7 +106,7 @@ export default {
       formData.append("password", this.password1);
 
       axios
-        .post("http://localhost:8081/usuario", formData, {
+        .post("http://172.23.7.123:8081/usuario", formData, {
           headers: {
             "Content-Type": "application/json",
           },
