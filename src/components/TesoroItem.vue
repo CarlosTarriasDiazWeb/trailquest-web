@@ -1,9 +1,9 @@
 <template>
   <div  class=" border-tesoro accordion-item">
-    <h2 @click="posicionarCentro" class="accordion-header d-flex flex-row justify-content-between">
+    <h2 class="accordion-header d-flex flex-row justify-content-between">
       <button class="px-4 py-4 accordion-button collapsed" type="button" data-bs-toggle="collapse"
         :data-bs-target="getRef(referenceId)" aria-expanded="false" aria-controls="collapseTwo">
-        <h3>{{ titulo }}</h3>
+        <h3 @click="posicionarCentro">{{ titulo }}</h3>
       </button>
       <div id="adminButtons" v-if="isAdmin">
         <button @click="abrirDialogo('dialogo1')" class="trash-btn">
