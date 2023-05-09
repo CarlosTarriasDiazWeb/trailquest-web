@@ -42,7 +42,7 @@
       <div class="d-flex flex-column">
         <div v-if="descubierto || isAdmin" class="accordion-body">
           <details>
-            <summary> Saber más </summary>
+            <summary>Saber más</summary>
             <p>{{ descripcion }}</p>
           </details>
         </div>
@@ -214,6 +214,8 @@ img {
 summary{
   color: #a7a8a8;
 }
+
+
 
 .btn-delete {
   background-color: #59a888;
