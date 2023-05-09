@@ -201,7 +201,10 @@ export default {
       //Añadimos array de posición en el mapa
       this.localizacionesMostrar.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
       //Añadimos id de BD a la localiacion
-      this.localizacionesMostrar.map((loc) => loc.itemID = loc.id)
+      this.localizacionesMostrar.map((loc) => loc.itemID = loc.id);
+
+      //Para testear reseñas
+      this.localizacionesMostrar.map((loc) => loc.descubierto = true)
     });
   },
 };
