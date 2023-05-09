@@ -1,11 +1,11 @@
 <template>
-  <div @click="posicionarCentro" class="py-4 px-5 border-tesoro accordion-item">
+  <div @click="posicionarCentro" class=" border-tesoro accordion-item">
     <h2 class="accordion-header d-flex flex-row justify-content-between">
-      <button class="w-50 accordion-button collapsed" type="button" data-bs-toggle="collapse"
+      <button class="px-4 py-4 accordion-button collapsed" type="button" data-bs-toggle="collapse"
         :data-bs-target="getRef(referenceId)" aria-expanded="false" aria-controls="collapseTwo">
         <h3>{{ titulo }}</h3>
       </button>
-      <div v-if="isAdmin">
+      <div id="adminButtons" v-if="isAdmin">
         <button @click="abrirDialogo('dialogo1')" class="trash-btn">
           <font-awesome-icon icon="fa-solid fa-trash fa-lg" />
         </button>
@@ -27,7 +27,7 @@
               icon="fa-solid fa-square-pen fa-lg" /></span></button>
       </div>
     </h2>
-    <div :id="referenceId" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+    <div :id="referenceId" class="px-4 accordion-collapse collapse" aria-labelledby="headingTwo"
       data-bs-parent="#accordionExample">
       <div class="d-flex flex-column">
         <div v-if="descubierto || isAdmin" class="accordion-body">
@@ -181,6 +181,11 @@ img {
   z-index: 1;
 }
 
+#adminButtons{
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
 .fa-trash {
   color: black;
   transition: color 0.3 ease-in-out;

@@ -207,6 +207,9 @@ export default {
 </script>
 
 <style scoped>
+footer{
+  margin-top: 4rem;
+}
 .bg-accent {
   background-color: var(--accent);
 }
