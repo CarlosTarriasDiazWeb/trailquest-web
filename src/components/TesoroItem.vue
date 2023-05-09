@@ -31,7 +31,10 @@
       data-bs-parent="#accordionExample">
       <div class="d-flex flex-column">
         <div v-if="descubierto || isAdmin" class="accordion-body">
-          <p>{{ descripcion }}</p>
+          <details>
+            <summary> Saber más </summary>
+            <p>{{ descripcion }}</p>
+          </details>
         </div>
         <div v-else class="accordion-body blur">
           <p>{{ descripcion }}</p>
@@ -58,7 +61,8 @@
           {{ resenaButtonText }}
         </button>
         <div class="rate" v-if="descubierto && !isAdmin">
-          <input type="radio" id="star5" name="rate" value="5" />
+          <Star v-for="i in [5,4,3,2,1]" :starID="getStarID(i)" :key="i" :value="i"></Star> 
+          <!-- <input type="radio" id="star5" name="rate" value="5" />
           <label for="star5" title="text">5 stars</label>
           <input type="radio" id="star4" name="rate" value="4" />
           <label for="star4" title="text">4 stars</label>
@@ -67,7 +71,7 @@
           <input type="radio" id="star2" name="rate" value="2" />
           <label for="star2" title="text">2 stars</label>
           <input type="radio" id="star1" name="rate" value="1" />
-          <label for="star1" title="text">1 star</label>
+          <label for="star1" title="text">1 star</label> -->
         </div>
         <form class="m-3" v-show="textArea" method="post">
           <textarea name="escribirResena" id="escribirResena" cols="30" rows="10"
@@ -81,11 +85,13 @@
 
 <script>
 import Resena from "./Resena.vue";
+import Star from "./Star.vue"
 
 export default {
   name: "tes10pxoro-item",
   components: {
     Resena,
+    Star
   },
   data() {
     return {
@@ -147,6 +153,9 @@ export default {
     },
     goToUpdate() {
       this.$router.push({ path: "actualizar", query: { itemID: this.itemID, titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1], fotoTesoro: this.fotoTesoro } });
+    },
+    getStarID(number) {
+      return "star" + number + this.itemID
     }
   },
   getResenas() {
@@ -190,6 +199,10 @@ img {
   border: none;
   background-color: #d9d9d9;
   z-index: 100;
+}
+
+summary{
+  color: #a7a8a8;
 }
 
 .btn-delete {
@@ -265,9 +278,15 @@ dialog[open] {
   padding: 0 10px;
 }
 
+
 .rate:not(:checked)>input {
   position: absolute;
   top: -9999px;
+}
+.rate:not(:checked) > input {
+    position:fixed;
+    top:-9999px;
+
 }
 
 .rate:not(:checked)>label {
