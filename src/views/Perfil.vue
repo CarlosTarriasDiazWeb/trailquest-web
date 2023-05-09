@@ -14,7 +14,7 @@
       </div>
       <!-- User -->
       <div class="row d-flex align-items-center py-4">
-        <img class="col-1 img-fluid circle-icon" src="../../public/assets/imgs/logo1.png" alt="">
+        <img class="col-1 img-fluid circle-icon" src="../../public/assets/imgs/logo2.png" alt="">
         <h3 class="col">{{ nombreUsuario }}</h3>
       </div>
       <!-- Stats -->
