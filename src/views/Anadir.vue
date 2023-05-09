@@ -1,5 +1,11 @@
 <template>
-  <header><router-link class="volver" to="/admin">Volver al mapa</router-link><br /></header>
+  <header class="bg-green">
+
+    <nav class="nav d-flex justify-content-end p-4">
+      <RouterLink class="my-2 text-center volver nav-link" to="/admin">Volver al mapa</RouterLink>
+    </nav>
+
+  </header>
 
   <div class="fondoColor">
     <main class="container">
@@ -175,7 +181,7 @@ template {
 }
 
 header {
-  padding: 40px;
+  padding: 20px;
   margin: auto;
   background-color: #78d3ae;
   display: flex;

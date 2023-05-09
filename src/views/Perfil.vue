@@ -2,7 +2,7 @@
   <header class="bg-green">
     <div class="container">
       <nav class="nav d-flex justify-content-end p-4">
-        <RouterLink class="my-2 text-center mapa nav-link" to="/jugador">Volver al mapa</RouterLink>
+        <RouterLink class="my-2 text-center volver nav-link" to="/jugador">Volver al mapa</RouterLink>
       </nav>
     </div>
   </header>
@@ -217,7 +217,7 @@ export default {
   border-radius: 50%;
 }
 
-.mapa {
+.volver {
   border: none;
   background-color: #a7a8a8;
   color: var(--black);
@@ -227,7 +227,7 @@ export default {
 }
 
 
-.mapa:hover {
+.volver:hover {
   background-color: var(--black);
   color: white !important;
   cursor: pointer;
