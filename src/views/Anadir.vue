@@ -27,7 +27,6 @@
         <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" />
         <br /><br />
 
-        <label for="">Selecciona una ubicación:</label><br /><br />
         <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
           <input type="submit" value="Hecho" class="submit perfil-btn w-40 btn" />
         </div>
