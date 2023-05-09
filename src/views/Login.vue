@@ -85,30 +85,31 @@ export default {
       const formData = new FormData();
       const axios = require("axios");
 
-      formData.append("name", this.name);
-      formData.append("password", this.password);
+      formData.append("usu_username", this.name);
+      formData.append("usu_password", this.password);
 
       //TOKEN?
-      const token = `${this.name}:${this.password}`;
+      //const token = `${this.name}:${this.password}`;
 
       axios
-        .post("http://172.23.7.102:8081/usuario", formData, {
+        .post("http://172.23.7.110:8081/jugador", formData, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Basic ${token}`, //???
+            //Authorization: `Basic ${token}`, //???
             // Authorization : `Bearer ${localStorage.getItem("access_token")}`
           },
         })
         .then((response) => {
+          console.log(response)
           //Si el usuario se autentica correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
           //Cambiar la condición..
-          if (response !== "") {
-            //Guardamos el booleano, el user_id?, el username?
-            this.setCookie("login", "true", 2);
+          // if (response !== "") {
+          //   //Guardamos el booleano, el user_id?, el username?
+          //   this.setCookie("login", "true", 2);
 
-            //Tenemos que decidir si es admin o jugador de alguna manera... TODO
-            this.$router.push("jugador");
-          }
+          //   //Tenemos que decidir si es admin o jugador de alguna manera... TODO
+          //   this.$router.push("jugador");
+          // }
         })
         .catch((error) => {
           console.log(error);

@@ -3,7 +3,17 @@
     <h2 class="accordion-header d-flex flex-row justify-content-between">
       <button class="px-4 py-4 accordion-button collapsed" type="button" data-bs-toggle="collapse"
         :data-bs-target="getRef(referenceId)" aria-expanded="false" @click="getResenas" aria-controls="collapseTwo">
-        <h3 @click="posicionarCentro">{{ titulo }}</h3>
+        <div class="container d-flex align-items-center">
+          <h3 class="m-0 w-25">{{ titulo }}</h3>
+          <div class="stars px-3">
+            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
+            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
+            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
+            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
+            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
+          </div>
+        </div>
+
       </button>
       <div id="adminButtons" v-if="isAdmin">
         <button @click="abrirDialogo('dialogo1')" class="trash-btn">
@@ -232,6 +242,9 @@ summary{
   justify-content: center;
 }
 
+.fa-star{
+  color: #FDE380;
+}
 .fa-trash {
   color: black;
   transition: color 0.3 ease-in-out;
@@ -276,8 +289,17 @@ dialog[open] {
   flex-direction: row-reverse;
   height: 46px;
   padding: 0 10px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  height: 46px;
+  padding: 0 10px;
 }
 
+
+.rate:not(:checked)>input {
+  position: absolute;
+  top: -9999px;
 
 .rate:not(:checked)>input {
   position: absolute;
@@ -297,7 +319,19 @@ dialog[open] {
   cursor: pointer;
   font-size: 30px;
   color: #d9d9d9;
+
+.rate:not(:checked)>label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #d9d9d9;
 }
+
+.rate:not(:checked)>label:before {
+  content: '★ ';
 
 .rate:not(:checked)>label:before {
   content: '★ ';
@@ -305,7 +339,14 @@ dialog[open] {
 
 .rate>input:checked~label {
   color: #fde480;
+
+.rate>input:checked~label {
+  color: #fde480;
 }
+
+.rate:not(:checked)>label:hover,
+.rate:not(:checked)>label:hover~label {
+  color: #fde480;
 
 .rate:not(:checked)>label:hover,
 .rate:not(:checked)>label:hover~label {
@@ -320,3 +361,11 @@ dialog[open] {
   color: #fde480;
 }
 </style>
+
+.rate>input:checked+label:hover,
+.rate>input:checked+label:hover~label,
+.rate>input:checked~label:hover,
+.rate>input:checked~label:hover~label,
+.rate>label:hover~input:checked~label {
+  color: #fde480;
+}</style>
