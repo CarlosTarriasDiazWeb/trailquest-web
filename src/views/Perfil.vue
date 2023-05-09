@@ -82,7 +82,7 @@ export default {
     Footer
   },
   methods: {
-
+    
   },
   data() {
     return {
