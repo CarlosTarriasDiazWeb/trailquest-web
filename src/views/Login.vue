@@ -92,7 +92,7 @@ export default {
       const token = `${this.name}:${this.password}`;
 
       axios
-        .post("http://172.23.7.116:8081/usuario", formData, {
+        .post("http://172.23.7.102:8081/usuario", formData, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Basic ${token}`, //???
