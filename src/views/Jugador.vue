@@ -10,7 +10,7 @@
       <span id="encontrados" @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
       <Map :localizaciones="localizacionesMostrar" :center="center" @modifyCenter="modifyCenter" :isAdmin="isAdmin"></Map>
     </div>
-    
+
     <div class="bg-accent p-3 d-flex flex-row justify-content-end">
       <div class="form-row w-40">
         <div class="col">
@@ -22,7 +22,7 @@
       </div>
     </div>
     <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
-    
+
   </main>
   <footer>
     <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -194,7 +194,7 @@ export default {
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://172.23.7.102:8081/tesoros",
+      url: "http://172.23.7.110:8081/tesoros",
     }).then((response) => {
       this.localizacionesMostrar = Array.from(response.data);
       console.log(this.localizacionesMostrar);
@@ -208,9 +208,10 @@ export default {
 </script>
 
 <style scoped>
-footer{
+footer {
   margin-top: 4rem;
 }
+
 .bg-accent {
   background-color: var(--accent);
 }
@@ -252,9 +253,10 @@ span {
   top: 0.4rem;
 }
 
-#mapContainer{
+#mapContainer {
   position: relative;
 }
+
 #encontrados {
   left: 4rem;
 }
@@ -262,7 +264,4 @@ span {
 #todos {
   left: 10rem;
 }
-
-
-
 </style>

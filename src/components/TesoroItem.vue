@@ -1,5 +1,5 @@
 <template>
-  <div  class=" border-tesoro accordion-item">
+  <div class=" border-tesoro accordion-item">
     <h2 class="accordion-header d-flex flex-row justify-content-between">
       <button class="px-4 py-4 accordion-button collapsed" type="button" data-bs-toggle="collapse"
         :data-bs-target="getRef(referenceId)" aria-expanded="false" aria-controls="collapseTwo">
@@ -50,7 +50,8 @@
 
         <div class="d-flex flex-column g-3 justify-content-center">
           <!-- HACER UN FOR CON TODAS LAS RESENAS  -->
-          <Resena> </Resena>
+          <Resena v-for="resena in resenas" :resId='resena.res_id' :key='resena.res_id' :comentario='resena.comentario'
+            :puntuacion="resena.puntuacion" :user_name="resena.user_name" :foto="resena.foto"> </Resena>
         </div>
         <div></div>
         <button @click="mostrarTextArea" class="w-40" v-if="descubierto && !isAdmin">
@@ -90,7 +91,8 @@ export default {
     return {
       textArea: false,
       resenaButtonText: "Añadir Reseña",
-      src: `http://172.23.7.116:8081/tesoros/imagenes/${this.fotoTesoro}`
+      src: `http://172.23.7.116:8081/tesoros/imagenes/${this.fotoTesoro}`,
+      resenas: []
     };
   },
   props: {
@@ -102,7 +104,7 @@ export default {
     localizacion: Array,
     isAdmin: Boolean,
     fotoTesoro: String,
-    itemID: Number
+    itemID: Number,
   },
   methods: {
     posicionarCentro() {
@@ -146,6 +148,17 @@ export default {
     goToUpdate() {
       this.$router.push({ path: "actualizar", query: { itemID: this.itemID, titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1], fotoTesoro: this.fotoTesoro } });
     }
+  },
+  getResenas() {
+    //Obtenemos las reseñas del tesoro seleccionado
+    const axios = require("axios");
+    axios.get(`http://172.23.7.110:8081/tesoros/${this.itemID}/resena`)
+      .then(response =>
+        this.resenas = Array.from(response.data)
+      )
+      .catch(
+        error => console.log(error)
+      )
   },
   mounted() {
 
@@ -193,11 +206,12 @@ img {
   z-index: 1;
 }
 
-#adminButtons{
+#adminButtons {
   width: 25%;
   display: flex;
   justify-content: center;
 }
+
 .fa-trash {
   color: black;
   transition: color 0.3 ease-in-out;
@@ -237,40 +251,46 @@ dialog[open] {
 
 /* Rating estrellas */
 .rate {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row-reverse; 
-    height: 46px;
-    padding: 0 10px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  height: 46px;
+  padding: 0 10px;
 }
-.rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
+
+.rate:not(:checked)>input {
+  position: absolute;
+  top: -9999px;
 }
-.rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#d9d9d9;
+
+.rate:not(:checked)>label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #d9d9d9;
 }
-.rate:not(:checked) > label:before {
-    content: '★ ';
+
+.rate:not(:checked)>label:before {
+  content: '★ ';
 }
-.rate > input:checked ~ label {
-    color: #fde480;    
+
+.rate>input:checked~label {
+  color: #fde480;
 }
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #fde480;    
+
+.rate:not(:checked)>label:hover,
+.rate:not(:checked)>label:hover~label {
+  color: #fde480;
 }
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #fde480;   
+
+.rate>input:checked+label:hover,
+.rate>input:checked+label:hover~label,
+.rate>input:checked~label:hover,
+.rate>input:checked~label:hover~label,
+.rate>label:hover~input:checked~label {
+  color: #fde480;
 }
 </style>

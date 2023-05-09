@@ -1,8 +1,8 @@
 <template>
     <div class="card m-3">
         <div class="card-body">
-            <h5 class="card-title">Nombre Usuario</h5>
-            <p class="card-text">He visto más veces esta casa en Insta por St. Jordi que en la vida real. </p>
+            <h5 class="card-title">{{ user_name }}</h5>
+            <p class="card-text">{{ comentario }} </p>
         </div>
     </div>
 </template>
@@ -18,9 +18,11 @@ export default {
         return {};
     },
     props: {
+        resId: Number,
         comentario: String,
-        foto :String,
-        puntuacion:String
+        puntuacion: Number,
+        foto: String,
+        user_name: String,
     },
     methods: {
 
