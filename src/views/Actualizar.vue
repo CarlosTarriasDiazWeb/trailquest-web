@@ -119,7 +119,7 @@ export default {
 
       // Send the form data as a POST request
       axios
-        .post("http://172.23.7.123:8081/tesoros", formData, {
+        .post("http://172.23.7.116:8081/tesoros", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
