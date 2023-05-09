@@ -22,6 +22,7 @@
       </div>
     </div>
     <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
+    
   </main>
   <footer>
     <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -261,4 +262,7 @@ span {
 #todos {
   left: 10rem;
 }
+
+
+
 </style>
