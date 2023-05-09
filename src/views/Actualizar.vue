@@ -21,7 +21,7 @@
         <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
           <input type="submit" value="Hecho" class="submit perfil-btn w-40 btn" />
         </div>
-        
+
       </form>
       <div v-if="error" class="error d-flex flex-column py-3 g-2 align-content-center px-2">
         <p v-for="(mensaje, index) in mensajesError" :key="index">
@@ -115,7 +115,7 @@ export default {
 
       // Send the form data as a POST request
       axios
-        .put(`http://172.23.7.102:8081/tesoros/${this.itemID}`, formData, {
+        .put(`http://172.23.7.110:8081/tesoros/${this.itemID}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

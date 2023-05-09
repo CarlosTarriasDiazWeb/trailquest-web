@@ -9,16 +9,8 @@
         <input type="text" v-model="nombre" class="input" id="nom_tesoro" required /><br /><br />
         <input type="file" name="foto_tesoro" id="foto_tesoro" /><br /><br />
         <label for="">Descripción:</label><br />
-        <textarea
-          v-model="descripcion"
-          name=""
-          id="inf_tesoro"
-          class="input"
-          cols="30"
-          rows="10"
-          required
-        ></textarea
-        ><br /><br />
+        <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"
+          required></textarea><br /><br />
 
         <label for="latitud">Latitud:</label><br />
         <input v-model="latitud" type="number" class="input" id="latitud" required /><br /><br />
@@ -30,7 +22,7 @@
         <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
           <input type="submit" value="Hecho" class="submit perfil-btn w-40 btn" />
         </div>
-        
+
       </form>
       <div v-if="error" class="error d-flex flex-column py-3 g-2 align-content-center px-2">
         <p v-for="(mensaje, index) in mensajesError" :key="index">
@@ -122,7 +114,7 @@ export default {
 
       // Send the form data as a POST request
       axios
-        .post("http://172.23.7.102:8081/tesoros", formData, {
+        .post("http://172.23.7.110:8081/tesoros", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
