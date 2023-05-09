@@ -300,7 +300,7 @@ dialog[open] {
 .rate:not(:checked)>input {
   position: absolute;
   top: -9999px;
-
+}
 .rate:not(:checked)>input {
   position: absolute;
   top: -9999px;
@@ -319,7 +319,7 @@ dialog[open] {
   cursor: pointer;
   font-size: 30px;
   color: #d9d9d9;
-
+}
 .rate:not(:checked)>label {
   float: right;
   width: 1em;
@@ -332,14 +332,14 @@ dialog[open] {
 
 .rate:not(:checked)>label:before {
   content: '★ ';
-
+}
 .rate:not(:checked)>label:before {
   content: '★ ';
 }
 
 .rate>input:checked~label {
   color: #fde480;
-
+}
 .rate>input:checked~label {
   color: #fde480;
 }
@@ -347,7 +347,7 @@ dialog[open] {
 .rate:not(:checked)>label:hover,
 .rate:not(:checked)>label:hover~label {
   color: #fde480;
-
+}
 .rate:not(:checked)>label:hover,
 .rate:not(:checked)>label:hover~label {
   color: #fde480;
@@ -360,12 +360,5 @@ dialog[open] {
 .rate>label:hover~input:checked~label {
   color: #fde480;
 }
-</style>
 
-.rate>input:checked+label:hover,
-.rate>input:checked+label:hover~label,
-.rate>input:checked~label:hover,
-.rate>input:checked~label:hover~label,
-.rate>label:hover~input:checked~label {
-  color: #fde480;
-}</style>
+</style>
