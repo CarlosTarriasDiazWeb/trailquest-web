@@ -2,7 +2,7 @@
   <div class=" border-tesoro accordion-item">
     <h2 class="accordion-header d-flex flex-row justify-content-between">
       <button class="px-4 py-4 accordion-button collapsed" type="button" data-bs-toggle="collapse"
-        :data-bs-target="getRef(referenceId)" aria-expanded="false" aria-controls="collapseTwo">
+        :data-bs-target="getRef(referenceId)" aria-expanded="false" @click="getResenas" aria-controls="collapseTwo">
         <h3 @click="posicionarCentro">{{ titulo }}</h3>
       </button>
       <div id="adminButtons" v-if="isAdmin">
@@ -161,7 +161,14 @@ export default {
       )
   },
   mounted() {
-
+    const axios = require("axios");
+    axios.get(`http://172.23.7.110:8081/tesoros/${this.itemID}/resena`)
+      .then(response =>
+        this.resenas = Array.from(response.data)
+      )
+      .catch(
+        error => console.log(error)
+      )
   },
 
 };
