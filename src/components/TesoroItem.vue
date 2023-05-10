@@ -49,7 +49,7 @@
             :puntuacion="resena.puntuacion" :user_name="resena.user_name" :foto="resena.foto"> </Resena>
         </div>
         <div></div>
-        <button @click="mostrarTextArea" class="w-40" v-if="descubierto && !isAdmin">
+        <button @click="mostrarTextArea" class="w-40 resena_btn" v-if="descubierto && !isAdmin">
           {{ resenaButtonText }}
         </button>
         <div class="rate" v-if="descubierto && !isAdmin">
@@ -182,8 +182,6 @@ summary {
   color: #a7a8a8;
 }
 
-
-
 .btn-delete {
   background-color: #59a888;
   border: none;
@@ -199,6 +197,12 @@ summary {
 
 .icons-pos {
   position: absolute;
+}
+
+.w-40 {
+  border: none;
+  border-radius: 1em;
+  background-color: #a7a8a8;
 }
 
 .z-1 {

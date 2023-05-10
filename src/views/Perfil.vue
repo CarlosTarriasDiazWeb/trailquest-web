@@ -25,10 +25,10 @@
         Nivel: {{ nivelUsuario }}
         <div class="progress p-0">
           <div class="progress-bar bg-green" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-            aria-valuemax="100">
-          </div>
+          aria-valuemax="100">
         </div>
       </div>
+    </div>
       <!-- Tesoros -->
       <div class="accordion p-4" id="tesorosEncontrados">
         <div class="accordion-item">
@@ -88,7 +88,7 @@ export default {
     return {
       numeroTesoros: 0,
       nombreUsuario: "David Marin",
-      nivelUsuario: "Experto",
+      nivelUsuario: "novel",
       progressBarPerc: 0,
       todas: [
         {
@@ -195,7 +195,9 @@ export default {
       ],
     };
   },
+  
   mounted() {
+
     //Recogemos las estadísticas del jugador que ha iniciado sesión, tenemos que hacer la llamada a la APi con el id_usuario actual
 
     const axios = require("axios");
