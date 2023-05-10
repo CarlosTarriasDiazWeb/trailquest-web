@@ -1,19 +1,14 @@
 <template>
-  <div class=" border-tesoro accordion-item">
+  <div @click="posicionarCentro" class=" border-tesoro accordion-item">
     <h2 class="accordion-header d-flex flex-row justify-content-between">
       <button class="px-4 py-4 accordion-button collapsed" type="button" data-bs-toggle="collapse"
         :data-bs-target="getRef(referenceId)" aria-expanded="false" @click="getResenas" aria-controls="collapseTwo">
         <div class="container d-flex align-items-center">
           <h3 class="m-0 w-25">{{ titulo }}</h3>
-          <div class="stars px-3">
-            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
-            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
-            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
-            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
-            <font-awesome-icon icon="fa-solid fa-star fa-lg" />
-          </div>
+          <star-rating v-bind:increment="0.5" :rating="valoracion" :read-only="true" :show-rating="false"
+            :readv-bind:max-rating="5" active-color="#fde480" v-bind:star-size="30">
+          </star-rating>
         </div>
-
       </button>
       <div id="adminButtons" v-if="isAdmin">
         <button @click="abrirDialogo('dialogo1')" class="trash-btn">
@@ -29,10 +24,6 @@
             Eliminar tesoro
           </button>
         </dialog>
-
-        <!-- <router-link
-          to="{path: 'actualizar', query: {titulo: `${this.titulo}`, descripcion: `${this.descripcion}`}}"><span><font-awesome-icon
-              class="ms-4" icon="fa-solid fa-square-pen fa-lg" /></span></router-link> -->
         <button class="update-btn" @click="goToUpdate"><span><font-awesome-icon class="ms-4"
               icon="fa-solid fa-square-pen fa-lg" /></span></button>
       </div>
@@ -53,16 +44,7 @@
           <!-- //RECOGEMOS FOTO DEL SERVIDOR  -->
           <img :src="src" class="rounded float-start" alt="foto_tesoro" />
         </div>
-        <!-- <div v-if="favorito && !isAdmin" class="accordion-body">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill"
-            viewBox="0 0 16 16">
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-          </svg>
-        </div> -->
-
         <div class="d-flex flex-column g-3 justify-content-center">
-          <!-- HACER UN FOR CON TODAS LAS RESENAS  -->
           <Resena v-for="resena in resenas" :resId='resena.res_id' :key='resena.res_id' :comentario='resena.comentario'
             :puntuacion="resena.puntuacion" :user_name="resena.user_name" :foto="resena.foto"> </Resena>
         </div>
@@ -71,18 +53,9 @@
           {{ resenaButtonText }}
         </button>
         <div class="rate" v-if="descubierto && !isAdmin">
-          <vue3starRatings class="my-2" v-model="rating" :showControl="false"/>
-          <!-- <Star :starID="itemID" :key="i" :value="i"></Star>  -->
-          <!-- <input type="radio" id="star5" name="rate" value="5" />
-          <label for="star5" title="text">5 stars</label>
-          <input type="radio" id="star4" name="rate" value="4" />
-          <label for="star4" title="text">4 stars</label>
-          <input type="radio" id="star3" name="rate" value="3" />
-          <label for="star3" title="text">3 stars</label>
-          <input type="radio" id="star2" name="rate" value="2" />
-          <label for="star2" title="text">2 stars</label>
-          <input type="radio" id="star1" name="rate" value="1" />
-          <label for="star1" title="text">1 star</label> -->
+          <star-rating v-bind:increment="0.5" :rating="0" :show-rating="false" :readv-bind:max-rating="5"
+            active-color="#fde480" v-bind:star-size="30">
+          </star-rating>
         </div>
         <form class="m-3" v-show="textArea" method="post">
           <textarea name="escribirResena" id="escribirResena" cols="30" rows="10"
@@ -97,18 +70,16 @@
 <script>
 import { defineComponent } from "vue";
 import Resena from "./Resena.vue";
-//import Star from "./Star.vue"
-import vue3starRatings from "vue3-star-ratings";
+import StarRating from 'vue-star-rating'
 
 
 export default defineComponent({
   name: "tes10pxoro-item",
-  
+
   components: {
     Resena,
-    //Star,
-    vue3starRatings
-    
+    StarRating
+
   },
   data() {
     return {
@@ -128,7 +99,7 @@ export default defineComponent({
     isAdmin: Boolean,
     fotoTesoro: String,
     itemID: Number,
-    valoracion : String,
+    valoracion: String,
   },
   methods: {
     posicionarCentro() {
@@ -156,8 +127,6 @@ export default defineComponent({
       const dialogo = document.getElementById(id);
       dialogo.close();
       alert("Tesoro eliminado");
-
-
 
       //Hacer petición asíncrona para eliminar este tesoro - TODO
       const axios = require("axios");
@@ -191,7 +160,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 .border-tesoro {
   border-bottom: 2px solid var(--dark-gray);
 }
@@ -209,7 +177,7 @@ img {
   z-index: 100;
 }
 
-summary{
+summary {
   color: #a7a8a8;
 }
 
@@ -242,9 +210,10 @@ summary{
   justify-content: center;
 }
 
-.fa-star{
+.fa-star {
   color: #FDE380;
 }
+
 .fa-trash {
   color: black;
   transition: color 0.3 ease-in-out;
@@ -282,7 +251,7 @@ dialog[open] {
   border: none;
 }
 
-/* Rating estrellas */
+/* Rating estrellas
 .rate {
   display: flex;
   justify-content: flex-end;
@@ -301,13 +270,15 @@ dialog[open] {
   position: absolute;
   top: -9999px;
 }
+
 .rate:not(:checked)>input {
   position: absolute;
   top: -9999px;
 }
-.rate:not(:checked) > input {
-    position:fixed;
-    top:-9999px;
+
+.rate:not(:checked)>input {
+  position: fixed;
+  top: -9999px;
 
 }
 
@@ -320,6 +291,7 @@ dialog[open] {
   font-size: 30px;
   color: #d9d9d9;
 }
+
 .rate:not(:checked)>label {
   float: right;
   width: 1em;
@@ -333,6 +305,7 @@ dialog[open] {
 .rate:not(:checked)>label:before {
   content: '★ ';
 }
+
 .rate:not(:checked)>label:before {
   content: '★ ';
 }
@@ -340,6 +313,7 @@ dialog[open] {
 .rate>input:checked~label {
   color: #fde480;
 }
+
 .rate>input:checked~label {
   color: #fde480;
 }
@@ -348,6 +322,7 @@ dialog[open] {
 .rate:not(:checked)>label:hover~label {
   color: #fde480;
 }
+
 .rate:not(:checked)>label:hover,
 .rate:not(:checked)>label:hover~label {
   color: #fde480;
@@ -359,6 +334,5 @@ dialog[open] {
 .rate>input:checked~label:hover~label,
 .rate>label:hover~input:checked~label {
   color: #fde480;
-}
-
+} */
 </style>
