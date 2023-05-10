@@ -52,10 +52,11 @@
           {{ resenaButtonText }}
         </button>
 
-        <form class="m-3" v-show="textArea" method="post" v-on:submit.prevent="anadirResena" enctype="multipart/form-data">
+        <form class="m-3" v-show="textArea" method="post" v-on:submit.prevent="anadirResena"
+          enctype="multipart/form-data">
           <div class="rate" v-if="descubierto && !isAdmin">
-            <star-rating v-bind:increment="0.5" v-model="rating" :show-rating="false"
-              :readv-bind:max-rating="5" active-color="#fde480" v-bind:star-size="30">
+            <star-rating v-bind:increment="0.5" @update:rating="setRating" :show-rating="false" :readv-bind:max-rating="5"
+              active-color="#fde480" v-bind:star-size="30">
             </star-rating>
           </div>
           <input type="file" name="foto-resena" id="foto-resena">
@@ -89,7 +90,7 @@ export default defineComponent({
       src: `http://172.23.7.116:8081/tesoros/imagenes/${this.fotoTesoro}`,
       resenas: [],
       comentario: "",
-      rating: ""
+      rating: 0
     };
   },
   props: {
@@ -155,7 +156,7 @@ export default defineComponent({
       //recoger datos del formulario
       const formData = new FormData();
       const resenaFoto = document.getElementById("foto-resena")
-      
+
 
       formData.append("comentario", this.comentario)
       formData.append("rating", this.rating)
@@ -176,6 +177,9 @@ export default defineComponent({
         })
 
 
+    },
+    setRating(val) {
+      this.rating = val;
     }
   },
   mounted() {
