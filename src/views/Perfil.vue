@@ -22,7 +22,7 @@
         <p class="p-0">Número de tesoros: {{ numeroTesoros }}</p>
       </div>
       <div class="row">
-        Nivel: {{ nivelUsuario }}
+        Nivel: {{ calcNivelUsuario() }}
         <div class="progress p-0">
           <div class="progress-bar bg-green" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
           aria-valuemax="100">
@@ -82,13 +82,17 @@ export default {
     Footer
   },
   methods: {
-
+    calcNivelUsuario(){
+      if(this.numeroTesoros==0){
+        this.nivelUsuario == "Novel"
+      }
+    }
   },
   data() {
     return {
       numeroTesoros: 0,
       nombreUsuario: "David Marin",
-      nivelUsuario: "novel",
+      nivelUsuario: "",
       progressBarPerc: 0,
       todas: [
         {
@@ -198,6 +202,7 @@ export default {
   
   mounted() {
 
+    this.calcNivelUsuario()
     //Recogemos las estadísticas del jugador que ha iniciado sesión, tenemos que hacer la llamada a la APi con el id_usuario actual
 
     const axios = require("axios");

@@ -319,6 +319,7 @@ dialog[open] {
   top: 10px;
   z-index: 99;
   font-size: 15px;
+  box-shadow: 0px 26px 60px #000;
 }
 
 .update-btn {

@@ -93,6 +93,8 @@ export default {
 <style scoped>
 footer {
   margin-top: 40px;
+  /* bottom: 0;
+  left: 0;  */
 }
 
 main {
