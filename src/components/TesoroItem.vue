@@ -51,22 +51,16 @@
         <button @click="mostrarTextArea" class="w-40" v-if="descubierto && !isAdmin">
           {{ resenaButtonText }}
         </button>
-        
+
         <form class="m-3" v-show="textArea" method="post" v-on:submit.prevent="anadirResena">
           <div class="rate" v-if="descubierto && !isAdmin">
-          <star-rating v-bind:increment="0.5" :rating="0" v-model="rating" :show-rating="false" :readv-bind:max-rating="5"
-            active-color="#fde480" v-bind:star-size="30">
-          </star-rating>
-        </div>
-        <form class="m-3" v-show="textArea" method="post">
-          <div class="rate" v-if="descubierto && !isAdmin">
-            <star-rating v-bind:increment="0.5" :rating="0" :show-rating="false" :readv-bind:max-rating="5"
-              active-color="#fde480" v-bind:star-size="30">
+            <star-rating v-bind:increment="0.5" :rating="0" v-model="rating" :show-rating="false"
+              :readv-bind:max-rating="5" active-color="#fde480" v-bind:star-size="30">
             </star-rating>
           </div>
-          <textarea class ="txt-resena" name="escribirResena" id="escribirResena" cols="30" rows="10"
+          <textarea class="txt-resena" name="escribirResena" id="escribirResena" cols="30" rows="10"
             placeholder="Escribe tu reseña..." v-model="comentario"></textarea><br />
-          <button class ="enviar-res" type="submit" >Enviar Reseña</button>
+          <button class="enviar-res" type="submit">Enviar Reseña</button>
         </form>
       </div>
     </div>
@@ -152,30 +146,30 @@ export default defineComponent({
       //Para tener el formulario de actualización lleno con los datos actuales del tesoro, pasamos la información mediante la ruta.
       this.$router.push({ path: "actualizar", query: { itemID: this.itemID, titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1], fotoTesoro: this.fotoTesoro } });
     },
-    anadirResena(){
+    anadirResena() {
       //TODO variable temporal de id de usuario
       const userID = 3
 
       //recoger datos del formulario
       const formData = new FormData();
 
-      formData.append("comentario",this.comentario)
-      formData.append("rating",this.rating)
+      formData.append("comentario", this.comentario)
+      formData.append("rating", this.rating)
 
       const axios = require("axios");
-      axios.post(`http://172.23.7.110:8081/tesoros/${userID}/resena/${this.itemID}`,formData, {
-        headers:{
-          "Content-Type":"application/json"
+      axios.post(`http://172.23.7.110:8081/tesoros/${userID}/resena/${this.itemID}`, formData, {
+        headers: {
+          "Content-Type": "application/json"
         }
       })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-        
-      
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+
+
     }
   },
   mounted() {
@@ -241,14 +235,14 @@ summary {
   margin: 5px;
 }
 
-.w-40:hover{
+.w-40:hover {
   background-color: #59a888;
   color: #fff;
   cursor: pointer;
-  
+
 }
 
-.txt-resena{
+.txt-resena {
   border: none;
   border-radius: 1em;
   background-color: #d9d9d9;
@@ -257,7 +251,7 @@ summary {
   height: 150px;
 }
 
-.enviar-res{
+.enviar-res {
   border: none;
   border-radius: 1em;
   background-color: #59a888;
@@ -265,11 +259,12 @@ summary {
 }
 
 
-.enviar-res:hover{
+.enviar-res:hover {
   background-color: #78d3ae;
   color: #fff;
   cursor: pointer;
 }
+
 .z-1 {
   z-index: 1;
 }
@@ -321,9 +316,10 @@ dialog[open] {
   border: none;
 }
 
-.rate{
+.rate {
   margin: 5px;
 }
+
 /* Rating estrellas
 .rate {
   display: flex;
