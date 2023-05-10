@@ -28,6 +28,7 @@
       <router-link class="perfil-btn w-40 btn" to="/perfil">Ir a mi perfil</router-link>
     </div>
   </footer>
+
 </template>
 
 <script>
@@ -156,6 +157,19 @@ footer {
   cursor: pointer;
 }
 
+.buscar{
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 2em;
+  padding: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+.buscar:hover{
+  background-color: #78d3ae;
+  color: #fff;
+  cursor: pointer;
+}
 
 .perfil-btn {
   background-color: var(--primary);

@@ -42,22 +42,21 @@
         </div>
         <div>
           <!-- //RECOGEMOS FOTO DEL SERVIDOR  -->
-          <img :src="src" class="rounded float-start" alt="foto_tesoro" />
+          <img :src="src" class="rounded float-start" alt="foto_tesoro" /><br>
         </div>
         <div class="d-flex flex-column g-3 justify-content-center">
           <Resena v-for="resena in resenas" :resId='resena.res_id' :key='resena.res_id' :comentario='resena.comentario'
             :puntuacion="resena.puntuacion" :user_name="resena.user_name" :foto="resena.foto"> </Resena>
         </div>
-        <div></div>
         <button @click="mostrarTextArea" class="w-40" v-if="descubierto && !isAdmin">
           {{ resenaButtonText }}
         </button>
-        <div class="rate" v-if="descubierto && !isAdmin">
-          <star-rating v-bind:increment="0.5" :rating="0" :show-rating="false" :readv-bind:max-rating="5"
-            active-color="#fde480" v-bind:star-size="30">
-          </star-rating>
-        </div>
         <form class="m-3" v-show="textArea" method="post">
+          <div class="rate" v-if="descubierto && !isAdmin">
+            <star-rating v-bind:increment="0.5" :rating="0" :show-rating="false" :readv-bind:max-rating="5"
+              active-color="#fde480" v-bind:star-size="30">
+            </star-rating>
+          </div>
           <textarea class ="txt-resena" name="escribirResena" id="escribirResena" cols="30" rows="10"
             placeholder="Escribe tu reseña..."></textarea><br />
           <button class ="enviar-res" type="submit">Enviar Reseña</button>
@@ -203,8 +202,40 @@ summary {
   border: none;
   border-radius: 1em;
   background-color: #a7a8a8;
+  width: 210px;
+  transition: all 0.3s ease-in-out;
+  margin: 5px;
 }
 
+.w-40:hover{
+  background-color: #59a888;
+  color: #fff;
+  cursor: pointer;
+  
+}
+
+.txt-resena{
+  border: none;
+  border-radius: 1em;
+  background-color: #d9d9d9;
+  padding: 7px;
+  width: 900px;
+  height: 150px;
+}
+
+.enviar-res{
+  border: none;
+  border-radius: 1em;
+  background-color: #59a888;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.enviar-res:hover{
+  background-color: #78d3ae;
+  color: #fff;
+  cursor: pointer;
+}
 .z-1 {
   z-index: 1;
 }
@@ -256,6 +287,9 @@ dialog[open] {
   border: none;
 }
 
+.rate{
+  margin: 5px;
+}
 /* Rating estrellas
 .rate {
   display: flex;
