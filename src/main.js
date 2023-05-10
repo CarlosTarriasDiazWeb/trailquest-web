@@ -20,7 +20,6 @@ library.add(fab, fas, far);
 createApp(App)
   .use(router)
   .component("font-awesome-icon", FontAwesomeIcon)
-  .component("vue3-star-ratings", vue3StarRatings)
   .mount("#app");
 
 import "bootstrap/dist/js/bootstrap.js";
