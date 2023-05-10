@@ -6,7 +6,6 @@
 
     <div id="mapContainer">
       <span id="todos" @click="filterAll" class="button badge bg-success">Todos</span>
-      <!-- <span @click="filterFavoritos" class="button badge bg-primary">Favoritos</span> -->
       <span id="encontrados" @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
       <Map :localizaciones="localizacionesMostrar" :center="center" @modifyCenter="modifyCenter" :isAdmin="isAdmin"></Map>
     </div>
@@ -164,20 +163,7 @@ export default {
         },
       ],
       localizacionesEncontradas: [
-        {
-          nombre: "Tesoro 5",
-          descripcion: "Descr 5Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          descubierto: true,
-          favorito: false,
-          position: [41.286415, 2.209987],
-        },
-        {
-          nombre: "Tesoro 6",
-          descripcion: "Descr 6Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          descubierto: true,
-          favorito: false,
-          position: [41.386415, 2.209987],
-        },
+
       ],
     };
   },
@@ -188,7 +174,7 @@ export default {
 
     //this.localizacionesMostrar = [...this.todas];
 
-    //Escoger el endpoint de la API que permite coger los tesoros /de un usuario específico/
+    // Escoger el endpoint de la API que permite coger los tesoros /de un usuario específico/
     // el id o nombre deberíamos tenerlo en la cookie.
 
     const axios = require("axios");
@@ -206,6 +192,30 @@ export default {
       //Para testear reseñas
       this.localizacionesMostrar.map((loc) => loc.descubierto = true)
     });
+
+
+    //Recogemos los tesoros descubiertos con otra llamada a la API.
+    axios({
+      method: "get",
+      url: "http://172.23.7.110:8081/tesoros/1/encontrados",
+    }).then((response) => {
+
+      const tesorosEncontrados = Array.from(response.data);
+      const idEncontrados = new Set(tesorosEncontrados.map(tes => tes.tes_id));
+
+
+
+      this.localizacionesEncontradas = this.localizacionesMostrar.filter(loc => idEncontrados.has(loc.id));
+
+      //Añadimos array de posición en el mapa
+      this.localizacionesEncontradas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
+      //Añadimos id de BD a la localiacion
+      this.localizacionesEncontradas.map((loc) => loc.itemID = loc.id);
+      //Sabemos que estos tesoros están descubiertos
+      this.localizacionesEncontradas.map((loc) => loc.descubierto = true)
+    });
+
+
   },
 };
 </script>
