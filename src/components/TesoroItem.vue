@@ -51,6 +51,13 @@
         <button @click="mostrarTextArea" class="w-40" v-if="descubierto && !isAdmin">
           {{ resenaButtonText }}
         </button>
+        
+        <form class="m-3" v-show="textArea" method="post" v-on:submit.prevent="anadirResena">
+          <div class="rate" v-if="descubierto && !isAdmin">
+          <star-rating v-bind:increment="0.5" :rating="0" v-model="rating" :show-rating="false" :readv-bind:max-rating="5"
+            active-color="#fde480" v-bind:star-size="30">
+          </star-rating>
+        </div>
         <form class="m-3" v-show="textArea" method="post">
           <div class="rate" v-if="descubierto && !isAdmin">
             <star-rating v-bind:increment="0.5" :rating="0" :show-rating="false" :readv-bind:max-rating="5"
@@ -58,8 +65,8 @@
             </star-rating>
           </div>
           <textarea class ="txt-resena" name="escribirResena" id="escribirResena" cols="30" rows="10"
-            placeholder="Escribe tu reseña..."></textarea><br />
-          <button class ="enviar-res" type="submit">Enviar Reseña</button>
+            placeholder="Escribe tu reseña..." v-model="comentario"></textarea><br />
+          <button class ="enviar-res" type="submit" >Enviar Reseña</button>
         </form>
       </div>
     </div>
@@ -85,7 +92,9 @@ export default defineComponent({
       textArea: false,
       resenaButtonText: "Añadir Reseña",
       src: `http://172.23.7.116:8081/tesoros/imagenes/${this.fotoTesoro}`,
-      resenas: []
+      resenas: [],
+      comentario: "",
+      rating: ""
     };
   },
   props: {
@@ -143,6 +152,31 @@ export default defineComponent({
       //Para tener el formulario de actualización lleno con los datos actuales del tesoro, pasamos la información mediante la ruta.
       this.$router.push({ path: "actualizar", query: { itemID: this.itemID, titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1], fotoTesoro: this.fotoTesoro } });
     },
+    anadirResena(){
+      //TODO variable temporal de id de usuario
+      const userID = 3
+
+      //recoger datos del formulario
+      const formData = new FormData();
+
+      formData.append("comentario",this.comentario)
+      formData.append("rating",this.rating)
+
+      const axios = require("axios");
+      axios.post(`http://172.23.7.110:8081/tesoros/${userID}/resena/${this.itemID}`,formData, {
+        headers:{
+          "Content-Type":"application/json"
+        }
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+        
+      
+    }
   },
   mounted() {
     //Hacemos petición asíncrona de las reseñas del tesoro
