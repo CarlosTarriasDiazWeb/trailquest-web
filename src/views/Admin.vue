@@ -44,7 +44,7 @@ export default {
       this.localizacionesMostrar = [...this.todas];
       this.localizacionesMostrar = [
         ...this.localizacionesMostrar.filter((localizacion) =>
-          localizacion.nombre.toLowerCase().includes(this.palabraFiltro.toLowerCase())
+          localizacion.titulo.toLowerCase().includes(this.palabraFiltro.toLowerCase())
         ),
       ];
     },
@@ -58,39 +58,33 @@ export default {
       center: [41.386415, 2.169987],
       palabraFiltro: "",
       isAdmin: true,
-      // todas: [
-      //   {
-      //     nombre: "Tesoro 1",
-      //     descripcion: "Descr 1 Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-      //     favorito: false,
-      //     descubierto: false,
-      //     position: [41.386415, 2.269987],
-      //   },
-      // ],
       localizacionesMostrar: [],
     };
   },
   computed: {},
 
   mounted() {
-    /*Show dummy data*/
-    //this.localizacionesMostrar = [...this.todas];
+
 
     //Recogemos TODOS los tesoros del sistema.
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://172.23.7.102:8081/tesoros",
+      url: "http://172.23.7.110:8081/tesoros",
     }).then((response) => {
-      this.localizacionesMostrar = Array.from(response.data);
-      console.log(this.localizacionesMostrar);
-
-
-      //Seteamos atributos para el objeto a renderizar en Tesoro-Item
-      this.localizacionesMostrar.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
+      this.todas = Array.from(response.data);
+      console.log(this.todas);
+      //Añadimos array de posición en el mapa
+      this.todas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
       //Añadimos id de BD a la localiacion
-      this.localizacionesMostrar.map((loc) => loc.itemID = loc.id)
+      this.todas.map((loc) => loc.itemID = loc.id);
 
+      //Para testear reseñas
+      this.todas.map((loc) => loc.descubierto = false)
+
+      //Por defecto mostramos todos los tesoro.
+
+      this.localizacionesMostrar = [...this.todas];
     });
   },
 };

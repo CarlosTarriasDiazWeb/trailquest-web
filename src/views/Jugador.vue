@@ -43,10 +43,8 @@ export default {
     NavBar,
   },
   methods: {
-    // filterFavoritos() {
-    //   this.localizacionesMostrar = [...this.localizacionesFavoritas];
-    // },
     filterAll() {
+      console.log(this.todas);
       this.localizacionesMostrar = [...this.todas];
     },
     filterEncontrados() {
@@ -58,10 +56,10 @@ export default {
     },
     filtrarTesoros() {
       //Mostrar tesoros que coinciden con la cadena de búsqueda.
-      this.localizacionesMostrar = [...this.todas];
+      //this.localizacionesMostrar = [...this.todas];
       this.localizacionesMostrar = [
         ...this.localizacionesMostrar.filter((localizacion) =>
-          localizacion.nombre.toLowerCase().includes(this.palabraFiltro.toLowerCase())
+          localizacion.titulo.toLowerCase().includes(this.palabraFiltro.toLowerCase())
         ),
       ];
     },
@@ -71,108 +69,17 @@ export default {
   },
   data() {
     return {
-      mapWidthPerc: 100,
       center: [41.386415, 2.169987],
       palabraFiltro: "",
       isAdmin: false,
-      todas: [
-        {
-          nombre: "Tesoro 1",
-          descripcion: "Descr 1 Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          favorito: false,
-          descubierto: false,
-          position: [41.386415, 2.269987],
-        },
-        {
-          nombre: "Tesoro 2",
-          descripcion: "Descr 2 Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          favorito: true,
-          descubierto: true,
-          position: [41.386415, 2.309987],
-        },
-        {
-          nombre: "Tesoro 3",
-          descripcion: "Descr 3 Descr 1Descr 1Descr 1Descr 1Descr 1",
-          favorito: false,
-          descubierto: true,
-          position: [41.286415, 2.309987],
-        },
-        {
-          nombre: "Tesoro 4",
-          descripcion: "Descr 4Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          favorito: true,
-          descubierto: false,
-          position: [41.286415, 2.309987],
-        },
-        {
-          nombre: "Tesoro 5",
-          descripcion: "Descr 5Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          favorito: false,
-          descubierto: true,
-          position: [41.286415, 2.209987],
-        },
-        {
-          nombre: "Tesoro 6",
-          descripcion: "Descr 6Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          favorito: false,
-          descubierto: true,
-          position: [41.386415, 2.209987],
-        },
-        {
-          nombre: "Tesoro 7",
-          descripcion: "Descr 7Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          favorito: false,
-          descubierto: true,
-          position: [41.286415, 2.259987],
-        },
-        {
-          nombre: "Tesoro 8",
-          descripcion: "Descr 8Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          favorito: false,
-          descubierto: true,
-          position: [41.286415, 2.239987],
-        },
-        {
-          nombre: "Tesoro 9",
-          descripcion: "Descr 9Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          descubierto: true,
-          position: [41.286415, 2.209987],
-        },
-        {
-          nombre: "Tesoro 10",
-          descripcion: "Descr 10Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          descubierto: true,
-          position: [41.286415, 2.222987],
-        },
-      ],
+      todas: [],
       localizacionesMostrar: [],
-      localizacionesFavoritas: [
-        {
-          nombre: "Tesoro 9",
-          descripcion: "Descr 9Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          descubierto: true,
-          favorito: true,
-          position: [41.286415, 2.209987],
-        },
-        {
-          nombre: "Tesoro 10",
-          descripcion: "Descr 10Descr 1Descr 1Descr 1Descr 1Descr 1Descr 1",
-          descubierto: true,
-          favorito: true,
-          position: [41.286415, 2.222987],
-        },
-      ],
-      localizacionesEncontradas: [
-
-      ],
     };
   },
   computed: {},
 
   mounted() {
     //Mostramos por defecto todos los tesoros (descubierto-no descubierto)
-
-    //this.localizacionesMostrar = [...this.todas];
 
     // Escoger el endpoint de la API que permite coger los tesoros /de un usuario específico/
     // el id o nombre deberíamos tenerlo en la cookie.
@@ -182,37 +89,43 @@ export default {
       method: "get",
       url: "http://172.23.7.110:8081/tesoros",
     }).then((response) => {
-      this.localizacionesMostrar = Array.from(response.data);
-      console.log(this.localizacionesMostrar);
+      this.todas = Array.from(response.data);
+      console.log(this.todas);
       //Añadimos array de posición en el mapa
-      this.localizacionesMostrar.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
+      this.todas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
       //Añadimos id de BD a la localiacion
-      this.localizacionesMostrar.map((loc) => loc.itemID = loc.id);
+      this.todas.map((loc) => loc.itemID = loc.id);
 
       //Para testear reseñas
-      this.localizacionesMostrar.map((loc) => loc.descubierto = true)
-    });
+      this.todas.map((loc) => loc.descubierto = false)
 
+      //Por defecto mostramos todos los tesoro.
+
+      this.localizacionesMostrar = [...this.todas];
+    });
 
     //Recogemos los tesoros descubiertos con otra llamada a la API.
     axios({
       method: "get",
-      url: "http://172.23.7.110:8081/tesoros/1/encontrados",
+      url: "http://172.23.7.110:8081/tesoros/3/encontrados",
     }).then((response) => {
 
       const tesorosEncontrados = Array.from(response.data);
       const idEncontrados = new Set(tesorosEncontrados.map(tes => tes.tes_id));
+      console.log(idEncontrados);
 
 
-
-      this.localizacionesEncontradas = this.localizacionesMostrar.filter(loc => idEncontrados.has(loc.id));
-
+      this.localizacionesEncontradas = this.todas.filter(loc => idEncontrados.has(loc.id));
+      console.log(this.localizacionesEncontradas)
       //Añadimos array de posición en el mapa
       this.localizacionesEncontradas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
       //Añadimos id de BD a la localiacion
       this.localizacionesEncontradas.map((loc) => loc.itemID = loc.id);
       //Sabemos que estos tesoros están descubiertos
       this.localizacionesEncontradas.map((loc) => loc.descubierto = true)
+
+      //Ponemos los que no estan descubiertos 
+      this.todas.map(loc => { if (!idEncontrados.has(loc.id)) { loc.descubierto = false } })
     });
 
 
