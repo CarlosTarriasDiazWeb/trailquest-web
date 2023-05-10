@@ -229,7 +229,7 @@ footer {
   background-color: var(--accent);
 }
 
-button {
+.button{
   background-color: #d9d9d9;
   border: none;
   border-radius: 2em;
@@ -237,7 +237,7 @@ button {
   transition: all 0.3s ease-in-out;
 }
 
-button:hover {
+.button:hover {
   background-color: #78d3ae;
   color: #fff;
   cursor: pointer;
@@ -272,9 +272,23 @@ span {
 
 #encontrados {
   left: 4rem;
+  background-color: #a7a8a8;
+  transition: all 0.3s ease-in-out;
+}
+
+#encontrados:hover{
+  background-color: #d9d9d9;
+  cursor: pointer;
 }
 
 #todos {
   left: 10rem;
+  background-color: #59a888;
+  transition: all 0.3s ease-in-out;
+}
+
+#todos:hover{
+  background-color: #78d3ae;
+  cursor: pointer;
 }
 </style>
