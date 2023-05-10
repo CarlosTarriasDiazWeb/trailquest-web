@@ -8,7 +8,6 @@ import Registro from "../views/Registro.vue";
 import Admin from "../views/Admin.vue";
 import Actualizar from "../views/Actualizar.vue";
 
-
 const routes = [
   {
     path: "/",
