@@ -49,7 +49,7 @@
             :puntuacion="resena.puntuacion" :user_name="resena.user_name" :foto="resena.foto"> </Resena>
         </div>
         <div></div>
-        <button @click="mostrarTextArea" class="w-40 resena_btn" v-if="descubierto && !isAdmin">
+        <button @click="mostrarTextArea" class="w-40" v-if="descubierto && !isAdmin">
           {{ resenaButtonText }}
         </button>
         <div class="rate" v-if="descubierto && !isAdmin">
@@ -58,9 +58,9 @@
           </star-rating>
         </div>
         <form class="m-3" v-show="textArea" method="post">
-          <textarea name="escribirResena" id="escribirResena" cols="30" rows="10"
+          <textarea class ="txt-resena" name="escribirResena" id="escribirResena" cols="30" rows="10"
             placeholder="Escribe tu reseña..."></textarea><br />
-          <button type="submit">Enviar Reseña</button>
+          <button class ="enviar-res" type="submit">Enviar Reseña</button>
         </form>
       </div>
     </div>

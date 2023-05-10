@@ -181,6 +181,7 @@ form {
   background-color: #fff;
   margin: 0px 100px;
   padding: 20px;
+  box-shadow: -10px 5px 10px #000;
 }
 
 .input {
