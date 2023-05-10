@@ -52,12 +52,13 @@
           {{ resenaButtonText }}
         </button>
 
-        <form class="m-3" v-show="textArea" method="post" v-on:submit.prevent="anadirResena">
+        <form class="m-3" v-show="textArea" method="post" v-on:submit.prevent="anadirResena" enctype="multipart/form-data">
           <div class="rate" v-if="descubierto && !isAdmin">
-            <star-rating v-bind:increment="0.5" :rating="0" v-model="rating" :show-rating="false"
+            <star-rating v-bind:increment="0.5" v-model="rating" :show-rating="false"
               :readv-bind:max-rating="5" active-color="#fde480" v-bind:star-size="30">
             </star-rating>
           </div>
+          <input type="file" name="foto-resena" id="foto-resena">
           <textarea class="txt-resena" name="escribirResena" id="escribirResena" cols="30" rows="10"
             placeholder="Escribe tu reseña..." v-model="comentario"></textarea><br />
           <button class="enviar-res" type="submit">Enviar Reseña</button>
@@ -149,17 +150,22 @@ export default defineComponent({
     anadirResena() {
       //TODO variable temporal de id de usuario
       const userID = 3
+      const username = "Hola"
 
       //recoger datos del formulario
       const formData = new FormData();
+      const resenaFoto = document.getElementById("foto-resena")
+      
 
       formData.append("comentario", this.comentario)
       formData.append("rating", this.rating)
+      formData.append("foto-resena", resenaFoto.files[0])
+      formData.append("username", username)
 
       const axios = require("axios");
       axios.post(`http://172.23.7.110:8081/tesoros/${userID}/resena/${this.itemID}`, formData, {
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "multipart/form-data"
         }
       })
         .then((response) => {
