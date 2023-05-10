@@ -112,7 +112,7 @@ export default defineComponent({
         this.resenaButtonText === "Añadir Reseña" ? "Ocultar" : "Añadir Reseña";
     },
     getRef(ref) {
-      //Para poder asociar cada tesoro con su desplegable.
+      //Para poder asociar cada tesoro con su desplegable de Bootstrap.
       return "#" + ref;
     },
     abrirDialogo(id) {
@@ -124,14 +124,16 @@ export default defineComponent({
       dialogo.close();
     },
     eliminarTesoro(id) {
+
+      //Cerramos el cuadro de diálogo referenciado por la id pasada como parámetro.
       const dialogo = document.getElementById(id);
       dialogo.close();
-      alert("Tesoro eliminado");
 
       //Hacer petición asíncrona para eliminar este tesoro - TODO
       const axios = require("axios");
       axios.delete(`http://172.23.7.116:8081/tesoros/${this.itemID}`)
         .then(
+          //Forzamos refresco del componente
           this.$router.push("/jugador")
         )
         .catch(
@@ -139,13 +141,12 @@ export default defineComponent({
         )
     },
     goToUpdate() {
+      //Para tener el formulario de actualización lleno con los datos actuales del tesoro, pasamos la información mediante la ruta.
       this.$router.push({ path: "actualizar", query: { itemID: this.itemID, titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1], fotoTesoro: this.fotoTesoro } });
     },
-    getStarID(number) {
-      return "star" + number + this.itemID
-    }
   },
   mounted() {
+    //Hacemos petición asíncrona de las reseñas del tesoro
     const axios = require("axios");
     axios.get(`http://172.23.7.110:8081/tesoros/${this.itemID}/resena`)
       .then(response =>

@@ -1,32 +1,19 @@
 <template>
   <header>
-    <nav
-      class="p-4 w-100 d-flex flex-row align-items-center navbar navbar-expand-lg bg-body-tertiary"
-    >
+    <nav class="p-4 w-100 d-flex flex-row align-items-center navbar navbar-expand-lg bg-body-tertiary">
       <div class="d-flex align-items-center logo">
         <img class="navbar-brand" src="../../public/assets/imgs/logo.png" />
         <h1>TRAIL QUEST</h1>
       </div>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink class="my-2 text-center sesion-btn nav-link" to="/login"
-              >Iniciar Sesión</RouterLink
-            >
-            <RouterLink class="my-2 text-center registro-btn nav-link" to="/registro"
-              >Registrarse</RouterLink
-            >
+            <RouterLink class="my-2 text-center sesion-btn nav-link" to="/login">Iniciar Sesión</RouterLink>
+            <RouterLink class="my-2 text-center registro-btn nav-link" to="/registro">Registrarse</RouterLink>
           </li>
         </ul>
       </div>
@@ -57,32 +44,6 @@
       </p>
     </section>
   </main>
-  <!-- <footer class="bg-green p-2">
-        <div class="container">
-            <div class="row">
-                <section class="col-md" id="socials">
-                    <h5>Contactanos!</h5>
-                    <nav class="nav flex-column">
-                        <a href="" class="nav-link">
-                            <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook
-                        </a>
-                        <a href="" class="nav-link">
-                            <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter
-                        </a>
-                        <a href="" class="nav-link">
-                            <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram
-                        </a>
-                    </nav>
-                </section>
-                <section class="col-md d-flex align-items-center" id="copyright">
-                    @arsenicoITB 3st4_pAg1na_-3s-nU35tra
-                </section>
-
-            </div>
-
-        </div>
-
-    </footer> -->
   <Footer></Footer>
 </template>
 
@@ -107,6 +68,7 @@ export default {
 header {
   background-color: #78d3ae;
 }
+
 .navbar-brand {
   width: 6vw;
 }

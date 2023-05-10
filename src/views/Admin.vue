@@ -76,7 +76,7 @@ export default {
     /*Show dummy data*/
     //this.localizacionesMostrar = [...this.todas];
 
-    /*Show API data */
+    //Recogemos TODOS los tesoros del sistema.
     const axios = require("axios");
     axios({
       method: "get",
@@ -84,6 +84,9 @@ export default {
     }).then((response) => {
       this.localizacionesMostrar = Array.from(response.data);
       console.log(this.localizacionesMostrar);
+
+
+      //Seteamos atributos para el objeto a renderizar en Tesoro-Item
       this.localizacionesMostrar.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
       //Añadimos id de BD a la localiacion
       this.localizacionesMostrar.map((loc) => loc.itemID = loc.id)

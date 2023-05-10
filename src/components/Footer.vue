@@ -1,8 +1,9 @@
 <template>
+  <!-- Las redes sociales son solo visuales, no redirigen a nada -->
   <footer>
-    <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook </a>
-    <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter </a>
-    <a href="" class="nav-link"> <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram </a>
+    <a href="#" class="nav-link"> <font-awesome-icon icon="fa-brands fa-facebook" /> Facebook </a>
+    <a href="#" class="nav-link"> <font-awesome-icon icon="fa-brands fa-twitter" /> Twitter </a>
+    <a href="#" class="nav-link"> <font-awesome-icon icon="fa-brands fa-instagram" /> Instagram </a>
   </footer>
 </template>
 
@@ -25,10 +26,8 @@ export default {
 
 footer {
   background-color: #59a888;
-   bottom: 0;
-  /*left: 0;   */
+  bottom: 0;
   width: 100%;
-  /*position: fixed; */
   display: flex;
   justify-content: space-evenly;
   padding: 20px;

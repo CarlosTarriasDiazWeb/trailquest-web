@@ -65,8 +65,12 @@ export default {
   },
   methods: {
     enviarFormulario() {
+
+      //Reiniciamos mensajes de error.
+
       this.error = false;
       this.mensajesError = [];
+
       //Validamos formulario
       if (this.nombreInvalidLength) {
         this.error = true;
@@ -88,6 +92,7 @@ export default {
         this.mensajesError.push("La longitud es un valor entre -180 grados y 180 grados");
       }
 
+      // Si hay algún error, no realizamos petición asíncrona.
       if (this.error) return;
 
       this.mensajesError = [];
@@ -98,7 +103,7 @@ export default {
       // Create a new FormData object
       const formData = new FormData();
 
-      // Append data to the form data object
+      // Seteamos objeto a enviar con los datos del formulario
       const fileInput = document.getElementById("foto_tesoro");
       let fotoAEnviar = fileInput.files[0] || this.fotoTesoro;
       formData.append("titulo", this.escapeString(this.nombre.trim()));
@@ -107,19 +112,8 @@ export default {
       formData.append("longitud", this.longitud);
       formData.append("foto", fotoAEnviar);
 
-      //console.log(formData);
 
-      // const tesoro = {
-      //     tesoro_data : {
-      //         'titulo': this.nombre,
-      //         'descripcion': this.descripcion,
-      //         'latitud': this.latitud,
-      //         'longitud':this.longitud,
-      //         'foto_tesoro': fileInput.files[0]
-      //     }
-      // }
-
-      // Send the form data as a POST request
+      // Realizamos petición asíncrona a la API.
       axios
         .put(`http://172.23.7.110:8081/tesoros/${this.itemID}`, formData, {
           headers: {
@@ -138,7 +132,10 @@ export default {
         });
     },
     addMarker() {
+      //Nos aseguramos que sólo haya 1 marcador en todo momento en el mapa.
       if (this.localizacion.length > 0) this.localizacion.pop();
+
+      //Los datos seteados aquí no importan (excepto la position)
       this.localizacion.push({
         nombre: "Añadido",
         descripcion: "Descripcion",
@@ -146,6 +143,7 @@ export default {
         descubierto: false,
         position: [this.latitud, this.longitud],
       });
+      //Centramos el mapa en la ubicación escogida.
       this.modifyCenter();
       console.log("Marcador añadido!");
     },
@@ -153,6 +151,7 @@ export default {
       this.center = [this.latitud, this.longitud];
     },
     escapeString(string) {
+      //Para poder crear el objeto JSON correctamente en las ruta /tesoros de la API.
       return `'${string}'`;
     },
   },

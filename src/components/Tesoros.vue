@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     posicionarCentro(position) {
+      //Propagamos el evento al componente padre (Jugador/Admin)
       this.$emit("posicionarCentro", position);
     },
   },
