@@ -2,9 +2,7 @@
   <header class="bg-green">
     <div class="container">
       <nav class="nav d-flex justify-content-end p-4">
-        <RouterLink class="my-2 text-center volver nav-link" to="/jugador"
-          >Volver al mapa</RouterLink
-        >
+        <RouterLink class="my-2 text-center volver nav-link" to="/jugador">Volver al mapa</RouterLink>
       </nav>
     </div>
   </header>
@@ -32,7 +30,7 @@
       </div>
 
       <!-- Progress bar -->
-      <section id="progressBar">
+      <section>
         <div class="shell">
           <div class="bar" :style="{ width: progress + '%' }">
             <span>{{ progress }}%</span>
@@ -40,7 +38,7 @@
         </div>
       </section>
     </div>
-      
+
     <!-- Tesoros -->
     <div class="accordion p-4" id="tesorosEncontrados">
       <div class="accordion-item">
@@ -130,7 +128,7 @@ export default {
     return {
       numeroTesoros: 0,
       nombreUsuario: "David Marin",
-      nivelUsuario: "",
+      nivelUsuario: "Leyenda",
       progress: 100,
       todas: [
         {
@@ -306,16 +304,18 @@ section{
   height: 29px;
   width: 250px;
   border: 1px solid #a7a8a8;
-  border-radius: 13px;
-  background-color: #d9d9d9;
+  border-radius: 3em;
   padding: 3px;
+  display: flex;
+  align-items: center;
 }
 
 .bar {
-  background: linear-gradient(to right, #78d3ae, #59a888);
+  background: linear-gradient(to right ,#78d3ae, #59a888);
   height: 20px;
   width: 15px;
-  border-radius: 9px;
+  border-radius: 3em;
+  display: flex;
 }
 span {
   float: right;
