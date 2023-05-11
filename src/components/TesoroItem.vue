@@ -1,12 +1,26 @@
 <template>
-  <div @click="posicionarCentro" class=" border-tesoro accordion-item">
+  <div @click="posicionarCentro" class="border-tesoro accordion-item">
     <h2 class="accordion-header d-flex flex-row justify-content-between">
-      <button class="px-4 py-4 accordion-button collapsed" type="button" data-bs-toggle="collapse"
-        :data-bs-target="getRef(referenceId)" aria-expanded="false" @click="getResenas" aria-controls="collapseTwo">
+      <button
+        class="px-4 py-4 accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        :data-bs-target="getRef(referenceId)"
+        aria-expanded="false"
+        @click="getResenas"
+        aria-controls="collapseTwo"
+      >
         <div class="container d-flex align-items-center">
           <h3 class="m-0 w-25">{{ titulo }}</h3>
-          <star-rating v-bind:increment="0.5" :rating="valoracion" :read-only="true" :show-rating="false"
-            :readv-bind:max-rating="5" active-color="#fde480" v-bind:star-size="30">
+          <star-rating
+            v-bind:increment="0.5"
+            :rating="valoracion"
+            :read-only="true"
+            :show-rating="false"
+            :readv-bind:max-rating="5"
+            active-color="#fde480"
+            v-bind:star-size="30"
+          >
           </star-rating>
         </div>
       </button>
@@ -24,12 +38,17 @@
             Eliminar tesoro
           </button>
         </dialog>
-        <button class="update-btn" @click="goToUpdate"><span><font-awesome-icon class="ms-4"
-              icon="fa-solid fa-square-pen fa-lg" /></span></button>
+        <button class="update-btn" @click="goToUpdate">
+          <span><font-awesome-icon class="ms-4" icon="fa-solid fa-square-pen fa-lg" /></span>
+        </button>
       </div>
     </h2>
-    <div :id="referenceId" class="px-4 accordion-collapse collapse" aria-labelledby="headingTwo"
-      data-bs-parent="#accordionExample">
+    <div
+      :id="referenceId"
+      class="px-4 accordion-collapse collapse"
+      aria-labelledby="headingTwo"
+      data-bs-parent="#accordionExample"
+    >
       <div class="d-flex flex-column">
         <div v-if="descubierto || isAdmin" class="accordion-body">
           <details>
@@ -42,26 +61,53 @@
         </div>
         <div>
           <!-- //RECOGEMOS FOTO DEL SERVIDOR  -->
-          <img :src="src" class="rounded float-start" alt="foto_tesoro" /><br>
+          <img :src="src" class="rounded float-start" alt="foto_tesoro" /><br />
         </div>
         <div class="d-flex flex-column g-3 justify-content-center">
-          <Resena v-for="resena in resenas" :resId='resena.res_id' :key='resena.res_id' :comentario='resena.comentario'
-            :puntuacion="resena.puntuacion" :user_name="resena.user_name" :foto="resena.foto"> </Resena>
+          <Resena
+            v-for="resena in resenas"
+            :resId="resena.res_id"
+            :key="resena.res_id"
+            :comentario="resena.comentario"
+            :puntuacion="resena.puntuacion"
+            :user_name="resena.user_name"
+            :foto="resena.foto"
+          >
+          </Resena>
         </div>
         <button @click="mostrarTextArea" class="w-40" v-if="descubierto && !isAdmin">
           {{ resenaButtonText }}
         </button>
 
-        <form class="m-3" v-show="textArea" method="post" v-on:submit.prevent="anadirResena"
-          enctype="multipart/form-data">
+        <form
+          class="m-3"
+          v-show="textArea"
+          method="post"
+          v-on:submit.prevent="anadirResena"
+          enctype="multipart/form-data"
+        >
           <div class="rate" v-if="descubierto && !isAdmin">
-            <star-rating v-bind:increment="0.5" @update:rating="setRating" :show-rating="false" :readv-bind:max-rating="5"
-              active-color="#fde480" v-bind:star-size="30">
+            <star-rating
+              v-bind:increment="0.5"
+              @update:rating="setRating"
+              :show-rating="false"
+              :readv-bind:max-rating="5"
+              active-color="#fde480"
+              v-bind:star-size="30"
+            >
             </star-rating>
           </div>
-          <input type="file" name="foto-resena" id="foto-resena">
-          <textarea class="txt-resena" name="escribirResena" id="escribirResena" cols="30" rows="10"
-            placeholder="Escribe tu reseña..." v-model="comentario"></textarea><br />
+          <input type="file" name="foto-resena" id="foto-resena" />
+          <textarea
+            class="txt-resena"
+            name="escribirResena"
+            id="escribirResena"
+            cols="30"
+            rows="10"
+            placeholder="Escribe tu reseña..."
+            v-model="comentario"
+          ></textarea
+          ><br />
           <button class="enviar-res" type="submit">Enviar Reseña</button>
         </form>
       </div>
@@ -72,25 +118,23 @@
 <script>
 import { defineComponent } from "vue";
 import Resena from "./Resena.vue";
-import StarRating from 'vue-star-rating'
-
+import StarRating from "vue-star-rating";
 
 export default defineComponent({
   name: "tes10pxoro-item",
 
   components: {
     Resena,
-    StarRating
-
+    StarRating,
   },
   data() {
     return {
       textArea: false,
       resenaButtonText: "Añadir Reseña",
-      src: `http://172.23.7.117:8081/tesorosweb/imagenes/${this.fotoTesoro}`,
+      src: `http://localhost:8081/tesorosweb/imagenes/${this.fotoTesoro}`,
       resenas: [],
       comentario: "",
-      rating: 0
+      rating: 0,
     };
   },
   props: {
@@ -128,78 +172,87 @@ export default defineComponent({
       dialogo.close();
     },
     eliminarTesoro(id) {
-
       //Cerramos el cuadro de diálogo referenciado por la id pasada como parámetro.
       const dialogo = document.getElementById(id);
       dialogo.close();
 
       //Hacer petición asíncrona para eliminar este tesoro - TODO
       const axios = require("axios");
-      axios.delete(`http://172.23.7.117:8081/tesorosweb/${this.itemID}`)
+      axios
+        .delete(`http://localhost:8081/tesorosweb/${this.itemID}`)
         .then(
           //Forzamos refresco del componente
           this.$router.push("/admin")
         )
-        .catch(
-          error => console.log(error)
-        )
+        .catch((error) => console.log(error));
     },
     goToUpdate() {
       //Para tener el formulario de actualización lleno con los datos actuales del tesoro, pasamos la información mediante la ruta.
-      this.$router.push({ path: "actualizar", query: { itemID: this.itemID, titulo: this.titulo, descripcion: this.descripcion, latitud: this.localizacion[0], longitud: this.localizacion[1], fotoTesoro: this.fotoTesoro } });
+      this.$router.push({
+        path: "actualizar",
+        query: {
+          itemID: this.itemID,
+          titulo: this.titulo,
+          descripcion: this.descripcion,
+          latitud: this.localizacion[0],
+          longitud: this.localizacion[1],
+          fotoTesoro: this.fotoTesoro,
+        },
+      });
     },
     anadirResena() {
-      //TODO variable temporal de id de usuario
-      const userID = 3
-      const username = "Hola"
-
-      //recoger datos del formulario
+      //ecoger datos del formulario
       const formData = new FormData();
-      const resenaFoto = document.getElementById("foto-resena")
+      const resenaFoto = document.getElementById("foto-resena");
       console.log(resenaFoto.files[0]);
-      let fotoEnviar = null
+      let fotoEnviar = null;
 
-      if (resenaFoto.files[0] === undefined || resenaFoto.files[0] === null) fotoEnviar = ""
+      if (resenaFoto.files[0] === undefined || resenaFoto.files[0] === null) fotoEnviar = "";
       else {
         fotoEnviar = resenaFoto.files[0];
       }
-      formData.append("comentario", this.comentario)
-      formData.append("rating", this.rating)
-      formData.append("foto-resena", fotoEnviar)
-      formData.append("username", username)
+      formData.append("comentario", this.comentario);
+      formData.append("rating", this.rating);
+      formData.append("foto-resena", fotoEnviar);
+      formData.append("username", this.getValue("usu_username"));
 
       const axios = require("axios");
-      axios.post(`http://172.23.7.117:8081/tesorosweb/${userID}/resena/${this.itemID}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
+      axios
+        .post(
+          `http://localhost:8081/tesorosweb/${this.getValue("usu_id")}/resena/${this.itemID}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
           this.$router.push("/jugador");
         })
         .catch((error) => {
-          console.log(error)
-        })
-
-
+          console.log(error);
+        });
     },
     setRating(val) {
       this.rating = val;
-    }
+    },
+    getValue(key) {
+      return document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${key}=`))
+        ?.split("=")[1];
+    },
   },
   mounted() {
     //Hacemos petición asíncrona de las reseñas del tesoro
     const axios = require("axios");
-    axios.get(`http://172.23.7.117:8081/tesorosweb/${this.itemID}/resena`)
-      .then(response =>
-        this.resenas = Array.from(response.data)
-      )
-      .catch(
-        error => console.log(error)
-      )
+    axios
+      .get(`http://localhost:8081/tesorosweb/${this.itemID}/resena`)
+      .then((response) => (this.resenas = Array.from(response.data)))
+      .catch((error) => console.log(error));
   },
-
 });
 </script>
 
@@ -255,7 +308,6 @@ summary {
   background-color: #59a888;
   color: #fff;
   cursor: pointer;
-
 }
 
 .txt-resena {
@@ -274,7 +326,6 @@ summary {
   transition: all 0.3s ease-in-out;
 }
 
-
 .enviar-res:hover {
   background-color: #78d3ae;
   color: #fff;
@@ -292,7 +343,7 @@ summary {
 }
 
 .fa-star {
-  color: #FDE380;
+  color: #fde380;
 }
 
 .fa-trash {

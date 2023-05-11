@@ -1,10 +1,8 @@
 <template>
   <header class="bg-green">
-
     <nav class="nav d-flex justify-content-end p-4">
       <RouterLink class="my-2 text-center volver nav-link" to="/admin">Volver al mapa</RouterLink>
     </nav>
-
   </header>
 
   <div class="fondoColor">
@@ -15,8 +13,16 @@
         <input type="text" v-model="nombre" class="input" id="nom_tesoro" required /><br /><br />
         <input type="file" name="foto_tesoro" id="foto_tesoro" /><br /><br />
         <label for="">Descripción:</label><br />
-        <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"
-          required></textarea><br /><br />
+        <textarea
+          v-model="descripcion"
+          name=""
+          id="inf_tesoro"
+          class="input"
+          cols="30"
+          rows="10"
+          required
+        ></textarea
+        ><br /><br />
 
         <label for="latitud">Latitud:</label><br />
         <input v-model="latitud" type="number" class="input" id="latitud" required /><br /><br />
@@ -63,7 +69,6 @@ export default {
   },
   methods: {
     enviarFormulario() {
-
       //Reiniciamos mensajes de error.
       this.error = false;
       this.mensajesError = [];
@@ -110,7 +115,7 @@ export default {
       formData.append("foto_tesoro", fileInput.files[0]);
 
       axios
-        .post("http://172.23.7.117:8081/tesorosweb", formData, {
+        .post("http://localhost:8081/tesorosweb", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -171,7 +176,6 @@ export default {
 </script>
 
 <style scoped>
-
 footer {
   margin-top: 4rem;
 }
@@ -275,6 +279,5 @@ header {
 
 .bg-accent {
   background-color: var(--accent);
-
 }
 </style>

@@ -13,7 +13,15 @@
         <input type="text" v-model="nombre" class="input" id="nom_tesoro" /><br /><br />
         <input type="file" name="foto_tesoro" id="foto_tesoro" /><br /><br />
         <label for="" required>Descripción:</label><br />
-        <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br /><br />
+        <textarea
+          v-model="descripcion"
+          name=""
+          id="inf_tesoro"
+          class="input"
+          cols="30"
+          rows="10"
+        ></textarea
+        ><br /><br />
 
         <label for="latitud" required>Latitud:</label><br />
         <input v-model="latitud" type="number" class="input" id="latitud" /><br /><br />
@@ -62,7 +70,6 @@ export default {
   },
   methods: {
     enviarFormulario() {
-
       //Reiniciamos mensajes de error.
 
       this.error = false;
@@ -71,30 +78,22 @@ export default {
       //Validamos formulario
       if (this.nombreInvalidLength) {
         this.error = true;
-        this.mensajesError.push(
-          "El nombre del tesoro debe tener entre 1 y 100 carácteres"
-        );
+        this.mensajesError.push("El nombre del tesoro debe tener entre 1 y 100 carácteres");
       }
 
       if (this.descripcionInvalidLength) {
         this.error = true;
-        this.mensajesError.push(
-          "La descripcion del tesoro debe tener 10 y 100 carácteres"
-        );
+        this.mensajesError.push("La descripcion del tesoro debe tener 10 y 100 carácteres");
       }
 
       if (this.latitudInvalida) {
         this.error = true;
-        this.mensajesError.push(
-          "La latitud es un valor entre -90 grados y 90 grados"
-        );
+        this.mensajesError.push("La latitud es un valor entre -90 grados y 90 grados");
       }
 
       if (this.longitudInvalida) {
         this.error = true;
-        this.mensajesError.push(
-          "La longitud es un valor entre -180 grados y 180 grados"
-        );
+        this.mensajesError.push("La longitud es un valor entre -180 grados y 180 grados");
       }
 
       // Si hay algún error, no realizamos petición asíncrona.
@@ -112,18 +111,14 @@ export default {
       const fileInput = document.getElementById("foto_tesoro");
       let fotoAEnviar = fileInput.files[0] || this.fotoTesoro;
       formData.append("titulo", this.escapeString(this.nombre.trim()));
-      formData.append(
-        "descripcion",
-        this.escapeString(this.descripcion.trim())
-      );
+      formData.append("descripcion", this.escapeString(this.descripcion.trim()));
       formData.append("latitud", this.latitud);
       formData.append("longitud", this.longitud);
       formData.append("foto", fotoAEnviar);
 
-
       // Realizamos petición asíncrona a la API.
       axios
-        .put(`http://172.23.7.117:8081/tesorosweb/${this.itemID}`, formData, {
+        .put(`http://localhost:8081/tesorosweb/${this.itemID}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -169,23 +164,14 @@ export default {
       return this.nombre.length === 0 || this.nombre.length > 100;
     },
     descripcionInvalidLength() {
-      return (
-        this.descripcion.trim().length < 10 ||
-        this.descripcion.trim().length > 5000
-      );
+      return this.descripcion.trim().length < 10 || this.descripcion.trim().length > 5000;
     },
     latitudInvalida() {
-      return (
-        parseInt(this.latitud) < -90 ||
-        parseInt(this.latitud) > 90 ||
-        this.latitud === ""
-      );
+      return parseInt(this.latitud) < -90 || parseInt(this.latitud) > 90 || this.latitud === "";
     },
     longitudInvalida() {
       return (
-        parseInt(this.longitud) < -180 ||
-        parseInt(this.longitud) > 180 ||
-        this.longitud === ""
+        parseInt(this.longitud) < -180 || parseInt(this.longitud) > 180 || this.longitud === ""
       );
     },
   },

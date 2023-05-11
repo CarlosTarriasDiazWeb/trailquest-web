@@ -109,7 +109,10 @@ export default {
             this.getUserId(this.getValue("usu_username"));
 
             //Tenemos que decidir si es admin o jugador de alguna manera... TODO
-            this.$router.push("jugador");
+
+            this.getValue("usu_username") === "admin"
+              ? this.$router.push("admin")
+              : this.$router.push("jugador");
           } else {
             this.error = true;
             this.mensajesError.push("Login incorrecto");
