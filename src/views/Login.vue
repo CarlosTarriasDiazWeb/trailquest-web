@@ -10,10 +10,22 @@
           <div class="contenedor">
             <h1>Inicia sesión</h1>
             <form novalidate v-on:submit.prevent="enviarFormulario">
-              <label for="" required>Nombre usuario:</label>
-              <input type="text" class="input px-3" v-model="name" id="nom_usuario" required /><br /><br />
-              <label for="" required>Contraseña:</label>
-              <input type="password" class="input px-3" v-model="password" id="con_usuario" required /><br /><br />
+              <label for="nom_usuario" required>Nombre usuario:</label>
+              <input
+                type="text"
+                class="input px-3"
+                v-model="name"
+                id="nom_usuario"
+                required
+              /><br /><br />
+              <label for="con_usuario" required>Contraseña:</label>
+              <input
+                type="password"
+                class="input px-3"
+                v-model="password"
+                id="con_usuario"
+                required
+              /><br /><br />
 
               <button type="submit" class="submit">Iniciar</button><br />
               <a class="registro" href="/registro">¿Eres nuevo? Regístrate</a>
@@ -76,40 +88,35 @@ export default {
       formData.append("usu_username", this.name);
       formData.append("usu_password", this.password);
 
-      //Para que no pete en la API
-      formData.append("usu_foto", "")
-      formData.append("usu_id", "1")
+      //Para que no pete en la API, estos datos posteriormente no se utilizan.
+      formData.append("usu_foto", "");
+      formData.append("usu_id", "1");
 
       //TOKEN?
       //const token = `${this.name}:${this.password}`;
 
       axios
-        .post("http://172.23.7.110:8081/user/login", formData, {
+        .post("http://localhost:8081/user/login", formData, {
           headers: {
             "Content-Type": "application/json",
 
             //Authorization: `Basic ${token}`, //???
             // Authorization : `Bearer ${localStorage.getItem("access_token")}`
-          }
+          },
         })
         .then((response) => {
-          console.log(response)
+          console.log(response);
           //Si el usuario se autentica correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
-          //Cambiar la condición..
+
           if (response.data.includes("Login correcte")) {
-            //Guardamos el booleano, el user_id?, el username?
+            //Seteamos los datos del usuario en la cookie
             this.setCookie("login", "true", 2);
-            this.setCookie("usu_username", this.name);
-
-
-            //let usu_id = this.getUserId(this.getValue("usu_username"))
-
-            //this.setCookie("usu_id", response.data.split(" ").slice(-1))
+            this.setCookie("usu_username", this.name, 2);
+            this.getUserId(this.getValue("usu_username"));
 
             //Tenemos que decidir si es admin o jugador de alguna manera... TODO
             this.$router.push("jugador");
-          }
-          else {
+          } else {
             this.error = true;
             this.mensajesError.push("Login incorrecto");
           }
@@ -134,9 +141,22 @@ export default {
         .find((row) => row.startsWith(`${key}=`))
         ?.split("=")[1];
     },
-    getUserId() {
-      fetch("http:/172.23.7.110:").then()
-    }
+    getUserId(username) {
+      //Realizamos petición asíncrona para buscar de la lista de jugadores, cual tiene el nombre del usuario que
+      //ha iniciado sesión
+      fetch("http://localhost:8081/jugador", {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((res) => {
+          //Si se ha realizado la petición con éxito guardamos el id del usuario que ha iniciado sesión en el almacenamiento del navegador.
+          //console.log(res);
+          let userId = res.find((usuario) => usuario.usu_username === username).usu_id;
+          //console.log(userId);
+          this.setCookie("usu_id", userId, 2);
+        })
+        .catch((error) => console.log(error));
+    },
   },
   computed: {
     nombreInvalidLength() {

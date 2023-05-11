@@ -1,12 +1,21 @@
 <template>
   <header class="bg-nav d-flex align-items-center flex-row">
-    <nav class="p-4 w-100 d-flex flex-row align-items-center navbar navbar-expand-lg bg-body-tertiary">
+    <nav
+      class="p-4 w-100 d-flex flex-row align-items-center navbar navbar-expand-lg bg-body-tertiary"
+    >
       <div class="d-flex align-items-center logo">
         <img class="navbar-brand" src="../../public/assets/imgs/logo.png" />
         <h1>TRAIL QUEST</h1>
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -19,8 +28,12 @@
         </ul>
         <ul v-else class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink class="my-2 text-center sesion-btn nav-link" to="/login">Iniciar Sesión</RouterLink>
-            <RouterLink class="my-2 text-center registro-btn nav-link" to="/registro">Registrarse</RouterLink>
+            <RouterLink class="my-2 text-center sesion-btn nav-link" to="/login"
+              >Iniciar Sesión</RouterLink
+            >
+            <RouterLink class="my-2 text-center registro-btn nav-link" to="/registro"
+              >Registrarse</RouterLink
+            >
           </li>
         </ul>
       </div>
@@ -43,12 +56,11 @@ export default {
     },
     cerrarSesion() {
       //Eliminamos la cookie de sesión y redirigimos al formulario de inicio de sesión
-
-      //Hay que eliminar más atributos en la cookie? TODO
       this.deleteCookie("login");
       this.deleteCookie("usu_username");
+      this.deleteCookie("usu_id");
 
-      this.$router.push("/");
+      this.$router.push("/login");
     },
   },
 };
