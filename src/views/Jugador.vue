@@ -122,6 +122,10 @@ export default {
       //Añadimos id de BD a la localiacion
       this.todas.map((loc) => (loc.itemID = loc.id));
 
+      //Seteamos número total de tesoros del sistema.
+      let numeroTotalTesoros = this.todas.length > 0 ? this.todas.length : 0;
+      this.setCookie("numeroTotal", numeroTotalTesoros, 2);
+
       //Para testear reseñas
       this.todas.map((loc) => (loc.descubierto = false));
 

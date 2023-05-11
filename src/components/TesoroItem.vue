@@ -14,7 +14,7 @@
           <h3 class="m-0 w-25">{{ titulo }}</h3>
           <star-rating
             v-bind:increment="0.5"
-            :rating="valoracion"
+            :rating="media"
             :read-only="true"
             :show-rating="false"
             :readv-bind:max-rating="5"
@@ -135,6 +135,7 @@ export default defineComponent({
       resenas: [],
       comentario: "",
       rating: 0,
+      media: "",
     };
   },
   props: {
@@ -201,7 +202,7 @@ export default defineComponent({
       });
     },
     anadirResena() {
-      //ecoger datos del formulario
+      //Recoger datos del formulario
       const formData = new FormData();
       const resenaFoto = document.getElementById("foto-resena");
       console.log(resenaFoto.files[0]);
@@ -250,7 +251,19 @@ export default defineComponent({
     const axios = require("axios");
     axios
       .get(`http://localhost:8081/tesorosweb/${this.itemID}/resena`)
-      .then((response) => (this.resenas = Array.from(response.data)))
+      .then((response) => {
+        this.resenas = Array.from(response.data);
+        if (this.resenas > 0) {
+          //Calculamos puntuación del tesoro en función de las puntuaciones de las reseñas
+          this.media = (
+            (this.resenas.reduce((total, resena) => total + resena.res_puntuacion) /
+              this.resenas.length) %
+            5
+          ).toString();
+        } else {
+          this.media = "0.0";
+        }
+      })
       .catch((error) => console.log(error));
   },
 });

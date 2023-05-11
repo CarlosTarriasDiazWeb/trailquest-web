@@ -59,6 +59,8 @@ export default {
       this.deleteCookie("login");
       this.deleteCookie("usu_username");
       this.deleteCookie("usu_id");
+      this.deleteCookie("numEncontrados");
+      this.deleteCookie("numeroTotal");
 
       this.$router.push("/login");
     },
