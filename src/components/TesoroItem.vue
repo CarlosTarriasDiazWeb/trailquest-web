@@ -185,7 +185,7 @@ export default defineComponent({
   mounted() {
     //Hacemos petición asíncrona de las reseñas del tesoro
     const axios = require("axios");
-    axios.get(`http://172.23.7.110:8081/tesoros/${this.itemID}/resena`)
+    axios.get(`http://172.23.7.117:8081/tesoros/${this.itemID}/resena`)
       .then(response =>
         this.resenas = Array.from(response.data)
       )

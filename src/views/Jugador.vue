@@ -102,31 +102,33 @@ export default {
       //Por defecto mostramos todos los tesoro.
 
       this.localizacionesMostrar = [...this.todas];
+
+      //Recogemos los tesoros descubiertos con otra llamada a la API.
+      axios({
+        method: "get",
+        url: "http://172.23.7.117:8081/tesoros/3/encontrados",
+      }).then((response) => {
+
+        const tesorosEncontrados = Array.from(response.data);
+        const idEncontrados = new Set(tesorosEncontrados.map(tes => tes.tes_id));
+        console.log(idEncontrados);
+
+
+        this.localizacionesEncontradas = this.todas.filter(loc => idEncontrados.has(loc.id));
+        console.log(this.localizacionesEncontradas)
+        //Añadimos array de posición en el mapa
+        this.localizacionesEncontradas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
+        //Añadimos id de BD a la localiacion
+        this.localizacionesEncontradas.map((loc) => loc.itemID = loc.id);
+        //Sabemos que estos tesoros están descubiertos
+        this.localizacionesEncontradas.map((loc) => loc.descubierto = true)
+
+        //Ponemos los que no estan descubiertos 
+        this.todas.map(loc => { if (!idEncontrados.has(loc.id)) { loc.descubierto = false } })
+      });
     });
 
-    //Recogemos los tesoros descubiertos con otra llamada a la API.
-    axios({
-      method: "get",
-      url: "http://172.23.7.117:8081/tesoros/3/encontrados",
-    }).then((response) => {
 
-      const tesorosEncontrados = Array.from(response.data);
-      const idEncontrados = new Set(tesorosEncontrados.map(tes => tes.tes_id));
-      console.log(idEncontrados);
-
-
-      this.localizacionesEncontradas = this.todas.filter(loc => idEncontrados.has(loc.id));
-      console.log(this.localizacionesEncontradas)
-      //Añadimos array de posición en el mapa
-      this.localizacionesEncontradas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
-      //Añadimos id de BD a la localiacion
-      this.localizacionesEncontradas.map((loc) => loc.itemID = loc.id);
-      //Sabemos que estos tesoros están descubiertos
-      this.localizacionesEncontradas.map((loc) => loc.descubierto = true)
-
-      //Ponemos los que no estan descubiertos 
-      this.todas.map(loc => { if (!idEncontrados.has(loc.id)) { loc.descubierto = false } })
-    });
 
 
   },
