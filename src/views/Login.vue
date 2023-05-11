@@ -76,11 +76,15 @@ export default {
       formData.append("usu_username", this.name);
       formData.append("usu_password", this.password);
 
+      //Para que no pete en la API
+      formData.append("usu_foto", "")
+      formData.append("usu_id", "1")
+
       //TOKEN?
       //const token = `${this.name}:${this.password}`;
 
       axios
-        .post("http://172.23.7.117:8081/jugador", formData, {
+        .post("http://172.23.7.117:8081/user/login", formData, {
           headers: {
             "Content-Type": "application/json",
             //Authorization: `Basic ${token}`, //???
@@ -91,13 +95,17 @@ export default {
           console.log(response)
           //Si el usuario se autentica correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
           //Cambiar la condición..
-          // if (response !== "") {
-          //   //Guardamos el booleano, el user_id?, el username?
-          //   this.setCookie("login", "true", 2);
-
-          //   //Tenemos que decidir si es admin o jugador de alguna manera... TODO
-          //   this.$router.push("jugador");
-          // }
+          if (response.data === "Login correcte") {
+            //Guardamos el booleano, el user_id?, el username?
+            this.setCookie("login", "true", 2);
+            this.setCookie("usu_username", this.name);
+            //Tenemos que decidir si es admin o jugador de alguna manera... TODO
+            this.$router.push("jugador");
+          }
+          else {
+            this.error = true;
+            this.mensajesError.push("Login incorrecto");
+          }
         })
         .catch((error) => {
           console.log(error);

@@ -85,22 +85,29 @@ export default {
       const formData = new FormData();
       const axios = require("axios");
 
-      formData.append("name", this.name);
-      formData.append("password", this.password1);
+      formData.append("usu_username", this.name);
+      formData.append("usu_password", this.password1);
+      formData.append("usu_foto", "");
+      formData.append("usu_id", "10");
 
       axios
-        .post("http://172.23.7.117:8081/usuario", formData, {
+        .post("http://172.23.7.117:8081/user/register", formData, {
           headers: {
             "Content-Type": "application/json",
           },
         })
         .then((response) => {
           //Si el usuario se registra correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
-          if (response !== "") {
+          if (response.data === "Usuari registrat correctament") {
             //Guardamos el booleano, el user_id?, el username? TODO
             this.setCookie("login", "true", 2);
+            this.setCookie("usu_username", this.name);
             //Tenemos que decidir si es admin o jugador de alguna manera... TODO
             this.$router.push("jugador");
+          }
+          else {
+            this.error = true;
+            this.mensajesError.push("El usuario ya existe en el sistema")
           }
         })
         .catch((error) => {
