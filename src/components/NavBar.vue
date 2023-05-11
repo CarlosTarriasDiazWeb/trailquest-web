@@ -46,6 +46,7 @@ export default {
 
       //Hay que eliminar más atributos en la cookie? TODO
       this.deleteCookie("login");
+      this.deleteCookie("usu_username");
 
       this.$router.push("/");
     },
