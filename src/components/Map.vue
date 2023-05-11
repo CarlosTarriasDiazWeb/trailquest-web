@@ -1,6 +1,6 @@
 <template>
   <div class="map" style="height: 50vh; width: 100%">
-    <l-map :options="{ scrollWheelZoom: true }" ref="map" v-model:zoom="zoom" :center="center">
+    <l-map :options="{ scrollWheelZoom: true }" ref="map" v-model:zoom="zoom" :center="center" :max-bounds='[[90, 180], [-90,-180]]' :min-zoom="1">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
@@ -46,7 +46,7 @@ export default {
   },
   data() {
     return {
-      zoom: 15,
+      zoom: 10,
       addedMarker: [],
     };
   },
@@ -57,7 +57,7 @@ export default {
     },
     modifyCenter(event) {
       //Evento para reubicar centro a la posición del tesoro seleccionado en la lista
-      this.zoom = 14;
+      this.zoom = 10;
       this.$emit("modifyCenter", event.latlng);
     },
   },
