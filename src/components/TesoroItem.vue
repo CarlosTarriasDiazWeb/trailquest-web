@@ -97,7 +97,7 @@
             >
             </star-rating>
           </div>
-          <input type="file" name="foto-resena" id="foto-resena" />
+          <input type="file" name="foto-resena" id="foto-resena" /><br />
           <textarea
             class="txt-resena"
             name="escribirResena"
