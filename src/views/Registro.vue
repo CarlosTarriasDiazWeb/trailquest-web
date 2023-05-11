@@ -10,11 +10,29 @@
           <h1>Registrate</h1>
           <form v-on:submit.prevent="enviarFormulario">
             <label for="" required>Nombre usuario:</label>
-            <input class="input px-3" type="text" v-model="name" name="name" id="nom_usuario" /><br />
+            <input
+              class="input px-3"
+              type="text"
+              v-model="name"
+              name="name"
+              id="nom_usuario"
+            /><br />
             <label for="" required>Contraseña:</label>
-            <input class="input px-3" type="password" v-model="password1" name="password1" id="con_usuario" /><br />
+            <input
+              class="input px-3"
+              type="password"
+              v-model="password1"
+              name="password1"
+              id="con_usuario"
+            /><br />
             <label for="" required>Repita su contraseña:</label>
-            <input class="input px-3" type="password" v-model="password2" name="password2" id="rep_contra" /><br /><br />
+            <input
+              class="input px-3"
+              type="password"
+              v-model="password2"
+              name="password2"
+              id="rep_contra"
+            /><br /><br />
 
             <input type="submit" value="Iniciar" class="submit" /><br />
             <a href="/login" class="registro">¿Eres miembro? Inicia sesión</a>
@@ -87,11 +105,13 @@ export default {
 
       formData.append("usu_username", this.name);
       formData.append("usu_password", this.password1);
+
+      //Para que no pete en la API, estos datos posteriormente no se utilizan.
       formData.append("usu_foto", "");
       formData.append("usu_id", "10");
 
       axios
-        .post("http://172.23.7.110:8081/user/register", formData, {
+        .post("http://localhost:8081/user/register", formData, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -101,15 +121,14 @@ export default {
           if (response.data.includes("Usuari registrat correctament")) {
             //Guardamos el booleano, el user_id?, el username? TODO
             this.setCookie("login", "true", 2);
-            this.setCookie("usu_username", this.name);
-            this.setCookie("usu_id", response.data.split(" ").slice(-1))
+            this.setCookie("usu_username", this.name, 2);
+            this.getUserId(this.getValue("usu_username"));
 
-            //Tenemos que decidir si es admin o jugador de alguna manera... TODO
+            //Siempre se registra un usuario jugador.
             this.$router.push("jugador");
-          }
-          else {
+          } else {
             this.error = true;
-            this.mensajesError.push("El usuario ya existe en el sistema")
+            this.mensajesError.push("El usuario ya existe en el sistema");
           }
         })
         .catch((error) => {
@@ -125,6 +144,28 @@ export default {
       d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
       let expires = d.toUTCString();
       document.cookie = `${key}=${value}; Path=/; Expires=${expires}; Secure`;
+    },
+    getValue(key) {
+      return document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${key}=`))
+        ?.split("=")[1];
+    },
+    getUserId(username) {
+      //Realizamos petición asíncrona para buscar de la lista de jugadores, cual tiene el nombre del usuario que
+      //ha iniciado sesión
+      fetch("http://localhost:8081/jugador", {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((res) => {
+          //Si se ha realizado la petición con éxito guardamos el id del usuario que ha iniciado sesión en el almacenamiento del navegador.
+          //console.log(res);
+          let userId = res.find((usuario) => usuario.usu_username === username).usu_id;
+          //console.log(userId);
+          this.setCookie("usu_id", userId, 2);
+        })
+        .catch((error) => console.log(error));
     },
   },
   computed: {

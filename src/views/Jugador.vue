@@ -2,26 +2,39 @@
   <NavBar login="true"></NavBar>
 
   <main>
-
-
     <div id="mapContainer">
       <span id="todos" @click="filterAll" class="button badge bg-success">Todos</span>
-      <span id="encontrados" @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
-      <Map :localizaciones="localizacionesMostrar" :center="center" @modifyCenter="modifyCenter" :isAdmin="isAdmin"></Map>
+      <span id="encontrados" @click="filterEncontrados" class="button badge bg-secondary"
+        >Encontrados</span
+      >
+      <Map
+        :localizaciones="localizacionesMostrar"
+        :center="center"
+        @modifyCenter="modifyCenter"
+        :isAdmin="isAdmin"
+      ></Map>
     </div>
 
     <div class="bg-accent p-3 d-flex flex-row justify-content-end">
       <div class="form-row w-40">
         <div class="col">
-          <input type="text" class="form-control" v-model="palabraFiltro" placeholder="Escribe nombre del tesoro..." />
+          <input
+            type="text"
+            class="form-control"
+            v-model="palabraFiltro"
+            placeholder="Escribe nombre del tesoro..."
+          />
         </div>
       </div>
       <div class="form-row w-40 ms-5">
         <button @click.prevent="filtrarTesoros" class="buscar">Buscar</button>
       </div>
     </div>
-    <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
-
+    <Tesoros
+      :isAdmin="isAdmin"
+      :localizaciones="localizacionesMostrar"
+      @posicionarCentro="posicionarCentro"
+    ></Tesoros>
   </main>
   <footer>
     <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -71,7 +84,7 @@ export default {
         .split("; ")
         .find((row) => row.startsWith(`${key}=`))
         ?.split("=")[1];
-    }
+    },
   },
   data() {
     return {
@@ -86,62 +99,63 @@ export default {
 
   mounted() {
     //Mostramos por defecto todos los tesoros (descubierto-no descubierto)
-
-    // Escoger el endpoint de la API que permite coger los tesoros /de un usuario específico/
-    // el id o nombre deberíamos tenerlo en la cookie.
-
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://172.23.7.110:8081/tesorosweb",
+      url: "http://localhost:8081/tesorosweb",
       auth: {
         username: this.getValue("usu_username"),
         password: this.getValue("usu_password"),
-        type: 'digest'
-      }
+        type: "digest",
+      },
     }).then((response) => {
       this.todas = Array.from(response.data);
       console.log(this.todas);
       //Añadimos array de posición en el mapa
       this.todas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
       //Añadimos id de BD a la localiacion
-      this.todas.map((loc) => loc.itemID = loc.id);
+      this.todas.map((loc) => (loc.itemID = loc.id));
 
       //Para testear reseñas
-      this.todas.map((loc) => loc.descubierto = false)
+      this.todas.map((loc) => (loc.descubierto = false));
 
       //Por defecto mostramos todos los tesoro.
-
       this.localizacionesMostrar = [...this.todas];
 
       //Recogemos los tesoros descubiertos con otra llamada a la API.
       axios({
         method: "get",
-        url: "http://172.23.7.110:8081/tesorosweb/3/encontrados",
+        url: `http://localhost:8081/tesorosweb/${this.getValue("usu_id")}/encontrados`,
       }).then((response) => {
+        //Recogemos las filas que nos indican la id de los tesoros descubiertos.
+        const tesorosEncontrados = Array.from(response.data) || [];
+        console.log(this.tesorosEncontrados);
+        if (tesorosEncontrados.length > 0) {
+          //Guardamos las id de los tesoros encontrados para más facilidad.
+          const idEncontrados = new Set(tesorosEncontrados.map((tes) => tes.tes_id));
+          console.log(idEncontrados);
 
-        const tesorosEncontrados = Array.from(response.data);
-        const idEncontrados = new Set(tesorosEncontrados.map(tes => tes.tes_id));
-        console.log(idEncontrados);
+          //Construimos el array de tesoros descubiertos
+          this.localizacionesEncontradas = this.todas.filter((loc) => idEncontrados.has(loc.id));
 
+          console.log(this.localizacionesEncontradas);
 
-        this.localizacionesEncontradas = this.todas.filter(loc => idEncontrados.has(loc.id));
-        console.log(this.localizacionesEncontradas)
-        //Añadimos array de posición en el mapa
-        this.localizacionesEncontradas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
-        //Añadimos id de BD a la localiacion
-        this.localizacionesEncontradas.map((loc) => loc.itemID = loc.id);
-        //Sabemos que estos tesoros están descubiertos
-        this.localizacionesEncontradas.map((loc) => loc.descubierto = true)
+          //Añadimos array de posición en el mapa
+          this.localizacionesEncontradas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
+          //Añadimos id de BD a la localiacion
+          this.localizacionesEncontradas.map((loc) => (loc.itemID = loc.id));
+          //Sabemos que estos tesoros están descubiertos
+          this.localizacionesEncontradas.map((loc) => (loc.descubierto = true));
 
-        //Ponemos los que no estan descubiertos 
-        this.todas.map(loc => { if (!idEncontrados.has(loc.id)) { loc.descubierto = false } })
+          //Ponemos los que están descubiertos
+          this.todas.map((loc) => {
+            if (idEncontrados.has(loc.id)) {
+              loc.descubierto = true;
+            }
+          });
+        }
       });
     });
-
-
-
-
   },
 };
 </script>
@@ -198,7 +212,7 @@ footer {
   color: var(--primary);
 }
 
-.form-control{
+.form-control {
   border-radius: 2rem;
   width: 300px;
   margin: auto, 10px;
