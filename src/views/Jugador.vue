@@ -85,6 +85,12 @@ export default {
         .find((row) => row.startsWith(`${key}=`))
         ?.split("=")[1];
     },
+    setCookie(key, value, exdays) {
+      const d = new Date();
+      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+      let expires = d.toUTCString();
+      document.cookie = `${key}=${value}; Path=/; Expires=${expires}; Secure`;
+    },
   },
   data() {
     return {
@@ -134,6 +140,10 @@ export default {
           //Guardamos las id de los tesoros encontrados para más facilidad.
           const idEncontrados = new Set(tesorosEncontrados.map((tes) => tes.tes_id));
           console.log(idEncontrados);
+
+          //Seteamos número de tesoros encontrados en la cookie
+          let numEncontrados = idEncontrados.length > 0 ? idEncontrados.length : 0;
+          this.setCookie("numEncontrados", numEncontrados, 2);
 
           //Construimos el array de tesoros descubiertos
           this.localizacionesEncontradas = this.todas.filter((loc) => idEncontrados.has(loc.id));
