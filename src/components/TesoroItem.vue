@@ -87,7 +87,7 @@ export default defineComponent({
     return {
       textArea: false,
       resenaButtonText: "Añadir Reseña",
-      src: `http://172.23.7.116:8081/tesoros/imagenes/${this.fotoTesoro}`,
+      src: `http://172.23.7.117:8081/tesoros/imagenes/${this.fotoTesoro}`,
       resenas: [],
       comentario: "",
       rating: 0
@@ -135,7 +135,7 @@ export default defineComponent({
 
       //Hacer petición asíncrona para eliminar este tesoro - TODO
       const axios = require("axios");
-      axios.delete(`http://172.23.7.116:8081/tesoros/${this.itemID}`)
+      axios.delete(`http://172.23.7.117:8081/tesoros/${this.itemID}`)
         .then(
           //Forzamos refresco del componente
           this.$router.push("/jugador")
@@ -164,7 +164,7 @@ export default defineComponent({
       formData.append("username", username)
 
       const axios = require("axios");
-      axios.post(`http://172.23.7.110:8081/tesoros/${userID}/resena/${this.itemID}`, formData, {
+      axios.post(`http://172.23.7.117:8081/tesoros/${userID}/resena/${this.itemID}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }

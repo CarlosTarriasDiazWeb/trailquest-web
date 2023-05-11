@@ -28,7 +28,6 @@
       <router-link class="perfil-btn w-40 btn" to="/perfil">Ir a mi perfil</router-link>
     </div>
   </footer>
-
 </template>
 
 <script>
@@ -88,7 +87,7 @@ export default {
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://172.23.7.110:8081/tesoros",
+      url: "http://172.23.7.117:8081/tesoros",
     }).then((response) => {
       this.todas = Array.from(response.data);
       console.log(this.todas);
@@ -108,7 +107,7 @@ export default {
     //Recogemos los tesoros descubiertos con otra llamada a la API.
     axios({
       method: "get",
-      url: "http://172.23.7.110:8081/tesoros/3/encontrados",
+      url: "http://172.23.7.117:8081/tesoros/3/encontrados",
     }).then((response) => {
 
       const tesorosEncontrados = Array.from(response.data);
@@ -143,7 +142,7 @@ footer {
   background-color: var(--accent);
 }
 
-.button{
+.button {
   background-color: #d9d9d9;
   border: none;
   border-radius: 2em;
@@ -157,7 +156,7 @@ footer {
   cursor: pointer;
 }
 
-.buscar{
+.buscar {
   background-color: #d9d9d9;
   border: none;
   border-radius: 2em;
@@ -165,7 +164,7 @@ footer {
   transition: all 0.3s ease-in-out;
 }
 
-.buscar:hover{
+.buscar:hover {
   background-color: #78d3ae;
   color: #fff;
   cursor: pointer;
@@ -203,7 +202,7 @@ span {
   transition: all 0.3s ease-in-out;
 }
 
-#encontrados:hover{
+#encontrados:hover {
   background-color: #d9d9d9;
   cursor: pointer;
 }
@@ -214,7 +213,7 @@ span {
   transition: all 0.3s ease-in-out;
 }
 
-#todos:hover{
+#todos:hover {
   background-color: #78d3ae;
   cursor: pointer;
 }

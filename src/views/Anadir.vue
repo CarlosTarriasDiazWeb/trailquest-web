@@ -111,7 +111,7 @@ export default {
       formData.append("foto_tesoro", fileInput.files[0]);
 
       axios
-        .post("http://172.23.7.110:8081/tesoros", formData, {
+        .post("http://172.23.7.117:8081/tesoros", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

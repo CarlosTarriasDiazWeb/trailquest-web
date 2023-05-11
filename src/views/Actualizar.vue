@@ -1,83 +1,37 @@
 <template>
   <header class="bg-green">
     <nav class="nav d-flex justify-content-end p-4">
-      <RouterLink class="my-2 text-center volver nav-link" to="/admin"
-        >Volver al mapa</RouterLink
-      >
+      <RouterLink class="my-2 text-center volver nav-link" to="/admin">Volver al mapa</RouterLink>
     </nav>
   </header>
 
   <div class="fondoColor">
     <main class="container">
       <h1>Modificar tesoro</h1>
-      <form
-        v-on:submit.prevent="enviarFormulario"
-        enctype="multipart/form-data"
-      >
+      <form v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
         <label for="" required>Nombre monumento:</label><br />
-        <input
-          type="text"
-          v-model="nombre"
-          class="input"
-          id="nom_tesoro"
-        /><br /><br />
+        <input type="text" v-model="nombre" class="input" id="nom_tesoro" /><br /><br />
         <input type="file" name="foto_tesoro" id="foto_tesoro" /><br /><br />
         <label for="" required>Descripción:</label><br />
-        <textarea
-          v-model="descripcion"
-          name=""
-          id="inf_tesoro"
-          class="input"
-          cols="30"
-          rows="10"
-        ></textarea
-        ><br /><br />
+        <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"></textarea><br /><br />
 
         <label for="latitud" required>Latitud:</label><br />
-        <input
-          v-model="latitud"
-          type="number"
-          class="input"
-          id="latitud"
-        /><br /><br />
+        <input v-model="latitud" type="number" class="input" id="latitud" /><br /><br />
         <label for="longitud">Longitud:</label><br />
-        <input
-          v-model="longitud"
-          type="number"
-          class="input"
-          id="longitud"
-        /><br /><br />
-        <input
-          type="button"
-          @click="addMarker"
-          class="marcador"
-          value="Añadir Marcador"
-        />
+        <input v-model="longitud" type="number" class="input" id="longitud" /><br /><br />
+        <input type="button" @click="addMarker" class="marcador" value="Añadir Marcador" />
         <br /><br />
 
-        <div
-          class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center"
-        >
-          <input
-            type="submit"
-            value="Hecho"
-            class="submit perfil-btn w-40 btn"
-          />
+        <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
+          <input type="submit" value="Hecho" class="submit perfil-btn w-40 btn" />
         </div>
       </form>
-      <div
-        v-if="error"
-        class="error d-flex flex-column py-3 g-2 align-content-center px-2"
-      >
+      <div v-if="error" class="error d-flex flex-column py-3 g-2 align-content-center px-2">
         <p v-for="(mensaje, index) in mensajesError" :key="index">
           {{ mensaje }}
         </p>
       </div>
-      <Map
-        :modify="modify"
-        :center="center"
-        :localizaciones="localizacion"
-      ></Map>
+      <Map :modify="modify" :center="center" :localizaciones="localizacion"></Map>
     </main>
   </div>
 </template>
@@ -169,7 +123,7 @@ export default {
 
       // Realizamos petición asíncrona a la API.
       axios
-        .put(`http://172.23.7.110:8081/tesoros/${this.itemID}`, formData, {
+        .put(`http://172.23.7.117:8081/tesoros/${this.itemID}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

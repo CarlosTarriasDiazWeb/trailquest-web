@@ -11,21 +11,9 @@
             <h1>Inicia sesión</h1>
             <form novalidate v-on:submit.prevent="enviarFormulario">
               <label for="" required>Nombre usuario:</label>
-              <input
-                type="text"
-                class="input px-3"
-                v-model="name"
-                id="nom_usuario"
-                required
-              /><br /><br />
+              <input type="text" class="input px-3" v-model="name" id="nom_usuario" required /><br /><br />
               <label for="" required>Contraseña:</label>
-              <input
-                type="password"
-                class="input px-3"
-                v-model="password"
-                id="con_usuario"
-                required
-              /><br /><br />
+              <input type="password" class="input px-3" v-model="password" id="con_usuario" required /><br /><br />
 
               <button type="submit" class="submit">Iniciar</button><br />
               <a class="registro" href="/registro">¿Eres nuevo? Regístrate</a>
@@ -92,7 +80,7 @@ export default {
       //const token = `${this.name}:${this.password}`;
 
       axios
-        .post("http://172.23.7.110:8081/jugador", formData, {
+        .post("http://172.23.7.117:8081/jugador", formData, {
           headers: {
             "Content-Type": "application/json",
             //Authorization: `Basic ${token}`, //???
@@ -141,6 +129,7 @@ export default {
 body {
   background-color: #59a888;
 }
+
 main {
   height: 100%;
 }

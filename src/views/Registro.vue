@@ -2,6 +2,7 @@
   <header>
     <NavBar login="false"></NavBar>
   </header>
+
   <body>
     <div class="imagen-fondo">
       <div class="ajustar">
@@ -9,29 +10,11 @@
           <h1>Registrate</h1>
           <form v-on:submit.prevent="enviarFormulario">
             <label for="" required>Nombre usuario:</label>
-            <input
-              class="input px-3"
-              type="text"
-              v-model="name"
-              name="name"
-              id="nom_usuario"
-            /><br />
+            <input class="input px-3" type="text" v-model="name" name="name" id="nom_usuario" /><br />
             <label for="" required>Contraseña:</label>
-            <input
-              class="input px-3"
-              type="password"
-              v-model="password1"
-              name="password1"
-              id="con_usuario"
-            /><br />
+            <input class="input px-3" type="password" v-model="password1" name="password1" id="con_usuario" /><br />
             <label for="" required>Repita su contraseña:</label>
-            <input
-              class="input px-3"
-              type="password"
-              v-model="password2"
-              name="password2"
-              id="rep_contra"
-            /><br /><br />
+            <input class="input px-3" type="password" v-model="password2" name="password2" id="rep_contra" /><br /><br />
 
             <input type="submit" value="Iniciar" class="submit" /><br />
             <a href="/login" class="registro">¿Eres miembro? Inicia sesión</a>
@@ -106,7 +89,7 @@ export default {
       formData.append("password", this.password1);
 
       axios
-        .post("http://172.23.7.102:8081/usuario", formData, {
+        .post("http://172.23.7.117:8081/usuario", formData, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -200,6 +183,7 @@ form {
   padding-left: 20px;
   padding-right: 20px;
 }
+
 .submit:hover {
   background-color: #000;
   color: #fff;
