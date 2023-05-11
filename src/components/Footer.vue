@@ -31,5 +31,6 @@ footer {
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
+  z-index: 90;
 }
 </style>
