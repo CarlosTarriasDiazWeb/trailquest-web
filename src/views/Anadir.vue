@@ -28,7 +28,6 @@
         <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
           <input type="submit" value="Hecho" class="submit perfil-btn w-40 btn" />
         </div>
-
       </form>
       <div v-if="error" class="error d-flex flex-column py-3 g-2 align-content-center px-2">
         <p v-for="(mensaje, index) in mensajesError" :key="index">
@@ -172,6 +171,10 @@ export default {
 </script>
 
 <style scoped>
+
+footer {
+  margin-top: 4rem;
+}
 template {
   margin: 10px;
 }
@@ -200,9 +203,9 @@ header {
   align-items: center;
   border-radius: 2em 2em 0em 0em;
   justify-content: center;
-  flex-wrap: wrap;
   flex-direction: column;
-  padding: 20px 0px 0px 0px;
+  padding: 30px 0px 0px 0px;
+  margin: 10px, 0px;
   background-color: #fff;
 }
 
@@ -272,5 +275,6 @@ header {
 
 .bg-accent {
   background-color: var(--accent);
+
 }
 </style>
