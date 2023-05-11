@@ -93,10 +93,11 @@ export default {
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://172.23.7.117:8081/tesoros",
+      url: "http://172.23.7.110:8081/tesorosweb",
       auth: {
         username: this.getValue("usu_username"),
-        password: this.getValue("usu_password")
+        password: this.getValue("usu_password"),
+        type: 'digest'
       }
     }).then((response) => {
       this.todas = Array.from(response.data);
@@ -116,7 +117,7 @@ export default {
       //Recogemos los tesoros descubiertos con otra llamada a la API.
       axios({
         method: "get",
-        url: "http://172.23.7.117:8081/tesoros/3/encontrados",
+        url: "http://172.23.7.110:8081/tesorosweb/3/encontrados",
       }).then((response) => {
 
         const tesorosEncontrados = Array.from(response.data);

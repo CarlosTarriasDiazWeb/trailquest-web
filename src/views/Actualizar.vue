@@ -123,7 +123,7 @@ export default {
 
       // Realizamos petición asíncrona a la API.
       axios
-        .put(`http://172.23.7.117:8081/tesoros/${this.itemID}`, formData, {
+        .put(`http://172.23.7.117:8081/tesorosweb/${this.itemID}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

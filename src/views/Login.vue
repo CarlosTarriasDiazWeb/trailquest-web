@@ -84,7 +84,7 @@ export default {
       //const token = `${this.name}:${this.password}`;
 
       axios
-        .post("http://172.23.7.117:8081/user/login", formData, {
+        .post("http://172.23.7.110:8081/user/login", formData, {
           headers: {
             "Content-Type": "application/json",
 
@@ -96,11 +96,16 @@ export default {
           console.log(response)
           //Si el usuario se autentica correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
           //Cambiar la condición..
-          if (response.data === "Login correcte") {
+          if (response.data.includes("Login correcte")) {
             //Guardamos el booleano, el user_id?, el username?
             this.setCookie("login", "true", 2);
             this.setCookie("usu_username", this.name);
-            this.setCookie("usu_password", this.password);
+
+
+            //let usu_id = this.getUserId(this.getValue("usu_username"))
+
+            //this.setCookie("usu_id", response.data.split(" ").slice(-1))
+
             //Tenemos que decidir si es admin o jugador de alguna manera... TODO
             this.$router.push("jugador");
           }
@@ -123,6 +128,15 @@ export default {
       let expires = d.toUTCString();
       document.cookie = `${key}=${value}; Path=/; Expires=${expires}; Secure`;
     },
+    getValue(key) {
+      return document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${key}=`))
+        ?.split("=")[1];
+    },
+    getUserId() {
+      fetch("http:/172.23.7.110:").then()
+    }
   },
   computed: {
     nombreInvalidLength() {

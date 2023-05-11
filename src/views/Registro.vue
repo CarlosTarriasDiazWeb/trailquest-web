@@ -91,18 +91,19 @@ export default {
       formData.append("usu_id", "10");
 
       axios
-        .post("http://172.23.7.117:8081/user/register", formData, {
+        .post("http://172.23.7.110:8081/user/register", formData, {
           headers: {
             "Content-Type": "application/json",
           },
         })
         .then((response) => {
           //Si el usuario se registra correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
-          if (response.data === "Usuari registrat correctament") {
+          if (response.data.includes("Usuari registrat correctament")) {
             //Guardamos el booleano, el user_id?, el username? TODO
             this.setCookie("login", "true", 2);
             this.setCookie("usu_username", this.name);
-            this.setCookie("usu_password", this.password);
+            this.setCookie("usu_id", response.data.split(" ").slice(-1))
+
             //Tenemos que decidir si es admin o jugador de alguna manera... TODO
             this.$router.push("jugador");
           }
