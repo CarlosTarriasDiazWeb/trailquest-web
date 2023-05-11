@@ -102,6 +102,7 @@ export default {
             //Guardamos el booleano, el user_id?, el username? TODO
             this.setCookie("login", "true", 2);
             this.setCookie("usu_username", this.name);
+            this.setCookie("usu_password", this.password);
             //Tenemos que decidir si es admin o jugador de alguna manera... TODO
             this.$router.push("jugador");
           }

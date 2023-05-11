@@ -138,7 +138,7 @@ export default defineComponent({
       axios.delete(`http://172.23.7.117:8081/tesoros/${this.itemID}`)
         .then(
           //Forzamos refresco del componente
-          this.$router.push("/jugador")
+          this.$router.push("/admin")
         )
         .catch(
           error => console.log(error)
@@ -156,11 +156,16 @@ export default defineComponent({
       //recoger datos del formulario
       const formData = new FormData();
       const resenaFoto = document.getElementById("foto-resena")
+      console.log(resenaFoto.files[0]);
+      let fotoEnviar = null
 
-
+      if (resenaFoto.files[0] === undefined || resenaFoto.files[0] === null) fotoEnviar = ""
+      else {
+        fotoEnviar = resenaFoto.files[0];
+      }
       formData.append("comentario", this.comentario)
       formData.append("rating", this.rating)
-      formData.append("foto-resena", resenaFoto.files[0])
+      formData.append("foto-resena", fotoEnviar)
       formData.append("username", username)
 
       const axios = require("axios");
@@ -171,6 +176,7 @@ export default defineComponent({
       })
         .then((response) => {
           console.log(response);
+          this.$router.push("/jugador");
         })
         .catch((error) => {
           console.log(error)

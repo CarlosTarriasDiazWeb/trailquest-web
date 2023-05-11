@@ -87,9 +87,10 @@ export default {
         .post("http://172.23.7.117:8081/user/login", formData, {
           headers: {
             "Content-Type": "application/json",
+
             //Authorization: `Basic ${token}`, //???
             // Authorization : `Bearer ${localStorage.getItem("access_token")}`
-          },
+          }
         })
         .then((response) => {
           console.log(response)
@@ -99,6 +100,7 @@ export default {
             //Guardamos el booleano, el user_id?, el username?
             this.setCookie("login", "true", 2);
             this.setCookie("usu_username", this.name);
+            this.setCookie("usu_password", this.password);
             //Tenemos que decidir si es admin o jugador de alguna manera... TODO
             this.$router.push("jugador");
           }

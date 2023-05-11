@@ -66,6 +66,12 @@ export default {
     modifyCenter(position) {
       this.center = [position.lat, position.lng];
     },
+    getValue(key) {
+      return document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${key}=`))
+        ?.split("=")[1];
+    }
   },
   data() {
     return {
@@ -88,6 +94,10 @@ export default {
     axios({
       method: "get",
       url: "http://172.23.7.117:8081/tesoros",
+      auth: {
+        username: this.getValue("usu_username"),
+        password: this.getValue("usu_password")
+      }
     }).then((response) => {
       this.todas = Array.from(response.data);
       console.log(this.todas);
