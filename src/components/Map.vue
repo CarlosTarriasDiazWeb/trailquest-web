@@ -1,6 +1,6 @@
 <template>
   <div class="map" style="height: 50vh; width: 100%">
-    <l-map :options="{ scrollWheelZoom: true }" ref="map" v-model:zoom="zoom" :center="center" :max-bounds='[[90, 180], [-90,-180]]' :min-zoom="1">
+    <l-map :options="{ scrollWheelZoom: true }" ref="map" v-model:zoom="zoom" :center="center" :max-bounds='[[90, 180], [-90,-180]]' :min-zoom="3">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"

@@ -103,6 +103,8 @@ main {
 
 .bg-accent {
   background-color: var(--accent);
+  display: flex;
+  align-items: baseline;
 }
 
 .perfil-btn {
@@ -114,19 +116,23 @@ main {
 
 .buscar {
   background-color: #d9d9d9;
-  color: black;
+  color: #000;
   border: none;
   border-radius: 2em;
+  padding: 4px, 10px;
   transition: all 0.3s ease-in-out;
-  padding: 3px 10px;
 }
 
 .buscar:hover {
-  background-color: #a7a8a8;
-  color: white;
+  background-color: #78d3ae;
+  color: #fff;
   cursor: pointer;
 }
-
+.form-control{
+  border-radius: 2rem;
+  width: 300px;
+  margin: auto, 10px;
+}
 .perfil-btn:hover {
   background-color: var(--white);
   color: var(--primary);

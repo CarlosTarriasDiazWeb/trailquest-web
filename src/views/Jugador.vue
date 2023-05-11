@@ -142,6 +142,8 @@ footer {
 
 .bg-accent {
   background-color: var(--accent);
+  display: flex;
+  align-items: baseline;
 }
 
 .button {
@@ -160,9 +162,10 @@ footer {
 
 .buscar {
   background-color: #d9d9d9;
+  color: #000;
   border: none;
   border-radius: 2em;
-  padding: 4px;
+  padding: 4px, 10px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -182,6 +185,12 @@ footer {
 .perfil-btn:hover {
   background-color: var(--white);
   color: var(--primary);
+}
+
+.form-control{
+  border-radius: 2rem;
+  width: 300px;
+  margin: auto, 10px;
 }
 
 span:hover {
