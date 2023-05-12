@@ -23,7 +23,7 @@
       <div class="row">
         <p class="p-0">Número de tesoros: {{ numeroTesoros }}</p>
       </div>
-      <div class="row">Nivel: {{ calcNivelUsuario(nivelUsuario) }}</div>
+      <div class="row">Nivel: {{ nivelUsuario }}</div>
 
       <!-- Progress bar -->
       <section>
@@ -111,8 +111,16 @@ export default {
       }
     },
     calcNivelUsuario() {
-      if (this.numeroTesoros == 0) {
-        this.nivelUsuario == "Novel";
+
+      switch(true) {
+        case this.numeroTesoros < 0.20*this.getValue("numeroTotal") : this.nivelUsuario = "Novato"
+          break;
+        case this.numeroTesoros >= 0.20*this.getValue("numeroTotal") && this.numeroTesoros < 0.50*this.getValue("numeroTotal") : this.nivelUsuario = "Principiante"
+          break;
+        case this.numeroTesoros >= 0.50*this.getValue("numeroTotal") && this.numeroTesoros < 0.80*this.getValue("numeroTotal") : this.nivelUsuario = "Caminante"
+          break;
+        case this.numeroTesoros >= 0.80*this.getValue("numeroTotal") : this.nivelUsuario = "Experto"
+          break;
       }
     },
     getValue(key) {
