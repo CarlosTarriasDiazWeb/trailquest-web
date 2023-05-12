@@ -79,10 +79,10 @@ router.beforeEach(async (to) => {
   }
 
   //Si el usuario tiene sesión iniciada, no tiene sentido permitirle ir a los formularios o a la portada
-  if (getValue("login") && (to.name === "login" || to.name === "registro" || to.name === "home" || to.name === "admin") && getValue("type").includes("jugador")) {
+  if (getValue("login") && (to.name === "login" || to.name === "registro" || to.name === "home" || to.name === "admin") && getValue("type")?.includes("jugador")) {
     return { name: "jugador" };
   }
-  else if (getValue("login") && (to.name === "login" || to.name === "registro" || to.name === "home" || to.name === "jugador") && getValue("type").includes("admin")) {
+  else if (getValue("login") && (to.name === "login" || to.name === "registro" || to.name === "home" || to.name === "jugador") && getValue("type")?.includes("admin")) {
     return { name: "admin" };
   }
 }); 
