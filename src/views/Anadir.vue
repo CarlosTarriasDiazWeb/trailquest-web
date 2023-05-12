@@ -13,16 +13,8 @@
         <input type="text" v-model="nombre" class="input" id="nom_tesoro" required /><br /><br />
         <input type="file" name="foto_tesoro" id="foto_tesoro" /><br /><br />
         <label for="">Descripción:</label><br />
-        <textarea
-          v-model="descripcion"
-          name=""
-          id="inf_tesoro"
-          class="input"
-          cols="30"
-          rows="10"
-          required
-        ></textarea
-        ><br /><br />
+        <textarea v-model="descripcion" name="" id="inf_tesoro" class="input" cols="30" rows="10"
+          required></textarea><br /><br />
 
         <label for="latitud">Latitud:</label><br />
         <input v-model="latitud" type="number" class="input" id="latitud" required /><br /><br />
@@ -115,7 +107,7 @@ export default {
       formData.append("foto_tesoro", fileInput.files[0]);
 
       axios
-        .post("http://135.181.182.115:8081/tesorosweb", formData, {
+        .post("http://localhost:8081/tesorosweb", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -146,7 +138,6 @@ export default {
       });
       //Centramos el mapa en la ubicación escogida.
       this.modifyCenter();
-      console.log("Marcador añadido!");
     },
     modifyCenter() {
       this.center = [this.latitud, this.longitud];
@@ -179,6 +170,7 @@ export default {
 footer {
   margin-top: 4rem;
 }
+
 template {
   margin: 10px;
 }
@@ -195,9 +187,8 @@ header {
   background-color: #a7a8a8;
   color: #fff;
   transition: all 0.3s ease-in-out;
-  box-shadow: 
-  6px 6px 12px #59a888
-  , -6px -6px 12px #59a888;
+  box-shadow:
+    6px 6px 12px #59a888, -6px -6px 12px #59a888;
 }
 
 .volver:hover {
@@ -243,8 +234,8 @@ header {
   background-color: white;
   color: black;
   cursor: pointer;
-  box-shadow: 
-  inset 4px 4px 12px #a7a8a8;
+  box-shadow:
+    inset 4px 4px 12px #a7a8a8;
 }
 
 .marcador {

@@ -84,10 +84,9 @@ export default {
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://135.181.182.115:8081/tesoros",
+      url: "http://localhost:8081/tesorosweb",
     }).then((response) => {
       this.todas = Array.from(response.data);
-      console.log(this.todas);
       //Añadimos array de posición en el mapa
       this.todas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
       //Añadimos id de BD a la localiacion

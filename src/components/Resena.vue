@@ -14,7 +14,7 @@
         >
         </star-rating>
       </div>
-      <div><img :src="foto" class="rounded float-start" alt="foto_tesoro" /><br /></div>
+      <div><img :src="src" class="rounded float-start" alt="foto_tesoro" /><br /></div>
     </div>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      src: `http://135.181.182.115:8081/tesorosweb/imagenes/${this.foto}`
+      src: `http://localhost:8081/tesorosweb/imagenes/${this.foto}`
     };
   },
   props: {

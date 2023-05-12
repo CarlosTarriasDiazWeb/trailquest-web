@@ -4,37 +4,21 @@
   <main>
     <div id="mapContainer">
       <span id="todos" @click="filterAll" class="button badge bg-success">Todos</span>
-      <span id="encontrados" @click="filterEncontrados" class="button badge bg-secondary"
-        >Encontrados</span
-      >
-      <Map
-        :localizaciones="localizacionesMostrar"
-        :center="center"
-        @modifyCenter="modifyCenter"
-        :isAdmin="isAdmin"
-      ></Map>
+      <span id="encontrados" @click="filterEncontrados" class="button badge bg-secondary">Encontrados</span>
+      <Map :localizaciones="localizacionesMostrar" :center="center" @modifyCenter="modifyCenter" :isAdmin="isAdmin"></Map>
     </div>
 
     <div class="bg-accent p-3 d-flex flex-row justify-content-end">
       <div class="form-row w-40">
         <div class="col">
-          <input
-            type="text"
-            class="form-control"
-            v-model="palabraFiltro"
-            placeholder="Escribe nombre del tesoro..."
-          />
+          <input type="text" class="form-control" v-model="palabraFiltro" placeholder="Escribe nombre del tesoro..." />
         </div>
       </div>
       <div class="form-row w-40 ms-5">
-        <button @click.prevent="filtrarTesoros" class="buscar">Buscar</button>
+        <button @click="filtrarTesoros" class="buscar">Buscar</button>
       </div>
     </div>
-    <Tesoros
-      :isAdmin="isAdmin"
-      :localizaciones="localizacionesMostrar"
-      @posicionarCentro="posicionarCentro"
-    ></Tesoros>
+    <Tesoros :isAdmin="isAdmin" :localizaciones="localizacionesMostrar" @posicionarCentro="posicionarCentro"></Tesoros>
   </main>
   <footer>
     <div class="fixed-bottom bg-accent py-3 w-100 d-flex flex-row justify-content-center">
@@ -57,7 +41,6 @@ export default {
   },
   methods: {
     filterAll() {
-      console.log(this.todas);
       this.localizacionesMostrar = [...this.todas];
     },
     filterEncontrados() {
@@ -69,12 +52,13 @@ export default {
     },
     filtrarTesoros() {
       //Mostrar tesoros que coinciden con la cadena de búsqueda.
-      //this.localizacionesMostrar = [...this.todas];
-      this.localizacionesMostrar = [
-        ...this.localizacionesMostrar.filter((localizacion) =>
+      this.localizacionesMostrar = [...this.todas];
+
+      this.localizacionesMostrar = [...
+        this.localizacionesMostrar.filter((localizacion) =>
           localizacion.titulo.toLowerCase().includes(this.palabraFiltro.toLowerCase())
-        ),
-      ];
+        )]
+
     },
     modifyCenter(position) {
       this.center = [position.lat, position.lng];
@@ -108,7 +92,7 @@ export default {
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://135.181.182.115:8081/tesorosweb",
+      url: "http://localhost:8081/tesorosweb",
       auth: {
         username: this.getValue("usu_username"),
         password: this.getValue("usu_password"),
@@ -135,15 +119,12 @@ export default {
       //Recogemos los tesoros descubiertos con otra llamada a la API.
       axios({
         method: "get",
-        url: `http://135.181.182.115:8081/tesorosweb/${this.getValue("usu_id")}/encontrados`,
+        url: `http://localhost:8081/tesorosweb/${this.getValue("usu_id")}/encontrados`,
       }).then((response) => {
         //Recogemos las filas que nos indican la id de los tesoros descubiertos.
-        
+
         const tesorosEncontrados = Array.from(response.data) || [];
-        
-        
-        
-        console.log(this.tesorosEncontrados);
+
         if (tesorosEncontrados.length > 0) {
           //Guardamos las id de los tesoros encontrados para más facilidad.
           const idEncontrados = new Set(tesorosEncontrados.map((tes) => tes.tes_id));
@@ -155,8 +136,7 @@ export default {
 
           //Construimos el array de tesoros descubiertos
           this.localizacionesEncontradas = this.todas.filter((loc) => idEncontrados.has(loc.id));
-          const nombreDescubiertos = Array.from(this.localizacionesEncontradas,loc => loc.titulo);
-          console.log(this.localizacionesEncontradas);
+          const nombreDescubiertos = Array.from(this.localizacionesEncontradas, loc => loc.titulo);
           this.setCookie("nombreDescubiertos", JSON.stringify(nombreDescubiertos));
 
           //Añadimos array de posición en el mapa
@@ -230,8 +210,8 @@ footer {
 .perfil-btn:hover {
   background-color: var(--white);
   color: var(--primary);
-  box-shadow: 
-  inset 4px 4px 12px #a7a8a8;
+  box-shadow:
+    inset 4px 4px 12px #a7a8a8;
 }
 
 .form-control {

@@ -8,7 +8,7 @@
   <div class="fondoColor">
     <main class="container">
       <h1>Modificar tesoro</h1>
-      <form v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
+      <form novalidate v-on:submit.prevent="enviarFormulario" enctype="multipart/form-data">
         <label for="" required>Nombre monumento:</label><br />
         <input type="text" v-model="nombre" class="input" id="nom_tesoro" /><br /><br />
         <input type="file" name="foto_tesoro" id="foto_tesoro" /><br /><br />
@@ -118,7 +118,7 @@ export default {
 
       // Realizamos petición asíncrona a la API.
       axios
-        .put(`http://135.181.182.115:8081/tesorosweb/${this.itemID}`, formData, {
+        .put(`http://localhost:8081/tesorosweb/${this.itemID}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -149,7 +149,6 @@ export default {
       });
       //Centramos el mapa en la ubicación escogida.
       this.modifyCenter();
-      console.log("Marcador añadido!");
     },
     modifyCenter() {
       this.center = [this.latitud, this.longitud];

@@ -111,7 +111,7 @@ export default {
       formData.append("usu_id", "10");
 
       axios
-        .post("http://135.181.182.115:8081/user/register", formData, {
+        .post("http://localhost:8081/user/register", formData, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -155,7 +155,7 @@ export default {
     getUserId(username) {
       //Realizamos petición asíncrona para buscar de la lista de jugadores, cual tiene el nombre del usuario que
       //ha iniciado sesión
-      fetch("http://135.181.182.115:8081/jugador", {
+      fetch("http://localhost:8081/jugadorweb", {
         method: "GET",
       })
         .then((response) => response.json())

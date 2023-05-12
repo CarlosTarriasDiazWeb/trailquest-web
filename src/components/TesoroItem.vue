@@ -131,7 +131,7 @@ export default defineComponent({
     return {
       textArea: false,
       resenaButtonText: "Añadir Reseña",
-      src: `http://135.181.182.115:8081/tesorosweb/imagenes/${this.fotoTesoro}`,
+      src: `http://localhost:8081/tesorosweb/imagenes/${this.fotoTesoro}`,
       resenas: [],
       comentario: "",
       media: 0,
@@ -183,7 +183,7 @@ export default defineComponent({
       
       const axios = require("axios");
       axios
-        .delete(`http://135.181.182.115:8081/tesorosweb/${this.itemID}`)
+        .delete(`http://localhost:8081/tesorosweb/${this.itemID}`)
         .then(
           //Forzamos refresco del componente
           this.$router.go(0)
@@ -225,7 +225,7 @@ export default defineComponent({
       const axios = require("axios");
       axios
         .post(
-          `http://135.181.182.115:8081/tesorosweb/${this.getValue("usu_id")}/resena/${this.itemID}`,
+          `http://localhost:8081/tesorosweb/${this.getValue("usu_id")}/resena/${this.itemID}`,
           formData,
           {
             headers: {
@@ -259,7 +259,7 @@ export default defineComponent({
     //Hacemos petición asíncrona de las reseñas del tesoro
     const axios = require("axios");
     axios
-      .get(`http://135.181.182.115:8081/tesorosweb/${this.itemID}/resena`)
+      .get(`http://localhost:8081/tesorosweb/${this.itemID}/resena`)
       .then((response) => {
         this.resenas = Array.from(response.data);
         if (this.resenas.length > 0) {
