@@ -146,7 +146,7 @@ export default {
           console.log(idEncontrados);
 
           //Seteamos número de tesoros encontrados en la cookie
-          let numEncontrados = idEncontrados.length > 0 ? idEncontrados.length : 0;
+          let numEncontrados = idEncontrados.size > 0 ? idEncontrados.size : 0;
           this.setCookie("numEncontrados", numEncontrados, 2);
 
           //Construimos el array de tesoros descubiertos

@@ -27,7 +27,9 @@ export default {
     StarRating,
   },
   data() {
-    return {};
+    return {
+      src: `http://localhost:8081/tesorosweb/imagenes/${this.foto}`
+    };
   },
   props: {
     resId: Number,

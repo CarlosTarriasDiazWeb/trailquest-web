@@ -212,10 +212,10 @@ export default defineComponent({
       else {
         fotoEnviar = resenaFoto.files[0];
       }
-      formData.append("comentario", this.comentario);
-      formData.append("rating", this.rating);
-      formData.append("foto-resena", fotoEnviar);
-      formData.append("username", this.getValue("usu_username"));
+      formData.append("comentario", this.escapeString(this.comentario.trim()));
+      formData.append("puntuacion", this.rating);
+      formData.append("foto", fotoEnviar);
+      formData.append("usu_username", this.getValue("usu_username"));
 
       const axios = require("axios");
       axios
@@ -244,6 +244,10 @@ export default defineComponent({
         .split("; ")
         .find((row) => row.startsWith(`${key}=`))
         ?.split("=")[1];
+    },
+    escapeString(string) {
+      //Para poder crear el objeto JSON correctamente en las ruta /tesoros de la API.
+      return `'${string}'`;
     },
   },
   mounted() {
