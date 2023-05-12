@@ -74,6 +74,9 @@ Si no tenemos una cuenta en Trail Quest debemos proceder a registrarnos en el fo
 
 ## Funciones de jugador
 
+<img src="./readmeImg/jugador.png"
+     alt="Pantalla de jugador en web"/>
+
 ### Consultar estadísticas
 
 Desde el listado de tesoros, podemos acceder a nuestros datos de perfil y estadísticas pulsando en el enlace de la pate inferior de la página.  
