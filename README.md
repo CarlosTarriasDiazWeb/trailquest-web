@@ -68,9 +68,15 @@ npm run build
 
 Desde la portada, debemos ir al botón correspondiente; una vez hecho, se muestra el formulario de inicio de sesión. Debemos especificar nuestro nombre de usuario y contraseña. El sistema detectará internamente si nos hemos iniciado como usuario jugador o como usuario administrador y mostrará la vista que corresponda.
 
+<img src="./readmeImg/inicio.png"
+     alt="Inicio Sesión"/>
+
 ### Registro
 
 Si no tenemos una cuenta en Trail Quest debemos proceder a registrarnos en el formulario correspondiente, podemos acceder desde la portada de la web o desde el formulario de inicio de sesión. Debemos especificar nuestro nuevo nombre de usuario (no correo) y la contraseña que usaremos para iniciar sesión.
+
+<img src="./readmeImg/registro.png"
+     alt="Registro"/>
 
 ## Funciones de jugador
 
@@ -82,6 +88,9 @@ Si no tenemos una cuenta en Trail Quest debemos proceder a registrarnos en el fo
 Desde el listado de tesoros, podemos acceder a nuestros datos de perfil y estadísticas pulsando en el enlace de la pate inferior de la página.  
 Aquí podemos consultar los tesoros encontrados, el porcentaje de tesoros completados respecto al total, y nuestro nivel/categoría.
 
+<img src="./readmeImg/estadist.png"
+     alt="perfil jugador"/>
+
 ### Filtrado tesoros
 
 Si observamos en la parte superior del mapa, podemos observar dos botones de filtro. Uno muestra sólo los tesoros ya descubiertos, y el otro muestra además los tesoros por descubrir.
@@ -90,16 +99,31 @@ Si observamos en la parte superior del mapa, podemos observar dos botones de fil
 
 Si seleccionamos un ítem de la lista de tesoros, se nos mostrará información y una lista de reseñas que han hecho los diferentes usuarios sobre ese tesoro. Si hemos descubierto ese tesoro, nos aparecerá un botón de añadir reseña que activará un cuadro de texto y unos íconos de estrella para poder valorar, además de poder seleccionar una foto. Una vez rellenados los datos, la nueva reseña aparecerá en la lista.
 
+<img src="./readmeImg/resenasver.png"
+     alt=" Ver resenas "/>
+
+<img src="./readmeImg/hacerResena.png"
+     alt=" Crear Resenas "/>
+
 ## Funciones de administrador
 
 ### Añadir Tesoro
 
 Desde la vista del administrador, en la parte inferior, podemos acceder al formulario correspondiente para añadir un nuevo tesoro al sistema. Todos los campos son obligatorios y debemos especificar la posición en coordenadas (latitud, longitud) para poder ver en el mapa donde se ubica el nuevo tesoro.
 
+<img src="./readmeImg/anadirTes.png"
+     alt="Añadir Tesoro"/>
+
 ### Eliminar Tesoro
 
 Desde el listado de tesoros, si presionamos el botón del contenedor de cualquiera de los tesoros, se nos mostrará un cuadro de diálogo que nos pedirá confirmación para eliminar ese tesoro. Si le damos a 'Eliminar Tesoro' entonces el tesoro se eliminará del sistema.
 
+<img src="./readmeImg/eliminar.png"
+     alt="Eliminar Tesoro"/>
+
 ### Actualizar tesoros
 
 Desde el listado de tesoros, si presionamos el botón del cuaderno de cualquiera de los tesoros, accederemos a su correspondiente formulario de actualización: este formulario ya estará rellenado con los datos actuales del tesoro seleccionado. Si no especificamos una nueva imagen se mantendrá la imagen que existe actualmente.
+
+<img src="./readmeImg/modificar.png"
+     alt="Actualizar Tesoro"/>
