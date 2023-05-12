@@ -61,6 +61,7 @@ export default {
       this.deleteCookie("usu_id");
       this.deleteCookie("numEncontrados");
       this.deleteCookie("numeroTotal");
+      this.deleteCookie("type");
 
       this.$router.push("/login");
     },

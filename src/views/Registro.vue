@@ -119,9 +119,10 @@ export default {
         .then((response) => {
           //Si el usuario se registra correctamente en la API, seteamos cookie de sesión y redirigimos a la página de jugador o admin
           if (response.data.includes("Usuari registrat correctament")) {
-            //Guardamos el booleano, el user_id?, el username? TODO
+            //Seteamos los datos del usuario en la cookie
             this.setCookie("login", "true", 2);
             this.setCookie("usu_username", this.name, 2);
+            this.setCookie("type", "jugador", 2);
             this.getUserId(this.getValue("usu_username"));
 
             //Siempre se registra un usuario jugador.

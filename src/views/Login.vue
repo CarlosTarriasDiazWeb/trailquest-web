@@ -107,12 +107,16 @@ export default {
             this.setCookie("login", "true", 2);
             this.setCookie("usu_username", this.name, 2);
             this.getUserId(this.getValue("usu_username"));
+            
+            if (this.getValue("usu_username") === "admin") {
+              this.setCookie("type", "admin")
+              this.$router.push("admin");
 
-            //Tenemos que decidir si es admin o jugador de alguna manera... TODO
-
-            this.getValue("usu_username") === "admin"
-              ? this.$router.push("admin")
-              : this.$router.push("jugador");
+            }
+            else {
+              this.setCookie("type", "jugador")
+              this.$router.push("jugador");
+            }
           } else {
             this.error = true;
             this.mensajesError.push("Login incorrecto");
