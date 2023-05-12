@@ -218,12 +218,15 @@ footer {
   background-color: var(--primary);
   color: var(--white);
   border-radius: 3rem;
+  border: none;
   transition: all 0.3s ease-in-out;
 }
 
 .perfil-btn:hover {
   background-color: var(--white);
   color: var(--primary);
+  box-shadow: 
+  inset 4px 4px 12px #a7a8a8;
 }
 
 .form-control {

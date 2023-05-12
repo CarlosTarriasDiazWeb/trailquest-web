@@ -250,12 +250,16 @@ export default {
   border-radius: 3rem;
   transition: all 0.3s ease-in-out;
   padding: 5px 8px;
+  box-shadow: 
+  6px 6px 12px #59a888
+  , -6px -6px 12px #59a888;
 }
 
 .volver:hover {
   background-color: var(--black);
   color: white !important;
   cursor: pointer;
+  box-shadow: none;
 }
 
 li {

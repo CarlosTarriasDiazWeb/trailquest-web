@@ -1,43 +1,23 @@
 <template>
-  <header>
-    <nav class="p-4 w-100 d-flex flex-row align-items-center navbar navbar-expand-lg bg-body-tertiary">
-      <div class="d-flex align-items-center logo">
-        <img class="navbar-brand" src="../../public/assets/imgs/logo.png" />
-        <h1>TRAIL QUEST</h1>
-      </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <RouterLink class="my-2 text-center sesion-btn nav-link" to="/login">Iniciar Sesión</RouterLink>
-            <RouterLink class="my-2 text-center registro-btn nav-link" to="/registro">Registrarse</RouterLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <!-- <nav-bar></nav-bar> -->
+  <nav-bar></nav-bar>
   <main class="container flex-grow-1 my-3">
     <h2>¿Cómo participar?</h2>
     <section id="paso1" class="row my-4 d-flex align-items-center">
-      <img src="https://dummyimage.com/600x400/000/fff" alt="" class="col-lg-5" />
+      <img src="../../public/assets/imgs/foto1.jpg" alt="" class="col-lg-5" />
       <p class="col">
         Registrate en nuestra página o a través de la app de Trail Quest para ver un mapa con todos
         los tesoros que hay alrededor tuyo.
       </p>
     </section>
     <section id="paso2" class="row d-flex flex-row-reverse align-items-center my-4">
-      <img src="https://dummyimage.com/600x400/000/fff" alt="" class="col-lg-5" />
+      <img src="../../public/assets/imgs/foto2.jpg" alt="" class="col-lg-5" />
       <p class="col">
         Utiliza la app para navegar hacia un tesoro cercano. No os olvideis de tener el movil
-        cargado!
+        cargado! Una vez lleguéis, podreis leer información acerca del sitio y subir de nivel.
       </p>
     </section>
     <section id="paso3" class="row my-4 d-flex align-items-center">
-      <img src="https://dummyimage.com/600x400/000/fff" alt="" class="col-lg-5" />
+      <img src="../../public/assets/imgs/foto3.jpg" alt="" class="col-lg-5" />
       <p class="col">
         Comparte la experiencia con tus amigos y pon una reseña en el tesoro que encuentres.
         Diviertete!
@@ -48,12 +28,12 @@
 </template>
 
 <script>
-///import NavBar from '@/components/NavBar.vue';
+import NavBar from '@/components/NavBar.vue';
 import Footer from "@/components/Footer.vue";
 export default {
   name: "home-page",
   components: {
-    //NavBar
+    NavBar,
     Footer,
   },
   data() {

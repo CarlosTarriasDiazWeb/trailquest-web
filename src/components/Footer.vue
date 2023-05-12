@@ -17,11 +17,14 @@ export default {
 .nav-link {
   color: #fff;
   transition: all 0.3s ease-in-out;
+  text-shadow: 
+  6px 6px 12px #000;
 }
 
 .nav-link:hover {
-  color: #78d3ae;
+  color: #fff;
   cursor: pointer;
+  text-shadow: none;
 }
 
 footer {

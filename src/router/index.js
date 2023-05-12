@@ -58,18 +58,18 @@ const router = createRouter({
 
 //FUNCIONES DE GESTIÓN DE COOKIE
 
-function getValue(key) {
+/* function getValue(key) {
   return document.cookie
     .split("; ")
     .find((row) => row.startsWith(`${key}=`))
     ?.split("=")[1];
-}
+} */
 
 //ROUTES GUARD
 
 //Implementamos las rutas que se deben proteger en función de si la cookie de sesión está seteada o no.
 
-router.beforeEach(async (to) => {
+/* router.beforeEach(async (to) => {
   //Si el usuario no tiene sesión no puede ir a la página del jugador o la del admin
   if (
     !getValue("login") &&
@@ -82,6 +82,6 @@ router.beforeEach(async (to) => {
   if (getValue("login") && (to.name === "login" || to.name === "registro" || to.name === "home")) {
     return { name: "jugador" };
   }
-});
+}); */
 
 export default router;

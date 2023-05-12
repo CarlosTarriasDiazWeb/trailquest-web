@@ -86,12 +86,17 @@ img {
   border-radius: 3rem;
   transition: all 0.3s ease-in-out;
   padding: 5px 8px;
+  box-shadow: 
+  6px 6px 12px #59a888
+  , -6px -6px 12px #59a888;
+
 }
 
 .sesion-btn:hover {
   background-color: var(--black);
   color: white !important;
   cursor: pointer;
+  box-shadow: none;
 }
 
 .registro-btn {
@@ -99,12 +104,16 @@ img {
   color: var(--white);
   border-radius: 3rem;
   transition: all 0.3s ease-in-out;
+  box-shadow: 
+  6px 6px 12px #59a888
+  , -6px -6px 12px #59a888;
 }
 
 .registro-btn:hover {
   background-color: #a7a8a8;
   color: var(--black);
   cursor: pointer;
+  box-shadow: none;
 }
 
 .sesion-btn {
@@ -112,11 +121,15 @@ img {
   color: var(--black);
   border-radius: 3rem;
   transition: all 0.3s ease-in-out;
+  box-shadow: 
+  6px 6px 12px #59a888
+  , -6px -6px 12px #59a888;
 }
 
 .sesion-btn:hover {
   background-color: #59a888;
   color: white !important;
+  box-shadow: none;
   cursor: pointer;
 }
 </style>

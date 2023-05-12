@@ -195,11 +195,15 @@ header {
   background-color: #a7a8a8;
   color: #fff;
   transition: all 0.3s ease-in-out;
+  box-shadow: 
+  6px 6px 12px #59a888
+  , -6px -6px 12px #59a888;
 }
 
 .volver:hover {
   background-color: #59a888;
   cursor: pointer;
+  box-shadow: none;
 }
 
 .container {
@@ -232,12 +236,15 @@ header {
   background-color: #59a888;
   color: white;
   transition: all 0.3s ease-in-out;
+
 }
 
 .submit:hover {
   background-color: white;
   color: black;
   cursor: pointer;
+  box-shadow: 
+  inset 4px 4px 12px #a7a8a8;
 }
 
 .marcador {
