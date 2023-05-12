@@ -25,16 +25,16 @@
         </div>
       </button>
       <div id="adminButtons" v-if="isAdmin">
-        <button @click="abrirDialogo('dialogo1')" class="trash-btn">
+        <button @click="abrirDialogo(this.dialogoID)" class="trash-btn">
           <font-awesome-icon icon="fa-solid fa-trash fa-lg" />
         </button>
         <dialog id="dialogo1" class="w-50 z-1">
           <p>¿Estás seguro de que quieres eliminar este tesoro?</p>
-          <button class="btn-delete w-50" type="button" @click="cerrarDialogo('dialogo1')">
+          <button class="btn-delete w-50" type="button" @click="cerrarDialogo(this.dialogoID)">
             Volver
           </button>
           <br />
-          <button class="btn-delete w-50" type="button" @click="eliminarTesoro('dialogo1')">
+          <button class="btn-delete w-50" type="button" @click="eliminarTesoro(this.dialogoID)">
             Eliminar tesoro
           </button>
         </dialog>
@@ -136,6 +136,7 @@ export default defineComponent({
       comentario: "",
       rating: 0,
       media: "",
+      dialogoID: "dialogo"+this.itemID
     };
   },
   props: {
@@ -176,8 +177,9 @@ export default defineComponent({
       //Cerramos el cuadro de diálogo referenciado por la id pasada como parámetro.
       const dialogo = document.getElementById(id);
       dialogo.close();
-
+      
       //Hacer petición asíncrona para eliminar este tesoro - TODO
+      
       const axios = require("axios");
       axios
         .delete(`http://localhost:8081/tesorosweb/${this.itemID}`)
@@ -186,6 +188,7 @@ export default defineComponent({
           this.$router.push("/admin")
         )
         .catch((error) => console.log(error));
+        
     },
     goToUpdate() {
       //Para tener el formulario de actualización lleno con los datos actuales del tesoro, pasamos la información mediante la ruta.
