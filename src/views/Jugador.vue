@@ -127,7 +127,7 @@ export default {
       this.setCookie("numeroTotal", numeroTotalTesoros, 2);
 
       //Para testear reseñas
-      this.todas.map((loc) => (loc.descubierto = true));
+      this.todas.map((loc) => (loc.descubierto = false));
 
       //Por defecto mostramos todos los tesoro.
       this.localizacionesMostrar = [...this.todas];
