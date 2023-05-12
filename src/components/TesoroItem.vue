@@ -134,8 +134,7 @@ export default defineComponent({
       src: `http://localhost:8081/tesorosweb/imagenes/${this.fotoTesoro}`,
       resenas: [],
       comentario: "",
-      rating: 0,
-      media: "",
+      media: 0,
       dialogoID: "dialogo"+this.itemID
     };
   },
@@ -260,15 +259,15 @@ export default defineComponent({
       .get(`http://localhost:8081/tesorosweb/${this.itemID}/resena`)
       .then((response) => {
         this.resenas = Array.from(response.data);
-        if (this.resenas > 0) {
+        if (this.resenas.length > 0) {
+          console.log(this.resenas);
           //Calculamos puntuación del tesoro en función de las puntuaciones de las reseñas
           this.media = (
-            (this.resenas.reduce((total, resena) => total + resena.res_puntuacion) /
-              this.resenas.length) %
-            5
+            (this.resenas.reduce((total, resena) => total + resena.puntuacion, 0) /
+              this.resenas.length) 
           ).toString();
         } else {
-          this.media = "0.0";
+          this.media = 0;
         }
       })
       .catch((error) => console.log(error));
