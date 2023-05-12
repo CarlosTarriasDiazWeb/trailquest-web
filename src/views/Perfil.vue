@@ -139,24 +139,13 @@ export default {
       nombreUsuario: this.getValue("usu_username"),
       nivelUsuario: "Leyenda",
       progress: Math.floor(this.getValue("numEncontrados") / this.getValue("numeroTotal")*100) || 0,
-      localizacionesEncontradas: [],
+      localizacionesEncontradas: JSON.parse(this.getValue("nombreDescubiertos"))|| [],
     };
   },
 
   mounted() {
     this.calcNivelUsuario();
     //Recogemos las estadísticas del jugador que ha iniciado sesión, tenemos que hacer la llamada a la APi con el id_usuario actual
-
-    const axios = require("axios");
-    axios({
-      method: "get",
-      url: `http://135.181.182.115:8081/tesorosweb/${this.getValue("usu_id")}/encontrados`,
-    }).then((response) => {
-      const nombresEncontrados = response.data
-      console.log(nombresEncontrados)
-      if (nombresEncontrados.length > 0) this.localizacionesEncontradas = [...nombresEncontrados];
-      else this.localizacionesEncontradas = ["No hay tesoros descubiertos"];
-    });
   },
 };
 </script>

@@ -138,7 +138,11 @@ export default {
         url: `http://135.181.182.115:8081/tesorosweb/${this.getValue("usu_id")}/encontrados`,
       }).then((response) => {
         //Recogemos las filas que nos indican la id de los tesoros descubiertos.
+        
         const tesorosEncontrados = Array.from(response.data) || [];
+        
+        
+        
         console.log(this.tesorosEncontrados);
         if (tesorosEncontrados.length > 0) {
           //Guardamos las id de los tesoros encontrados para más facilidad.
@@ -151,8 +155,9 @@ export default {
 
           //Construimos el array de tesoros descubiertos
           this.localizacionesEncontradas = this.todas.filter((loc) => idEncontrados.has(loc.id));
-
+          const nombreDescubiertos = Array.from(this.localizacionesEncontradas,loc => loc.titulo);
           console.log(this.localizacionesEncontradas);
+          this.setCookie("nombreDescubiertos", JSON.stringify(nombreDescubiertos));
 
           //Añadimos array de posición en el mapa
           this.localizacionesEncontradas.map((loc) => (loc.position = [loc.latitud, loc.longitud]));
