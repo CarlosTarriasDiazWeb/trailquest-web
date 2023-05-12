@@ -84,7 +84,7 @@ export default {
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://localhost:8081/tesoros",
+      url: "http://135.181.182.115:8081/tesoros",
     }).then((response) => {
       this.todas = Array.from(response.data);
       console.log(this.todas);

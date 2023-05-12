@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      src: `http://localhost:8081/tesorosweb/imagenes/${this.foto}`
+      src: `http://135.181.182.115:8081/tesorosweb/imagenes/${this.foto}`
     };
   },
   props: {

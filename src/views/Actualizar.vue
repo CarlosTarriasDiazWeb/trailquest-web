@@ -118,7 +118,7 @@ export default {
 
       // Realizamos petición asíncrona a la API.
       axios
-        .put(`http://localhost:8081/tesorosweb/${this.itemID}`, formData, {
+        .put(`http://135.181.182.115:8081/tesorosweb/${this.itemID}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

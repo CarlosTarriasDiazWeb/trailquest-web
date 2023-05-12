@@ -108,7 +108,7 @@ export default {
     const axios = require("axios");
     axios({
       method: "get",
-      url: "http://localhost:8081/tesorosweb",
+      url: "http://135.181.182.115:8081/tesorosweb",
       auth: {
         username: this.getValue("usu_username"),
         password: this.getValue("usu_password"),
@@ -135,7 +135,7 @@ export default {
       //Recogemos los tesoros descubiertos con otra llamada a la API.
       axios({
         method: "get",
-        url: `http://localhost:8081/tesorosweb/${this.getValue("usu_id")}/encontrados`,
+        url: `http://135.181.182.115:8081/tesorosweb/${this.getValue("usu_id")}/encontrados`,
       }).then((response) => {
         //Recogemos las filas que nos indican la id de los tesoros descubiertos.
         const tesorosEncontrados = Array.from(response.data) || [];

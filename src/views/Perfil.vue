@@ -150,7 +150,7 @@ export default {
     const axios = require("axios");
     axios({
       method: "get",
-      url: `http://localhost:8081/tesorosweb/${this.getValue("usu_id")}/encontrados`,
+      url: `http://135.181.182.115:8081/tesorosweb/${this.getValue("usu_id")}/encontrados`,
     }).then((response) => {
       const nombresEncontrados = response.data
       console.log(nombresEncontrados)

@@ -28,7 +28,7 @@
         <button @click="abrirDialogo(this.dialogoID)" class="trash-btn">
           <font-awesome-icon icon="fa-solid fa-trash fa-lg" />
         </button>
-        <dialog id="dialogo1" class="w-50 z-1">
+        <dialog :id="getDialogoID(dialogoID)" class="w-50 z-1">
           <p>¿Estás seguro de que quieres eliminar este tesoro?</p>
           <button class="btn-delete w-50" type="button" @click="cerrarDialogo(this.dialogoID)">
             Volver
@@ -131,7 +131,7 @@ export default defineComponent({
     return {
       textArea: false,
       resenaButtonText: "Añadir Reseña",
-      src: `http://localhost:8081/tesorosweb/imagenes/${this.fotoTesoro}`,
+      src: `http://135.181.182.115:8081/tesorosweb/imagenes/${this.fotoTesoro}`,
       resenas: [],
       comentario: "",
       media: 0,
@@ -151,6 +151,9 @@ export default defineComponent({
     valoracion: String,
   },
   methods: {
+    getDialogoID() {
+      return this.dialogoID;
+    },
     posicionarCentro() {
       //Para reposicionar el centro del mapa a la localización de este tesoro.
       this.$emit("posicionarCentro", { position: this.localizacion });
@@ -176,15 +179,15 @@ export default defineComponent({
       //Cerramos el cuadro de diálogo referenciado por la id pasada como parámetro.
       const dialogo = document.getElementById(id);
       dialogo.close();
-      
       //Hacer petición asíncrona para eliminar este tesoro - TODO
       
       const axios = require("axios");
       axios
-        .delete(`http://localhost:8081/tesorosweb/${this.itemID}`)
+        .delete(`http://135.181.182.115:8081/tesorosweb/${this.itemID}`)
         .then(
           //Forzamos refresco del componente
-          this.$router.push("/admin")
+          this.$router.go(0)
+          
         )
         .catch((error) => console.log(error));
         
@@ -222,7 +225,7 @@ export default defineComponent({
       const axios = require("axios");
       axios
         .post(
-          `http://localhost:8081/tesorosweb/${this.getValue("usu_id")}/resena/${this.itemID}`,
+          `http://135.181.182.115:8081/tesorosweb/${this.getValue("usu_id")}/resena/${this.itemID}`,
           formData,
           {
             headers: {
@@ -256,7 +259,7 @@ export default defineComponent({
     //Hacemos petición asíncrona de las reseñas del tesoro
     const axios = require("axios");
     axios
-      .get(`http://localhost:8081/tesorosweb/${this.itemID}/resena`)
+      .get(`http://135.181.182.115:8081/tesorosweb/${this.itemID}/resena`)
       .then((response) => {
         this.resenas = Array.from(response.data);
         if (this.resenas.length > 0) {
