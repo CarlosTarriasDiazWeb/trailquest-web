@@ -124,10 +124,10 @@ export default {
   },
   data() {
     return {
-      numeroTesoros: this.getValue("numEncontrados"),
+      numeroTesoros: this.getValue("numEncontrados") || 0,
       nombreUsuario: this.getValue("usu_username"),
       nivelUsuario: "Leyenda",
-      progress: Math.floor(this.getValue("numEncontrados") / this.getValue("numeroTotal")*100),
+      progress: Math.floor(this.getValue("numEncontrados") / this.getValue("numeroTotal")*100) || 0,
       todas: [
         // {
         //   nombre: "Tesoro 1",
