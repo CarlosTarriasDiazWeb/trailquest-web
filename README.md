@@ -2,6 +2,11 @@
 
 ![Logo de Trail Quest](/public/assets/imgs/logo.png)
 
+# Autores
+- Arnau Badenas
+- Ana Gomez
+- Carlos Tarrias 
+
 # Descripción del Proyecto
 
 El objetivo principal de la aplicación es poder permitir la consulta de información y la gestión de los diferentes tesoros con los que se puede interactuar (descubrir) en la aplicación móvil.  
